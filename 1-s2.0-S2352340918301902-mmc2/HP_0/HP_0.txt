@@ -1,0 +1,31 @@
+Feb 19 - 2016
+Hockey Puck placed horizontally on a wood post, hit by dowel
+
+Designed by: D. Attinger & S. Kim
+Performed by: D. Attinger & S. Kim
+Image Scale: 600 dpi (236.2 pixel/cm)
+
+Environmental conditions:
+Room Temp=24.1 C ± 1 C
+Room Humidity=37.1 % ± 5 %
+
+Blood Properties: Swine blood with heparin anti-coagulant, drawn Feb 19, 2016
+Hematocrit=32% ± 1 %
+Blood Volume= 1 ml ± 0.2 ml
+Blood supply = pool 
+
+Test Rig Parameters:
+dowel swung by hand
+
+*All coordinate measurements are taken from the lower left corner of the room
+Blood origin:
+x_o=34.0 cm
+y_o=102.5 cm
+z_o=81.6 cm
+
+Target: Ucreate premium poster board, smooth side
+Target position: vertical
+target lower left corner:
+x_t=4.0 cm
+y_t=67.5 cm
+z_t=60.0 cm

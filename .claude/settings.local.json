@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /Users/harish/UROP-KG/src/*.py)",
+      "Bash(ls -lh /Users/harish/UROP-KG/*.pdf)",
+      "Bash(ls -lh /Users/harish/UROP-KG/*.py)",
+      "Read(//Users/harish/UROP-KG/**)",
+      "Bash(file /Users/harish/UROP-KG/1-s2.0-S2352340918301902-mmc2/C1/*)",
+      "Bash(python3 -c \":*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --use-npm)",
+      "Bash(npm install next-themes)",
+      "Bash(npm run build)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(curl -s http://localhost:8000/health)",
+      "Bash(curl -s http://localhost:3000 -o /dev/null -w \"%{http_code}\")",
+      "Bash(curl -sv http://localhost:8000/api/datasets)",
+      "Bash(curl -s http://localhost:8000/api/datasets/)",
+      "Bash(python3 -m json.tool)"
+    ]
+  }
+}

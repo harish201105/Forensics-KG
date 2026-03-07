@@ -1,0 +1,823 @@
+version: "1.0"
+name: "Forensics Knowledge Graph Ontology"
+description: "Unified ontology for bloodstain pattern analysis and FIR-based forensic investigation"
+
+enums:
+  PatternType:
+    - passive_drop
+    - transfer
+    - projected
+    - cast_off
+    - impact_spatter
+    - arterial_spurt
+    - void
+    - wipe
+    - swipe
+    - flow
+    - pool
+    - satellite
+
+  ImpactMechanism:
+    - blunt_force
+    - sharp_force
+    - gunshot
+    - stabbing
+    - beating
+    - fall
+    - unknown
+
+  SubstrateType:
+    - paper
+    - cardboard
+    - fabric
+    - wood
+    - metal
+    - glass
+    - plastic
+    - concrete
+    - tile
+    - other
+
+  PersonRole:
+    - victim
+    - suspect
+    - witness
+    - officer
+    - forensic_analyst
+
+  EvidenceType:
+    - physical
+    - digital
+    - biological
+    - documentary
+    - testimonial
+
+  CrimeCategory:
+    - homicide
+    - assault
+    - robbery
+    - burglary
+    - domestic_violence
+    - hit_and_run
+    - kidnapping
+    - cybercrime
+    - other
+
+  InjuryType:
+    - laceration
+    - contusion
+    - abrasion
+    - incised_wound
+    - stab_wound
+    - gunshot_wound
+    - fracture
+    - burn
+    - ligature_mark
+    - other
+
+  WoundMechanism:
+    - sharp_force
+    - blunt_force
+    - gunshot
+    - thermal
+    - chemical
+    - asphyxia
+    - unknown
+
+  FingerprintClass:
+    - loop_ulnar
+    - loop_radial
+    - whorl_plain
+    - whorl_central_pocket
+    - whorl_double_loop
+    - whorl_accidental
+    - arch_plain
+    - arch_tented
+
+  ToolMarkType:
+    - striation
+    - impression
+    - combination
+    - cut_mark
+
+node_types:
+  Case:
+    properties:
+      case_id: string
+      title: string
+      description: string
+      status: string
+      date_filed: string
+      jurisdiction: string
+      crime_type: string
+      fir_number: string
+      police_station: string
+    required: [case_id, title]
+    unique_key: case_id
+
+  Person:
+    properties:
+      person_id: string
+      name: string
+      role: string
+      age: integer
+      gender: string
+      description: string
+      address: string
+      phone: string
+    required: [person_id, name, role]
+    unique_key: person_id
+
+  Location:
+    properties:
+      location_id: string
+      name: string
+      type: string
+      address: string
+      latitude: float
+      longitude: float
+      description: string
+    required: [location_id, name]
+    unique_key: location_id
+
+  Evidence:
+    properties:
+      evidence_id: string
+      type: string
+      description: string
+      collected_by: string
+      collection_date: string
+      chain_of_custody: string
+    required: [evidence_id, type, description]
+    unique_key: evidence_id
+
+  Weapon:
+    properties:
+      weapon_id: string
+      type: string
+      description: string
+      caliber: string
+      serial_number: string
+    required: [weapon_id, type]
+    unique_key: weapon_id
+
+  Vehicle:
+    properties:
+      vehicle_id: string
+      make: string
+      model: string
+      year: integer
+      color: string
+      license_plate: string
+    required: [vehicle_id]
+    unique_key: vehicle_id
+
+  CrimeType:
+    properties:
+      crime_type_id: string
+      name: string
+      severity: string
+      legal_code: string
+    required: [crime_type_id, name]
+    unique_key: crime_type_id
+
+  TimeEvent:
+    properties:
+      event_id: string
+      timestamp: string
+      description: string
+      precision: string
+    required: [event_id, description]
+    unique_key: event_id
+
+  BloodstainPattern:
+    properties:
+      pattern_id: string
+      pattern_type: string
+      confidence: float
+      description: string
+      key_features: list
+      uncertainties: list
+      spatial_distribution: string
+      estimated_stain_count: integer
+    required: [pattern_id, pattern_type]
+    unique_key: pattern_id
+
+  Stain:
+    properties:
+      stain_id: string
+      area: float
+      perimeter: float
+      aspect_ratio: float
+      circularity: float
+      solidity: float
+      convexity: float
+      orientation: float
+      eccentricity: float
+      center_x: float
+      center_y: float
+      density: float
+      nearest_neighbor_distance: float
+    required: [stain_id]
+    unique_key: stain_id
+
+  Experiment:
+    properties:
+      experiment_id: string
+      category: string
+      date: string
+      designed_by: string
+      performed_by: string
+      image_scale: string
+      room_temp: float
+      room_humidity: float
+      blood_type: string
+      hematocrit: float
+      blood_volume: float
+      blood_supply: string
+      height: float
+      origin_x: float
+      origin_y: float
+      origin_z: float
+      target_material: string
+      target_position: string
+      description: string
+    required: [experiment_id, category]
+    unique_key: experiment_id
+
+  Hypothesis:
+    properties:
+      hypothesis_id: string
+      description: string
+      confidence: float
+      mechanism: string
+      likelihood_ratio: float
+      supporting_evidence: list
+      contradicting_evidence: list
+    required: [hypothesis_id, description, confidence]
+    unique_key: hypothesis_id
+
+  ImpactMechanismNode:
+    properties:
+      mechanism_id: string
+      mechanism_type: string
+      description: string
+      confidence: float
+    required: [mechanism_id, mechanism_type]
+    unique_key: mechanism_id
+
+  # --- Court Judgment Types ---
+  LegalSection:
+    properties:
+      section_id: string
+      section_number: string
+      act_name: string
+      description: string
+    required: [section_id, section_number, act_name]
+    unique_key: section_id
+
+  Verdict:
+    properties:
+      verdict_id: string
+      outcome: string
+      sentence: string
+      description: string
+      date: string
+    required: [verdict_id, outcome]
+    unique_key: verdict_id
+
+  CourtOrder:
+    properties:
+      order_id: string
+      order_type: string
+      description: string
+      date: string
+    required: [order_id, order_type]
+    unique_key: order_id
+
+  # --- Post-Mortem Types ---
+  InjuryPattern:
+    properties:
+      injury_id: string
+      injury_type: string
+      anatomical_location: string
+      dimensions: string
+      description: string
+      estimated_age: string
+    required: [injury_id, injury_type, anatomical_location]
+    unique_key: injury_id
+
+  CauseOfDeath:
+    properties:
+      cod_id: string
+      primary_cause: string
+      contributing_factors: string
+      manner: string
+      description: string
+    required: [cod_id, primary_cause]
+    unique_key: cod_id
+
+  ToxicologyResult:
+    properties:
+      tox_id: string
+      substance: string
+      concentration: string
+      result: string
+      method: string
+    required: [tox_id, substance, result]
+    unique_key: tox_id
+
+  OrganFinding:
+    properties:
+      organ_id: string
+      organ: string
+      condition: string
+      weight: string
+      description: string
+    required: [organ_id, organ]
+    unique_key: organ_id
+
+  # --- Lab Report Types ---
+  Sample:
+    properties:
+      sample_id: string
+      sample_type: string
+      source: string
+      collection_date: string
+      condition: string
+      description: string
+    required: [sample_id, sample_type]
+    unique_key: sample_id
+
+  TestResult:
+    properties:
+      test_id: string
+      test_name: string
+      result: string
+      method: string
+      interpretation: string
+      description: string
+    required: [test_id, test_name, result]
+    unique_key: test_id
+
+  DNAProfile:
+    properties:
+      profile_id: string
+      profile_type: string
+      loci_tested: string
+      alleles: string
+      match_result: string
+      match_probability: string
+      description: string
+    required: [profile_id, profile_type]
+    unique_key: profile_id
+
+  ChemicalCompound:
+    properties:
+      compound_id: string
+      compound_name: string
+      concentration: string
+      description: string
+    required: [compound_id, compound_name]
+    unique_key: compound_id
+
+  # --- Deposition Types ---
+  Statement:
+    properties:
+      statement_id: string
+      content: string
+      context: string
+      statement_type: string
+      description: string
+    required: [statement_id, content]
+    unique_key: statement_id
+
+  # --- SOCO Types ---
+  CrimeScene:
+    properties:
+      scene_id: string
+      scene_type: string
+      dimensions: string
+      conditions: string
+      description: string
+    required: [scene_id, scene_type]
+    unique_key: scene_id
+
+  PhysicalEvidence:
+    properties:
+      pe_id: string
+      item_description: string
+      location_in_scene: string
+      condition: string
+      collection_method: string
+      description: string
+    required: [pe_id, item_description]
+    unique_key: pe_id
+
+  ChainOfCustody:
+    properties:
+      custody_id: string
+      handler: string
+      action: string
+      timestamp: string
+      location: string
+      description: string
+    required: [custody_id, handler, action]
+    unique_key: custody_id
+
+  # --- Image Analysis Types ---
+  FingerprintPattern:
+    properties:
+      pattern_id: string
+      classification: string
+      ridge_count: integer
+      quality_score: float
+      description: string
+      confidence: float
+    required: [pattern_id, classification]
+    unique_key: pattern_id
+
+  MinutiaePoint:
+    properties:
+      minutiae_id: string
+      minutiae_type: string
+      x: float
+      y: float
+      angle: float
+      quality: float
+    required: [minutiae_id, minutiae_type]
+    unique_key: minutiae_id
+
+  RidgeDetail:
+    properties:
+      ridge_id: string
+      ridge_type: string
+      frequency: float
+      orientation: float
+      description: string
+    required: [ridge_id, ridge_type]
+    unique_key: ridge_id
+
+  WoundPattern:
+    properties:
+      wound_id: string
+      wound_type: string
+      mechanism: string
+      estimated_age: string
+      area: float
+      description: string
+      confidence: float
+    required: [wound_id, wound_type]
+    unique_key: wound_id
+
+  TissueAnalysis:
+    properties:
+      tissue_id: string
+      tissue_type: string
+      color_profile: string
+      percentage: float
+      description: string
+    required: [tissue_id, tissue_type]
+    unique_key: tissue_id
+
+  BallisticsPattern:
+    properties:
+      ballistics_id: string
+      pattern_type: string
+      caliber: string
+      rifling_characteristics: string
+      description: string
+      confidence: float
+    required: [ballistics_id, pattern_type]
+    unique_key: ballistics_id
+
+  HandwritingFeature:
+    properties:
+      feature_id: string
+      feature_type: string
+      baseline: string
+      slant: string
+      pressure: string
+      description: string
+    required: [feature_id, feature_type]
+    unique_key: feature_id
+
+  InkAnalysis:
+    properties:
+      ink_id: string
+      ink_type: string
+      color: string
+      chemical_composition: string
+      age_estimate: string
+      description: string
+    required: [ink_id, ink_type]
+    unique_key: ink_id
+
+  ForgeryIndicator:
+    properties:
+      forgery_id: string
+      indicator_type: string
+      confidence: float
+      description: string
+    required: [forgery_id, indicator_type]
+    unique_key: forgery_id
+
+  ToolMarkPattern:
+    properties:
+      toolmark_id: string
+      mark_type: string
+      tool_class: string
+      striation_count: integer
+      depth: float
+      description: string
+      confidence: float
+    required: [toolmark_id, mark_type]
+    unique_key: toolmark_id
+
+relationship_types:
+  INVOLVED_IN:
+    source: [Person]
+    target: [Case]
+    properties:
+      role: string
+      date: string
+
+  OCCURRED_AT:
+    source: [Case]
+    target: [Location]
+    properties:
+      description: string
+
+  USED_WEAPON:
+    source: [Person]
+    target: [Weapon]
+    properties:
+      context: string
+
+  HAS_EVIDENCE:
+    source: [Case]
+    target: [Evidence]
+    properties:
+      relevance: float
+
+  HAPPENED_ON:
+    source: [Case]
+    target: [TimeEvent]
+    properties:
+      description: string
+
+  RELATED_TO_CASE:
+    source: [Case]
+    target: [Case]
+    properties:
+      relationship_type: string
+      description: string
+
+  WITNESSED_BY:
+    source: [Case]
+    target: [Person]
+    properties:
+      statement_date: string
+
+  ARRESTED_BY:
+    source: [Person]
+    target: [Person]
+    properties:
+      date: string
+      location: string
+
+  CONTAINS_STAIN:
+    source: [BloodstainPattern]
+    target: [Stain]
+    properties:
+      confidence: float
+
+  GENERATED_BY:
+    source: [BloodstainPattern]
+    target: [ImpactMechanismNode]
+    properties:
+      confidence: float
+      evidence_strength: float
+
+  CAUSED_BY:
+    source: [BloodstainPattern]
+    target: [Experiment]
+    properties:
+      reproducibility: float
+
+  SUPPORTS:
+    source: [Evidence, BloodstainPattern]
+    target: [Hypothesis]
+    properties:
+      evidence_strength: float
+      confidence: float
+
+  CONTRADICTS:
+    source: [Evidence, BloodstainPattern]
+    target: [Hypothesis]
+    properties:
+      contradiction_strength: float
+
+  SIMILAR_TO:
+    source: [BloodstainPattern]
+    target: [BloodstainPattern]
+    properties:
+      similarity_score: float
+      feature_overlap: list
+
+  PRECEDES:
+    source: [TimeEvent]
+    target: [TimeEvent]
+    properties:
+      temporal_gap: string
+
+  FOLLOWS:
+    source: [TimeEvent]
+    target: [TimeEvent]
+    properties:
+      temporal_gap: string
+
+  FOUND_AT:
+    source: [Evidence]
+    target: [Location]
+    properties:
+      description: string
+
+  BELONGS_TO:
+    source: [Weapon, Vehicle]
+    target: [Person]
+    properties:
+      ownership_type: string
+
+  HAS_CRIME_TYPE:
+    source: [Case]
+    target: [CrimeType]
+    properties: {}
+
+  HAS_PATTERN:
+    source: [Case, Experiment]
+    target: [BloodstainPattern, FingerprintPattern, WoundPattern, BallisticsPattern, ToolMarkPattern]
+    properties:
+      context: string
+
+  # --- Court Judgment Relationships ---
+  PRESIDED_BY:
+    source: [Case]
+    target: [Person]
+    properties:
+      role: string
+
+  REPRESENTED_BY:
+    source: [Person]
+    target: [Person]
+    properties:
+      role: string
+
+  RESULTED_IN:
+    source: [Case]
+    target: [Verdict]
+    properties:
+      description: string
+
+  CHARGED_UNDER:
+    source: [Case, Person]
+    target: [LegalSection]
+    properties:
+      description: string
+
+  ORDERED:
+    source: [Person]
+    target: [CourtOrder]
+    properties:
+      date: string
+
+  # --- Post-Mortem Relationships ---
+  INJURY_CAUSED_BY:
+    source: [InjuryPattern]
+    target: [Weapon, Evidence]
+    properties:
+      confidence: float
+
+  LED_TO_DEATH:
+    source: [InjuryPattern, ToxicologyResult]
+    target: [CauseOfDeath]
+    properties:
+      contribution: string
+
+  TOXICOLOGY_OF:
+    source: [ToxicologyResult]
+    target: [Person]
+    properties:
+      description: string
+
+  ORGAN_FINDING_OF:
+    source: [OrganFinding]
+    target: [Person]
+    properties:
+      description: string
+
+  # --- Lab Report Relationships ---
+  TESTED_FROM:
+    source: [TestResult]
+    target: [Sample]
+    properties:
+      description: string
+
+  MATCHES_DNA:
+    source: [DNAProfile]
+    target: [Person, Sample]
+    properties:
+      probability: string
+
+  CONTAINS_COMPOUND:
+    source: [Sample]
+    target: [ChemicalCompound]
+    properties:
+      concentration: string
+
+  COLLECTED_BY:
+    source: [Sample, PhysicalEvidence]
+    target: [Person]
+    properties:
+      date: string
+
+  # --- Deposition Relationships ---
+  STATED_BY:
+    source: [Statement]
+    target: [Person]
+    properties:
+      date: string
+
+  CORROBORATES:
+    source: [Statement]
+    target: [Statement, Evidence]
+    properties:
+      strength: float
+
+  # --- SOCO Relationships ---
+  SCENE_CONTAINS:
+    source: [CrimeScene]
+    target: [PhysicalEvidence]
+    properties:
+      location_detail: string
+
+  CHAIN_OF_CUSTODY:
+    source: [PhysicalEvidence]
+    target: [ChainOfCustody]
+    properties:
+      sequence: integer
+
+  # --- Image Analysis Relationships ---
+  HAS_MINUTIAE:
+    source: [FingerprintPattern]
+    target: [MinutiaePoint]
+    properties:
+      confidence: float
+
+  RIDGE_PATTERN_OF:
+    source: [RidgeDetail]
+    target: [FingerprintPattern]
+    properties:
+      region: string
+
+  WOUND_CAUSED_BY:
+    source: [WoundPattern]
+    target: [Weapon, Evidence]
+    properties:
+      confidence: float
+
+  TISSUE_TYPE_OF:
+    source: [TissueAnalysis]
+    target: [WoundPattern]
+    properties:
+      description: string
+
+  FIRED_FROM:
+    source: [BallisticsPattern]
+    target: [Weapon]
+    properties:
+      confidence: float
+
+  STRIATION_MATCHES:
+    source: [BallisticsPattern]
+    target: [BallisticsPattern]
+    properties:
+      similarity_score: float
+
+  WRITTEN_BY:
+    source: [HandwritingFeature]
+    target: [Person]
+    properties:
+      confidence: float
+
+  FORGED_ON:
+    source: [ForgeryIndicator]
+    target: [Evidence]
+    properties:
+      description: string
+
+  TOOL_USED:
+    source: [ToolMarkPattern]
+    target: [Weapon, Evidence]
+    properties:
+      confidence: float

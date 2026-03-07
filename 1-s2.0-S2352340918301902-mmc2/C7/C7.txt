@@ -1,0 +1,30 @@
+April 1 - 2016
+Sliding Cylinder Experiments
+Designed by: D. Attinger & S. Kim
+Performed by: S. Kim
+Image Scale: 600 dpi
+
+Environmental conditions:
+Room Temp=20 C ± 1 C
+Room Humidity=26.3 % ± 5 %
+
+Blood Properties: Swine blood with heparin anti-coagulant, drawn April 1, 2016
+Hematocrit=39% +/-1%
+Blood Volume= 1 ml ± 0.2 ml
+Blood supply = pool 
+
+Test Rig Parameters:
+Height between both cylinders: 60 cm
+
+*All coordinate measurements are taken from the lower left corner of the room
+Blood origin:
+x_o=64.0 cm
+y_o=96.8 cm
+z_o=82.5 cm
+
+Target: Ucreate premium poster board, smooth side
+Target position: vertical
+target lower left corner:
+x_t=4.0 cm
+y_t=61.2 cm
+z_t=60 cm

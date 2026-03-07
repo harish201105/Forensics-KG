@@ -1,0 +1,34 @@
+October 19 - 2017
+Hockey Puck & Dowel Rig Experiment
+Designed by: D. Attinger
+Performed by: D. Attinger
+Image Scale: 600 dpi (236.2 pixel/cm)
+
+Environmental conditions:
+Room Temp=23 C ± 1 C
+Room Humidity=43 % ± 5 %
+
+Blood Properties: Swine blood with heparin anti-coagulant, drawn October 18, 2017
+Hematocrit=42.5% ± 1 %
+Blood Volume= 1 ml ± 0.2 ml
+Blood supply = pool
+
+Test Rig Parameters:
+Dowel height station: 3
+Dowel Angle: 25 deg
+# of Rubber Bungees: 1
+Moment arm: 26 cm
+
+*All coordinate measurements are taken from the lower left corner of the room
+Blood origin:
+x_o=64.0 cm
+y_o=97.0 cm
+z_o=155.1 cm
+
+Target: Ucreate premium poster board, smooth side
+Target position: vertical
+target lower left corner:
+x_t=4.0 cm
+y_t=58.0 cm
+z_t=91.5 cm
+

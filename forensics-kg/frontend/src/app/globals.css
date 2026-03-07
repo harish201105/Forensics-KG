@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===== Light mode (default) ===== */
+:root {
+  --background: #f8f9fc;
+  --foreground: #111118;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --accent: #dc2626;
+  --muted: #e5e7eb;
+
+  --text-primary: rgba(0, 0, 0, 0.90);
+  --text-body: rgba(0, 0, 0, 0.80);
+  --text-secondary: rgba(0, 0, 0, 0.70);
+  --text-tertiary: rgba(0, 0, 0, 0.60);
+  --text-muted: rgba(0, 0, 0, 0.50);
+  --text-faint: rgba(0, 0, 0, 0.40);
+  --text-ghost: rgba(0, 0, 0, 0.30);
+  --text-whisper: rgba(0, 0, 0, 0.20);
+
+  --border-default: rgba(0, 0, 0, 0.10);
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --border-hover: rgba(0, 0, 0, 0.20);
+
+  --surface-hover: rgba(0, 0, 0, 0.05);
+  --surface-active: rgba(0, 0, 0, 0.10);
+  --surface-elevated: rgba(0, 0, 0, 0.06);
+  --surface-inset: rgba(0, 0, 0, 0.03);
+  --surface-input: rgba(0, 0, 0, 0.04);
+
+  --overlay-backdrop: rgba(0, 0, 0, 0.30);
+  --overlay-modal: rgba(0, 0, 0, 0.40);
+
+  --graph-bg: #f0f0f5;
+}
+
+/* ===== Dark mode ===== */
+.dark {
+  --background: #0a0a0f;
+  --foreground: #e8e8f0;
+  --card: #12121a;
+  --primary: #3b82f6;
+  --accent: #dc2626;
+  --muted: #1e1e2e;
+
+  --text-primary: rgba(255, 255, 255, 0.90);
+  --text-body: rgba(255, 255, 255, 0.80);
+  --text-secondary: rgba(255, 255, 255, 0.70);
+  --text-tertiary: rgba(255, 255, 255, 0.60);
+  --text-muted: rgba(255, 255, 255, 0.50);
+  --text-faint: rgba(255, 255, 255, 0.40);
+  --text-ghost: rgba(255, 255, 255, 0.30);
+  --text-whisper: rgba(255, 255, 255, 0.20);
+
+  --border-default: rgba(255, 255, 255, 0.10);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.20);
+
+  --surface-hover: rgba(255, 255, 255, 0.05);
+  --surface-active: rgba(255, 255, 255, 0.10);
+  --surface-elevated: rgba(255, 255, 255, 0.15);
+  --surface-inset: rgba(0, 0, 0, 0.20);
+  --surface-input: rgba(0, 0, 0, 0.30);
+
+  --overlay-backdrop: rgba(0, 0, 0, 0.50);
+  --overlay-modal: rgba(0, 0, 0, 0.60);
+
+  --graph-bg: #060610;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-body: var(--text-body);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
+  --color-text-ghost: var(--text-ghost);
+  --color-text-whisper: var(--text-whisper);
+
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-hover: var(--border-hover);
+
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-inset: var(--surface-inset);
+  --color-surface-input: var(--surface-input);
+
+  --color-overlay-backdrop: var(--overlay-backdrop);
+  --color-overlay-modal: var(--overlay-modal);
+
+  --color-graph-bg: var(--graph-bg);
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--border-hover);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
