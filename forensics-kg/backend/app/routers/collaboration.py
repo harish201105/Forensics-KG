@@ -2,9 +2,12 @@ from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel, field_validator
 from typing import Optional
 
+from app.config import get_settings
 from app.dependencies import get_neo4j_client
 from app.services.graph.neo4j_client import Neo4jClient
 from app.services.collaboration.annotations import AnnotationService
+from app.services.extraction.openai_client import OpenAIClient
+from app.services.graph.embedding_service import EmbeddingService
 
 router = APIRouter()
 
@@ -35,7 +38,11 @@ async def add_annotation(
     request: AnnotationRequest,
     client: Neo4jClient = Depends(get_neo4j_client),
 ):
-    service = AnnotationService(client)
+    settings = get_settings()
+    embedding_service = EmbeddingService(
+        client, OpenAIClient(settings), settings.embedding_dimensions
+    )
+    service = AnnotationService(client, embedding_service)
     return await service.add_annotation(
         entity_type=request.entity_type,
         entity_id=request.entity_id,

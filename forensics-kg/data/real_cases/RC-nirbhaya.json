@@ -1,0 +1,58 @@
+{
+  "case_id": "RC-nirbhaya",
+  "title": "2012 Delhi gang rape and murder",
+  "crime_type": "rape_murder",
+  "source": "https://en.wikipedia.org/wiki/2012_Delhi_gang_rape_and_murder",
+  "narrative": "FIR — 16 December 2012, a private bus in Munirka, Delhi. Jyoti Singh, a 22-year-old physiotherapy intern, was gang-raped, tortured with an iron rod and murdered; her companion Awindra Pratap Pandey was assaulted and survived. The accused were Ram Singh (the bus driver, who died in custody), Mukesh Singh, Vinay Sharma, Akshay Thakur, Pawan Gupta and a juvenile. An iron rod was used. The Delhi Police Special Investigation Team was led by Pramod Kumar Kushwaha. Evidence included DNA, fingerprints, dental bite-mark modelling and two blood-stained metal rods. The four adult convicts were sentenced to death and executed on 20 March 2020.",
+  "gold": {
+    "persons": [
+      [
+        "Jyoti Singh",
+        "victim"
+      ],
+      [
+        "Awindra Pratap Pandey",
+        "witness"
+      ],
+      [
+        "Ram Singh",
+        "accused"
+      ],
+      [
+        "Mukesh Singh",
+        "accused"
+      ],
+      [
+        "Vinay Sharma",
+        "accused"
+      ],
+      [
+        "Akshay Thakur",
+        "accused"
+      ],
+      [
+        "Pawan Gupta",
+        "accused"
+      ],
+      [
+        "Pramod Kumar Kushwaha",
+        "officer"
+      ]
+    ],
+    "locations": [
+      "Munirka, Delhi"
+    ],
+    "weapons": [
+      "iron rod"
+    ],
+    "crime_types": [
+      "gang rape",
+      "murder"
+    ],
+    "time_events": [
+      "16 December 2012",
+      "13 September 2013 sentence",
+      "20 March 2020 execution"
+    ]
+  }
+}

@@ -36,7 +36,11 @@ class NLToCypherEngine:
             "- Always include LIMIT (max 100) to prevent unbounded results\n"
             "- Use parameterized queries with $param syntax where appropriate\n"
             "- Return meaningful properties, not just nodes\n"
-            "- For text search, use CONTAINS (case sensitive) or toLower() for case insensitive\n"
+            "- For text search, use toLower(prop) CONTAINS toLower('term') for case-insensitive matching\n"
+            "- IMPORTANT: categorical property values are stored snake_cased (e.g. "
+            "'impact_spatter', 'blunt_force', 'sharp_force'), NOT space-separated. "
+            "When the graph context above shows exact values, filter using those exact values. "
+            "If unsure, match flexibly by replacing spaces with '_' or matching on a single keyword.\n"
             "- IMPORTANT: When using aggregation functions (collect, count, sum, avg) in RETURN, "
             "ORDER BY must reference only aliases defined in the RETURN clause, not raw variables. "
             "For example, use 'RETURN c.date AS date, collect(x) AS items ORDER BY date' "
@@ -46,6 +50,37 @@ class NLToCypherEngine:
         if context_case_id:
             user_prompt += f"\n\nContext: Focus on case with case_id = '{context_case_id}'"
 
+        return await self._openai.extract_structured(
+            system_prompt=system_prompt,
+            user_prompt=user_prompt,
+            response_schema=CYPHER_GENERATION_SCHEMA,
+            temperature=0.0,
+            model_override=model_override,
+        )
+
+    async def fix_cypher(
+        self,
+        question: str,
+        bad_cypher: str,
+        error_message: str,
+        model_override: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """Repair a Cypher query that failed to execute, given the Neo4j error."""
+        schema_desc = self._ontology.get_schema_description()
+        system_prompt = (
+            "You are a Neo4j Cypher expert. A previously generated query failed.\n\n"
+            f"Graph schema:\n{schema_desc}\n\n"
+            "Fix the query so it executes successfully and still answers the question.\n"
+            "Common causes: wrong label/relationship/property names (use only those in "
+            "the schema), aggregation/ORDER BY scoping, or missing variables. "
+            "Always keep a LIMIT (max 100)."
+        )
+        user_prompt = (
+            f"Question: {question}\n\n"
+            f"Failed Cypher:\n{bad_cypher}\n\n"
+            f"Neo4j error:\n{error_message}\n\n"
+            "Return a corrected Cypher query."
+        )
         return await self._openai.extract_structured(
             system_prompt=system_prompt,
             user_prompt=user_prompt,

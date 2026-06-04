@@ -1,9 +1,12 @@
 """RAG-style graph context retriever for query augmentation."""
 
 import re
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from loguru import logger
 from app.services.graph.neo4j_client import Neo4jClient
+
+if TYPE_CHECKING:
+    from app.services.graph.embedding_service import EmbeddingService
 
 
 # Common English stop words
@@ -27,8 +30,13 @@ _STOP_WORDS = frozenset({
 class GraphRetriever:
     """Retrieves relevant graph context before Cypher generation."""
 
-    def __init__(self, neo4j_client: Neo4jClient):
+    def __init__(
+        self,
+        neo4j_client: Neo4jClient,
+        embedding_service: "Optional[EmbeddingService]" = None,
+    ):
         self._neo4j = neo4j_client
+        self._embeddings = embedding_service
 
     async def retrieve_context(
         self, question: str, case_id: Optional[str] = None
@@ -36,19 +44,107 @@ class GraphRetriever:
         """
         Retrieve graph context relevant to the question.
         If case_id is provided, get that case's subgraph summary.
-        Otherwise, do keyword-based node search.
+        Otherwise, prefer semantic (embedding) search, falling back to keywords.
         """
         try:
             if case_id:
                 return await self._get_case_summary(case_id)
-            else:
-                keywords = self._extract_keywords(question)
-                if not keywords:
-                    return None
-                return await self._search_by_keywords(keywords)
+            # Semantic retrieval first (much more accurate than substring matching).
+            if self._embeddings is not None:
+                semantic = await self._semantic_context(question)
+                if semantic:
+                    return semantic
+            keywords = self._extract_keywords(question)
+            if not keywords:
+                return None
+            return await self._search_by_keywords(keywords)
         except Exception as e:
             logger.warning(f"Graph retrieval failed: {e}")
             return None
+
+    async def _semantic_context(self, question: str) -> Optional[str]:
+        """Use embedding KNN to find the most relevant nodes for the question."""
+        try:
+            hits = await self._embeddings.semantic_search(question, k=12)
+        except Exception as e:
+            logger.info(f"Semantic retrieval unavailable, falling back to keywords: {e}")
+            return None
+        if not hits:
+            return None
+        lines = [
+            "Most relevant nodes (semantic search). Use these EXACT property values "
+            "when writing filters:"
+        ]
+        ids = []
+        for h in hits:
+            labels = ":".join(l for l in h.get("labels", []) if l != "Embedded") or "Node"
+            props = h.get("properties", {})
+            name = (
+                props.get("name")
+                or props.get("title")
+                or props.get("case_id")
+                or props.get("experiment_id")
+                or props.get("description", "")
+            )
+            # Surface a few distinguishing property values so the LLM filters on
+            # real stored values (e.g. 'impact_spatter', not 'impact spatter').
+            detail_keys = ("pattern_type", "type", "mechanism", "crime_type", "status",
+                           "weapon_type", "category", "verdict")
+            details = [
+                f"{k}={props[k]}"
+                for k in detail_keys
+                if props.get(k) not in (None, "")
+            ]
+            score = h.get("score")
+            score_str = f" [sim {score:.2f}]" if isinstance(score, (int, float)) else ""
+            detail_str = f" {{{', '.join(details[:4])}}}" if details else ""
+            lines.append(f"  ({labels}) {str(name)[:100]}{detail_str}{score_str}")
+            if h.get("id"):
+                ids.append(h["id"])
+
+        # Append the ACTUAL relationship patterns around the retrieved nodes so the
+        # LLM traverses real edges (e.g. (InjuryPattern)-[:LED_TO_DEATH]->(CauseOfDeath))
+        # instead of guessing relationship names.
+        patterns = await self._relationship_patterns(ids)
+        if patterns:
+            lines.append("")
+            lines.append(
+                "Actual relationship patterns connecting these nodes "
+                "(use these exact paths/types):"
+            )
+            lines.extend(f"  {p}" for p in patterns)
+        return "\n".join(lines) if len(lines) > 1 else None
+
+    async def _relationship_patterns(self, ids: list[str]) -> list[str]:
+        """Fetch distinct schema-level relationship patterns around the given nodes."""
+        if not ids:
+            return []
+        try:
+            rows = await self._neo4j.execute_query(
+                """
+                MATCH (n)-[r]-(m)
+                WHERE elementId(n) IN $ids
+                WITH DISTINCT
+                  CASE WHEN startNode(r) = n THEN labels(n)[0] ELSE labels(m)[0] END AS src,
+                  type(r) AS rel,
+                  CASE WHEN startNode(r) = n THEN labels(m)[0] ELSE labels(n)[0] END AS dst
+                RETURN src, rel, dst LIMIT 40
+                """,
+                {"ids": ids},
+            )
+        except Exception as e:
+            logger.info(f"Relationship-pattern lookup skipped: {e}")
+            return []
+        seen, patterns = set(), []
+        for r in rows:
+            src, rel, dst = r.get("src"), r.get("rel"), r.get("dst")
+            if not (src and rel and dst):
+                continue
+            pat = f"(:{src})-[:{rel}]->(:{dst})"
+            if pat not in seen:
+                seen.add(pat)
+                patterns.append(pat)
+        return patterns
 
     async def _get_case_summary(self, case_id: str) -> Optional[str]:
         """Get a summary of a case and its connected entities."""

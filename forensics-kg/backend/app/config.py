@@ -8,7 +8,10 @@ from functools import lru_cache
 class Settings(BaseSettings):
     # OpenAI
     openai_api_key: str = ""
-    openai_model: str = "gpt-4o"
+    openai_model: str = "gpt-4.1"
+    # Embedding model for semantic graph search (1536 dims for text-embedding-3-small)
+    openai_embedding_model: str = "text-embedding-3-small"
+    embedding_dimensions: int = 1536
 
     # Neo4j
     neo4j_uri: str = "bolt://localhost:7687"

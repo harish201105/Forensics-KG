@@ -28,7 +28,7 @@ export const useAppStore = create<AppState>((set) => ({
   sidebarOpen: false,
   visibleNodeTypes: new Set(),
   lastVisitedCaseId: null,
-  selectedModel: 'gpt-4o',
+  selectedModel: 'gpt-4.1',
   setGraphData: (data) => set({ graphData: data }),
   setGraphStats: (stats) => set({ graphStats: stats }),
   setSelectedNode: (node) => set({ selectedNode: node }),

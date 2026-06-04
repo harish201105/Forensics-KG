@@ -1,4 +1,4 @@
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, TYPE_CHECKING
 import json
 import numpy as np
 from scipy import stats as scipy_stats
@@ -7,13 +7,22 @@ from app.services.extraction.openai_client import OpenAIClient
 from app.services.extraction.schemas import HYPOTHESIS_SCHEMA
 from app.services.graph.neo4j_client import Neo4jClient
 
+if TYPE_CHECKING:
+    from app.services.graph.embedding_service import EmbeddingService
+
 
 class ForensicReasoningEngine:
     """Forensic reasoning: statistical analysis + LLM hypothesis generation."""
 
-    def __init__(self, openai_client: OpenAIClient, neo4j_client: Neo4jClient):
+    def __init__(
+        self,
+        openai_client: OpenAIClient,
+        neo4j_client: Neo4jClient,
+        embedding_service: "Optional[EmbeddingService]" = None,
+    ):
         self._openai = openai_client
         self._neo4j = neo4j_client
+        self._embeddings = embedding_service
 
     async def generate_hypothesis(
         self, case_id: str, model_override: Optional[str] = None
@@ -49,8 +58,13 @@ class ForensicReasoningEngine:
             evidence, stat_analysis, model_override=model_override
         )
 
-        # Step 4: Store hypothesis in KG
+        # Step 4: Store hypothesis in KG (and embed it so it's semantically searchable)
         await self._store_hypothesis(case_id, hypothesis_result)
+        if self._embeddings is not None:
+            try:
+                await self._embeddings.backfill(only_missing=True)
+            except Exception as e:
+                logger.warning(f"Hypothesis auto-embedding skipped: {e}")
 
         return {
             "primary_hypothesis": hypothesis_result["primary_hypothesis"],
@@ -106,7 +120,8 @@ class ForensicReasoningEngine:
                         "mean": float(mu),
                         "std": float(sigma),
                         "normality_p_value": float(p_value),
-                        "is_normal": p_value > 0.05,
+                        # Cast numpy.bool_ -> native bool so FastAPI can serialize it.
+                        "is_normal": bool(p_value > 0.05),
                     }
                 except Exception:
                     pass

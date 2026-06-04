@@ -41,8 +41,70 @@ export interface QueryResponse {
   confidence: number;
   sources: Record<string, any>[];
   cypher_query?: string;
-  graph_context?: GraphData;
+  graph_context?: string;
   reasoning?: string;
+  key_entities?: string[];
+  follow_up_questions?: string[];
+  attempts?: number;
+}
+export interface SemanticHit {
+  id: string;
+  labels: string[];
+  properties: Record<string, any>;
+  score: number;
+}
+export interface ProjectionPoint {
+  id: string;
+  label: string;
+  labels: string[];
+  text: string;
+  x: number;
+  y: number;
+  z?: number;
+}
+export interface ProjectionResult {
+  points: ProjectionPoint[];
+  dim: number;
+  count: number;
+}
+export interface EmbeddingStatus {
+  total: number;
+  embedded: number;
+  coverage: number;
+}
+export interface CrossCaseResult {
+  entity: string;
+  label: string;
+  aliases: string[];
+  case_count: number;
+  cases: string[];
+  case_titles: string[];
+}
+export interface ResolveResult {
+  links_created: number;
+  dry_run: boolean;
+  labels: Record<string, { nodes: number; pairs_linked: number; clusters: number; examples?: string[] }>;
+}
+export interface ImageEvalAttr {
+  kind: string;
+  samples: number;
+  note?: string;
+  accuracy?: number | null;
+  precision?: number;
+  recall?: number;
+  f1?: number;
+  mae?: number | null;
+  within_tolerance?: number;
+  tolerance?: number;
+  confusion?: { tp: number; fp: number; fn: number; tn: number };
+}
+export interface ImageEvalResult {
+  image_type: string;
+  samples: number;
+  model: string;
+  attributes: Record<string, ImageEvalAttr>;
+  per_image: { image: string; attrs: Record<string, { pred: any; gold: any; correct: boolean }> }[];
+  error?: string;
 }
 export interface GraphStats {
   node_counts: Record<string, number>;

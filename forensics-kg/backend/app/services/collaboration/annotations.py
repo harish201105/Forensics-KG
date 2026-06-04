@@ -2,16 +2,24 @@
 
 import uuid
 from datetime import datetime, timezone
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, TYPE_CHECKING
 from loguru import logger
 from app.services.graph.neo4j_client import Neo4jClient
+
+if TYPE_CHECKING:
+    from app.services.graph.embedding_service import EmbeddingService
 
 
 class AnnotationService:
     """Manages annotations, case status, and activity logging."""
 
-    def __init__(self, neo4j_client: Neo4jClient):
+    def __init__(
+        self,
+        neo4j_client: Neo4jClient,
+        embedding_service: "Optional[EmbeddingService]" = None,
+    ):
         self._neo4j = neo4j_client
+        self._embeddings = embedding_service
 
     async def add_annotation(
         self,
@@ -75,6 +83,13 @@ class AnnotationService:
             f"Annotation on {entity_type}/{entity_id}: {text[:50]}",
             author,
         )
+
+        # Embed the new annotation so its text is semantically searchable.
+        if results and self._embeddings is not None:
+            try:
+                await self._embeddings.backfill(only_missing=True)
+            except Exception as e:
+                logger.warning(f"Annotation auto-embedding skipped: {e}")
 
         if results:
             return results[0].get("annotation", {"annotation_id": annotation_id})

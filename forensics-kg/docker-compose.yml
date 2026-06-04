@@ -1,3 +1,12 @@
+# ⚠️  NOT the primary database for normal development.
+#
+# Your forensic graph lives in your **Neo4j Desktop** DBMS (default `neo4j`
+# database). This compose file starts a SEPARATE, EMPTY Neo4j that maps the same
+# ports (7474/7687) — running it alongside Neo4j Desktop causes a port-7687
+# collision and makes the real graph appear empty.
+#
+# Use this ONLY for a throwaway/CI Neo4j when Neo4j Desktop is NOT running.
+# For normal use, start the stack with `./start.sh` (or the Neo4j Desktop app).
 services:
   neo4j:
     image: neo4j:5.15-community

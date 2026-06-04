@@ -2,6 +2,16 @@ from typing import Dict, List, Any, Optional
 from neo4j import AsyncGraphDatabase, AsyncDriver
 from loguru import logger
 
+# Internal properties that should never be sent to visualization/search clients.
+_INTERNAL_PROPS = ("embedding", "embed_text")
+
+
+def _strip_internal(props: Any) -> Any:
+    """Remove heavy/internal properties (e.g. embedding vectors) from a node's props."""
+    if isinstance(props, dict):
+        return {k: v for k, v in props.items() if k not in _INTERNAL_PROPS}
+    return props
+
 
 class Neo4jClient:
     """Async Neo4j client using official driver."""
@@ -119,7 +129,7 @@ class Neo4jClient:
     ) -> Optional[Dict[str, Any]]:
         query = f"MATCH (n:{label} {{{prop_name}: $value}}) RETURN n LIMIT 1"
         records = await self.execute_query(query, {"value": prop_value})
-        return records[0]["n"] if records else None
+        return _strip_internal(records[0]["n"]) if records else None
 
     async def get_graph_stats(self) -> Dict[str, Any]:
         node_query = """
@@ -136,15 +146,25 @@ class Neo4jClient:
             node_records = await self.execute_query(node_query)
             rel_records = await self.execute_query(rel_query)
         except Exception:
-            # Fallback without APOC
+            # Fallback without APOC. Pick the first NON-internal label so nodes
+            # whose first label happens to be ":Embedded" are still counted under
+            # their real type.
             node_records = await self.execute_query(
-                "MATCH (n) RETURN labels(n)[0] as label, count(n) as count"
+                "MATCH (n) "
+                "WITH [l IN labels(n) WHERE l <> 'Embedded'][0] AS label "
+                "WHERE label IS NOT NULL "
+                "RETURN label, count(*) as count"
             )
             rel_records = await self.execute_query(
                 "MATCH ()-[r]->() RETURN type(r) as relationshipType, count(r) as count"
             )
 
-        node_counts = {r["label"]: r["count"] for r in node_records}
+        # Exclude the internal ":Embedded" helper label used for the vector index.
+        node_counts = {
+            r["label"]: r["count"]
+            for r in node_records
+            if r["label"] != "Embedded"
+        }
         rel_counts = {r["relationshipType"]: r["count"] for r in rel_records}
         return {
             "node_counts": node_counts,
@@ -163,7 +183,7 @@ class Neo4jClient:
         WITH collect(DISTINCT {{
             id: elementId(n),
             labels: labels(n),
-            properties: properties(n)
+            properties: n {{.*, embedding: NULL, embed_text: NULL}}
         }}) as nodeList, relationships
         UNWIND relationships as r
         RETURN nodeList as nodes, collect(DISTINCT {{
@@ -179,27 +199,39 @@ class Neo4jClient:
                 query, {"node_id": center_node_id, "depth": depth}
             )
         except Exception:
-            # Fallback without APOC
+            # Fallback without APOC. Collect DISTINCT nodes (not paths) to avoid the
+            # combinatorial path-explosion that blows transaction memory, and exclude
+            # the heavy `embedding` vector from each node's properties.
             fallback_query = f"""
-            MATCH path = (center:{label} {{{key}: $node_id}})-[*1..{depth}]-(connected)
-            WITH collect(DISTINCT center) + collect(DISTINCT connected) as allNodes,
-                 [r in relationships(path) | r] as allRels
-            UNWIND allNodes as n
-            WITH collect(DISTINCT {{
-                id: elementId(n), labels: labels(n), properties: properties(n)
-            }}) as nodes, allRels
-            UNWIND allRels as r
-            RETURN nodes, collect(DISTINCT {{
+            MATCH (center:{label} {{{key}: $node_id}})
+            OPTIONAL MATCH (center)-[*1..{depth}]-(connected)
+            WITH center, collect(DISTINCT connected) AS others
+            WITH [center] + [x IN others WHERE x IS NOT NULL] AS nodeset
+            UNWIND nodeset AS n
+            WITH collect(DISTINCT n) AS nodes
+            UNWIND nodes AS a
+            OPTIONAL MATCH (a)-[r]-(b) WHERE b IN nodes
+            WITH nodes, collect(DISTINCT r) AS rels
+            RETURN
+              [n IN nodes | {{
+                id: elementId(n), labels: labels(n),
+                properties: n {{.*, embedding: NULL, embed_text: NULL}}
+              }}] AS nodes,
+              [r IN rels WHERE r IS NOT NULL | {{
                 id: elementId(r), source: elementId(startNode(r)),
                 target: elementId(endNode(r)), type: type(r), properties: properties(r)
-            }}) as edges
+              }}] AS edges
             """
             records = await self.execute_query(
                 fallback_query, {"node_id": center_node_id}
             )
 
         if records:
-            return {"nodes": records[0]["nodes"], "edges": records[0]["edges"]}
+            nodes = records[0]["nodes"]
+            for n in nodes:
+                if isinstance(n, dict):
+                    n["properties"] = _strip_internal(n.get("properties"))
+            return {"nodes": nodes, "edges": records[0]["edges"]}
         return {"nodes": [], "edges": []}
 
     async def get_full_graph(self, limit: int = 500) -> Dict[str, Any]:
@@ -208,9 +240,9 @@ class Neo4jClient:
         WITH n LIMIT $limit
         OPTIONAL MATCH (n)-[r]->(m)
         WITH collect(DISTINCT {
-            id: elementId(n), labels: labels(n), properties: properties(n)
+            id: elementId(n), labels: labels(n), properties: n {.*, embedding: NULL, embed_text: NULL}
         }) + collect(DISTINCT {
-            id: elementId(m), labels: labels(m), properties: properties(m)
+            id: elementId(m), labels: labels(m), properties: m {.*, embedding: NULL, embed_text: NULL}
         }) as allNodes,
         collect(DISTINCT {
             id: elementId(r), source: elementId(startNode(r)),
@@ -222,8 +254,12 @@ class Neo4jClient:
         """
         records = await self.execute_query(query, {"limit": limit})
         if records:
-            # Filter out null nodes
-            nodes = [n for n in records[0].get("nodes", []) if n.get("id")]
+            # Filter out null nodes and strip internal embedding properties
+            nodes = []
+            for n in records[0].get("nodes", []):
+                if n.get("id"):
+                    n["properties"] = _strip_internal(n.get("properties"))
+                    nodes.append(n)
             edges = [e for e in records[0].get("edges", []) if e.get("id")]
             return {"nodes": nodes, "edges": edges}
         return {"nodes": [], "edges": []}
@@ -231,20 +267,25 @@ class Neo4jClient:
     async def search_nodes(
         self, query_text: str, labels: Optional[List[str]] = None, limit: int = 20
     ) -> List[Dict[str, Any]]:
+        # Skip internal/embedding props when scanning text.
+        scan = (
+            "any(prop in keys(n) WHERE NOT prop IN ['embedding','embed_text'] "
+            "AND toString(n[prop]) CONTAINS $q)"
+        )
         if labels:
-            label_filter = " OR ".join(
-                f"(n:{l} AND any(prop in keys(n) WHERE toString(n[prop]) CONTAINS $q))"
-                for l in labels
-            )
+            label_filter = " OR ".join(f"(n:{l} AND {scan})" for l in labels)
         else:
-            label_filter = "any(prop in keys(n) WHERE toString(n[prop]) CONTAINS $q)"
+            label_filter = scan
 
         query = f"""
         MATCH (n) WHERE {label_filter}
         RETURN elementId(n) as id, labels(n) as labels, properties(n) as properties
         LIMIT $limit
         """
-        return await self.execute_query(query, {"q": query_text, "limit": limit})
+        rows = await self.execute_query(query, {"q": query_text, "limit": limit})
+        for r in rows:
+            r["properties"] = _strip_internal(r.get("properties"))
+        return rows
 
     async def initialize_schema(
         self, constraints: List[str], indexes: List[str]

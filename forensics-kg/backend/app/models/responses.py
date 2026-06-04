@@ -42,8 +42,11 @@ class QueryResponse(BaseModel):
     confidence: float
     sources: List[Dict[str, Any]] = []
     cypher_query: Optional[str] = None
-    graph_context: Optional[GraphResponse] = None
+    graph_context: Optional[str] = None
     reasoning: Optional[str] = None
+    key_entities: List[str] = []
+    follow_up_questions: List[str] = []
+    attempts: int = 1
 
 
 class AnalysisResponse(BaseModel):

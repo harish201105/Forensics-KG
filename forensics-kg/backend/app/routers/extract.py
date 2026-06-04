@@ -12,6 +12,8 @@ from app.services.extraction.text_extractor import TextExtractor
 from app.services.extraction.image_extractor import ImageExtractor
 from app.services.extraction.pipeline import ExtractionPipeline
 from app.services.graph.deduplication import EntityDeduplicator
+from app.services.graph.embedding_service import EmbeddingService
+from app.services.graph.entity_resolution import EntityResolutionService
 from app.models.requests import TextExtractionRequest
 from app.models.responses import ExtractionResponse
 
@@ -34,9 +36,15 @@ def _build_pipeline(
     image_extractor = ImageExtractor(openai_client, settings)
     graph_ops = GraphOperations(client, schema)
     dedup = EntityDeduplicator(client, schema)
+    embedding_service = EmbeddingService(
+        client, openai_client, settings.embedding_dimensions
+    )
+    resolution_service = EntityResolutionService(client)
     return ExtractionPipeline(
         text_extractor, image_extractor, graph_ops, dedup,
         openai_client=openai_client,
+        embedding_service=embedding_service,
+        resolution_service=resolution_service,
     )
 
 
@@ -53,6 +61,9 @@ async def extract_from_text(
         source_type=request.source_type,
         store=request.store_in_graph,
         model_override=request.model,
+        # When a case_id is supplied, use it as the document id so entity ids are
+        # stable/idempotent (enables faithful re-processing of a known document).
+        doc_id=request.case_id,
     )
     elapsed_ms = (time.time() - start) * 1000
     return ExtractionResponse(

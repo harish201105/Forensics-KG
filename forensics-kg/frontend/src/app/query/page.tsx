@@ -29,12 +29,15 @@ export default function QueryPage() {
     'What are the most common crime types?',
   ];
 
-  const handleNLQuery = () => {
-    if (!question.trim()) return;
-    nlMutation.mutate({ question, model: selectedModel }, {
+  const askQuestion = (q: string) => {
+    if (!q.trim()) return;
+    setQuestion(q);
+    nlMutation.mutate({ question: q, model: selectedModel }, {
       onError: (e: any) => toast(e.response?.data?.detail || 'Query failed', 'error'),
     });
   };
+
+  const handleNLQuery = () => askQuestion(question);
 
   const handleCypherQuery = () => {
     if (!cypherQuery.trim()) return;
@@ -120,12 +123,43 @@ export default function QueryPage() {
             <Card className="space-y-4">
               <div>
                 <h3 className="text-sm font-semibold text-text-secondary mb-2">Answer</h3>
-                <p className="text-sm text-text-body leading-relaxed">{nlResult.answer}</p>
+                <p className="text-sm text-text-body leading-relaxed whitespace-pre-line">{nlResult.answer}</p>
               </div>
-              <div className="flex gap-4 text-xs text-text-faint">
-                <span>Confidence: {(nlResult.confidence * 100).toFixed(0)}%</span>
+              <div className="flex flex-wrap gap-4 text-xs text-text-faint">
+                <span>Confidence: <span className={nlResult.confidence >= 0.6 ? 'text-green-400' : nlResult.confidence > 0 ? 'text-yellow-400' : 'text-red-400'}>{(nlResult.confidence * 100).toFixed(0)}%</span></span>
                 {nlResult.sources.length > 0 && <span>{nlResult.sources.length} sources</span>}
+                {(nlResult.attempts ?? 1) > 1 && <span title="Cypher was auto-corrected">self-corrected ×{(nlResult.attempts ?? 1) - 1}</span>}
               </div>
+
+              {nlResult.key_entities && nlResult.key_entities.length > 0 && (
+                <div>
+                  <h4 className="text-xs text-text-faint mb-1.5">Key entities</h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {nlResult.key_entities.map((e) => (
+                      <span key={e} className="text-xs px-2 py-0.5 rounded-full bg-[var(--primary)]/15 text-[var(--primary)]">{e}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {nlResult.follow_up_questions && nlResult.follow_up_questions.length > 0 && (
+                <div>
+                  <h4 className="text-xs text-text-faint mb-1.5">Follow-up questions</h4>
+                  <div className="flex flex-col gap-1.5">
+                    {nlResult.follow_up_questions.map((q) => (
+                      <button
+                        key={q}
+                        type="button"
+                        onClick={() => askQuestion(q)}
+                        className="text-left text-xs text-text-muted hover:text-[var(--primary)] transition"
+                      >
+                        → {q}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {nlResult.cypher_query && (
                 <div>
                   <div className="flex items-center justify-between mb-1">
@@ -141,11 +175,26 @@ export default function QueryPage() {
                   <pre className="text-xs bg-surface-input rounded p-2 text-green-400/70 overflow-x-auto">{nlResult.cypher_query}</pre>
                 </div>
               )}
+
               {nlResult.reasoning && (
                 <div>
                   <h4 className="text-xs text-text-faint mb-1">Reasoning</h4>
-                  <p className="text-xs text-text-muted">{nlResult.reasoning}</p>
+                  <p className="text-xs text-text-muted whitespace-pre-line">{nlResult.reasoning}</p>
                 </div>
+              )}
+
+              {nlResult.graph_context && (
+                <details className="group">
+                  <summary className="text-xs text-text-faint cursor-pointer hover:text-text-tertiary">Retrieved graph context (semantic RAG)</summary>
+                  <pre className="text-[11px] bg-surface-input rounded p-2 mt-1 text-text-muted overflow-x-auto whitespace-pre-wrap">{nlResult.graph_context}</pre>
+                </details>
+              )}
+
+              {nlResult.sources.length > 0 && (
+                <details className="group">
+                  <summary className="text-xs text-text-faint cursor-pointer hover:text-text-tertiary">{nlResult.sources.length} source records</summary>
+                  <pre className="text-[11px] bg-surface-input rounded p-2 mt-1 text-text-muted overflow-auto max-h-72">{JSON.stringify(nlResult.sources, null, 2)}</pre>
+                </details>
               )}
             </Card>
           )}

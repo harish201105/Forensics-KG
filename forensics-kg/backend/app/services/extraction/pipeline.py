@@ -1,5 +1,5 @@
 import uuid
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, TYPE_CHECKING
 from loguru import logger
 from app.services.extraction.text_extractor import TextExtractor
 from app.services.extraction.image_extractor import ImageExtractor
@@ -7,6 +7,10 @@ from app.services.extraction.multimodal_extractor import MultimodalExtractor
 from app.services.extraction.openai_client import OpenAIClient
 from app.services.graph.operations import GraphOperations
 from app.services.graph.deduplication import EntityDeduplicator
+
+if TYPE_CHECKING:
+    from app.services.graph.embedding_service import EmbeddingService
+    from app.services.graph.entity_resolution import EntityResolutionService
 
 
 class ExtractionPipeline:
@@ -19,12 +23,41 @@ class ExtractionPipeline:
         graph_ops: GraphOperations,
         deduplicator: Optional[EntityDeduplicator] = None,
         openai_client: Optional[OpenAIClient] = None,
+        embedding_service: "Optional[EmbeddingService]" = None,
+        resolution_service: "Optional[EntityResolutionService]" = None,
     ):
         self._text = text_extractor
         self._image = image_extractor
         self._graph = graph_ops
         self._dedup = deduplicator
         self._openai = openai_client
+        self._embeddings = embedding_service
+        self._resolution = resolution_service
+
+    async def _auto_embed(self, result: Dict[str, Any]) -> None:
+        """Embed newly stored nodes so semantic search/projector stay current.
+
+        Uses only_missing so only the just-added nodes are embedded. Never lets
+        an embedding failure break the extraction response.
+        """
+        if self._embeddings is None:
+            return
+        try:
+            stats = await self._embeddings.backfill(only_missing=True)
+            result.setdefault("metadata", {})["embedded_nodes"] = stats.get("processed", 0)
+        except Exception as e:
+            logger.warning(f"Auto-embedding skipped (extraction unaffected): {e}")
+
+    async def _auto_resolve(self, prefix: str, result: Dict[str, Any]) -> None:
+        """Link the just-added entities to matching entities in other cases so the
+        graph stays connected (cross-case). Runs incrementally; never breaks extraction."""
+        if self._resolution is None:
+            return
+        try:
+            stats = await self._resolution.resolve_incremental(prefix)
+            result.setdefault("metadata", {})["cross_case_links"] = stats.get("links_created", 0)
+        except Exception as e:
+            logger.warning(f"Auto entity-resolution skipped (extraction unaffected): {e}")
 
     @staticmethod
     def _prefix_ids(
@@ -81,6 +114,8 @@ class ExtractionPipeline:
             )
             result["metadata"]["stored_nodes"] = len(node_ids)
             result["metadata"]["stored_relationships"] = rel_count
+            await self._auto_embed(result)
+            await self._auto_resolve(prefix, result)
 
         return result
 
@@ -110,6 +145,8 @@ class ExtractionPipeline:
             )
             result["metadata"]["stored_nodes"] = len(node_ids)
             result["metadata"]["stored_relationships"] = rel_count
+            await self._auto_embed(result)
+            await self._auto_resolve(prefix, result)
 
         return result
 
@@ -150,5 +187,7 @@ class ExtractionPipeline:
             )
             result["metadata"]["stored_nodes"] = len(node_ids)
             result["metadata"]["stored_relationships"] = rel_count
+            await self._auto_embed(result)
+            await self._auto_resolve(prefix, result)
 
         return result

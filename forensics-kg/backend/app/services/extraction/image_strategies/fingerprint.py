@@ -25,6 +25,11 @@ FINGERPRINT_ANALYSIS_SCHEMA = {
         "quality_score": {"type": "number"},
         "ridge_count": {"type": "integer"},
         "minutiae_count": {"type": "integer"},
+        "hand": {"type": "string", "enum": ["left", "right", "unknown"]},
+        "finger_position": {
+            "type": "string",
+            "enum": ["thumb", "index", "middle", "ring", "little", "unknown"],
+        },
         "description": {"type": "string"},
         "key_features": {"type": "array", "items": {"type": "string"}},
         "suitability_for_comparison": {"type": "string"},
@@ -33,6 +38,7 @@ FINGERPRINT_ANALYSIS_SCHEMA = {
     },
     "required": [
         "classification", "quality_score", "ridge_count", "minutiae_count",
+        "hand", "finger_position",
         "description", "key_features", "suitability_for_comparison",
         "confidence", "uncertainties",
     ],
@@ -44,6 +50,8 @@ FINGERPRINT_COMBINED_SCHEMA = {
     "properties": {
         "classification": {"type": "string"},
         "quality_score": {"type": "number"},
+        "hand": {"type": "string"},
+        "finger_position": {"type": "string"},
         "confidence": {"type": "number"},
         "reasoning": {"type": "string"},
         "minutiae_details": {
@@ -80,7 +88,8 @@ FINGERPRINT_COMBINED_SCHEMA = {
         },
     },
     "required": [
-        "classification", "quality_score", "confidence", "reasoning",
+        "classification", "quality_score", "hand", "finger_position",
+        "confidence", "reasoning",
         "minutiae_details", "ridge_characteristics", "key_features",
         "uncertainties", "relationships",
     ],
@@ -182,8 +191,10 @@ class FingerprintStrategy(ImageAnalysisStrategy):
                 "2. Estimated ridge count\n"
                 "3. Number and types of minutiae (bifurcations, ridge endings, dots)\n"
                 "4. Overall quality score (0-1) and suitability for comparison\n"
-                "5. Key distinctive features\n"
-                "6. Your confidence level and any uncertainties"
+                "5. Your best estimate of the hand (left/right) and finger position "
+                "(thumb/index/middle/ring/little); use 'unknown' if not determinable\n"
+                "6. Key distinctive features\n"
+                "7. Your confidence level and any uncertainties"
             ),
         }
 
@@ -230,6 +241,8 @@ class FingerprintStrategy(ImageAnalysisStrategy):
                 "classification": analysis.get("classification", "unknown"),
                 "ridge_count": analysis.get("ridge_count", 0),
                 "quality_score": analysis.get("quality_score", 0),
+                "hand": analysis.get("hand", "unknown"),
+                "finger_position": analysis.get("finger_position", "unknown"),
                 "description": analysis.get("description", ""),
                 "confidence": analysis.get("confidence", 0.5),
             },

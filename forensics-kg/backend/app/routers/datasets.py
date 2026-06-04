@@ -13,6 +13,8 @@ from app.services.extraction.text_extractor import TextExtractor
 from app.services.extraction.image_extractor import ImageExtractor
 from app.services.extraction.pipeline import ExtractionPipeline
 from app.services.graph.deduplication import EntityDeduplicator
+from app.services.graph.embedding_service import EmbeddingService
+from app.services.graph.entity_resolution import EntityResolutionService
 from app.services.datasets.fir_generator import SyntheticFIRGenerator
 from app.services.datasets.bloodstain_processor import BloodstainDataProcessor
 from app.services.datasets.manager import DatasetManager
@@ -47,7 +49,13 @@ def _build_dataset_manager(
     image_ext = ImageExtractor(openai_client, settings)
     graph_ops = GraphOperations(client, schema)
     dedup = EntityDeduplicator(client, schema)
-    pipeline = ExtractionPipeline(text_ext, image_ext, graph_ops, dedup)
+    embedding_service = EmbeddingService(client, openai_client, settings.embedding_dimensions)
+    resolution_service = EntityResolutionService(client)
+    pipeline = ExtractionPipeline(
+        text_ext, image_ext, graph_ops, dedup,
+        openai_client=openai_client, embedding_service=embedding_service,
+        resolution_service=resolution_service,
+    )
     return DatasetManager(
         data_dir=settings.data_dir,
         fir_generator=fir_gen,
@@ -97,7 +105,7 @@ async def process_bloodstain_data(
 async def process_forensic_images(
     image_type: str = Query(
         ...,
-        regex="^(fingerprint|wound|document_forensics|ballistics|tool_marks)$",
+        pattern="^(fingerprint|wound|document_forensics|ballistics|tool_marks)$",
     ),
     limit: int = Query(10, ge=1, le=200),
     client: Neo4jClient = Depends(get_neo4j_client),
@@ -110,7 +118,13 @@ async def process_forensic_images(
     image_ext = ImageExtractor(openai_client, settings)
     graph_ops = GraphOperations(client, schema)
     dedup = EntityDeduplicator(client, schema)
-    pipeline = ExtractionPipeline(text_ext, image_ext, graph_ops, dedup)
+    embedding_service = EmbeddingService(client, openai_client, settings.embedding_dimensions)
+    resolution_service = EntityResolutionService(client)
+    pipeline = ExtractionPipeline(
+        text_ext, image_ext, graph_ops, dedup,
+        openai_client=openai_client, embedding_service=embedding_service,
+        resolution_service=resolution_service,
+    )
 
     processor = ForensicImageProcessor(settings.data_dir)
     return await processor.process_all(
@@ -149,7 +163,7 @@ async def process_court_judgments(
 async def process_documents(
     doc_type: str = Query(
         ...,
-        regex="^(fir|postmortem|lab_report|witness_deposition|soco_report|court_judgment)$",
+        pattern="^(fir|postmortem|lab_report|witness_deposition|soco_report|court_judgment)$",
     ),
     limit: int = Query(20, ge=1, le=100),
     client: Neo4jClient = Depends(get_neo4j_client),
@@ -189,7 +203,7 @@ async def upload_dataset(
 
 @router.post("/ingest-judgments")
 async def ingest_court_judgments(
-    source: str = Query("huggingface", regex="^(huggingface|csv|indian_kanoon)$"),
+    source: str = Query("huggingface", pattern="^(huggingface|csv|indian_kanoon)$"),
     csv_filename: Optional[str] = Query(None, description="CSV filename in data/ directory"),
     query: str = Query("murder FIR IPC", description="Search query for Indian Kanoon"),
     limit: int = Query(20, ge=1, le=200),
@@ -421,7 +435,7 @@ async def list_data_sources():
 async def download_forensic_data(
     dataset_type: str = Query(
         "all",
-        regex="^(all|signatures|wounds|fingerprints|autopsies|depositions)$",
+        pattern="^(all|signatures|wounds|fingerprints|autopsies|depositions)$",
     ),
     limit: int = Query(20, ge=1, le=200),
 ):

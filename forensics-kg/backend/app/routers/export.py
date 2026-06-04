@@ -24,10 +24,11 @@ async def export_cases_csv(
             headers={"Content-Disposition": "attachment; filename=cases.csv"},
         )
 
-    # Collect all keys
+    # Collect all keys, excluding internal embedding properties
+    _internal = {"embedding", "embed_text"}
     all_keys = set()
     for r in results:
-        all_keys.update(r["props"].keys())
+        all_keys.update(k for k in r["props"].keys() if k not in _internal)
     keys = sorted(all_keys)
 
     buf = StringIO()

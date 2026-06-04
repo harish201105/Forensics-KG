@@ -3,10 +3,10 @@
 import { useAppStore } from '@/lib/store';
 
 const AVAILABLE_MODELS = [
-  { id: 'gpt-4o', label: 'GPT-4o', description: 'Best quality, moderate speed' },
-  { id: 'gpt-4o-mini', label: 'GPT-4o Mini', description: 'Fast, good for simple tasks' },
-  { id: 'gpt-4.1', label: 'GPT-4.1', description: 'Latest, improved reasoning' },
+  { id: 'gpt-4.1', label: 'GPT-4.1', description: 'Latest, best reasoning (default)' },
   { id: 'gpt-4.1-mini', label: 'GPT-4.1 Mini', description: 'Fast + cheap' },
+  { id: 'gpt-4o', label: 'GPT-4o', description: 'Multimodal, moderate speed' },
+  { id: 'gpt-4o-mini', label: 'GPT-4o Mini', description: 'Fast, good for simple tasks' },
 ];
 
 export function ModelSelector({ className = '' }: { className?: string }) {

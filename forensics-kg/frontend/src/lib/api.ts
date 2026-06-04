@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { GraphData, GraphStats, ExtractionResult, QueryResponse, DatasetInfo, AnalysisResult, EvaluationResult, AggregateEvaluationResult } from '@/types';
+import type { GraphData, GraphStats, ExtractionResult, QueryResponse, DatasetInfo, AnalysisResult, EvaluationResult, AggregateEvaluationResult, SemanticHit, ProjectionResult, EmbeddingStatus, CrossCaseResult, ImageEvalResult } from '@/types';
 
 // Use direct backend URL to avoid Next.js proxy timeout on long-running requests
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
@@ -16,6 +16,20 @@ export const graphApi = {
     api.get<GraphData>(`/graph/subgraph/${nodeId}?label=${label}&key=${key}&depth=${depth}`).then(r => r.data),
   search: (q: string, labels?: string) =>
     api.get(`/graph/search?q=${q}${labels ? `&labels=${labels}` : ''}`).then(r => r.data),
+  semanticSearch: (q: string, k = 10, labels?: string) =>
+    api.get<{ results: SemanticHit[]; count: number; error?: string }>(
+      `/graph/semantic-search?q=${encodeURIComponent(q)}&k=${k}${labels ? `&labels=${labels}` : ''}`,
+    ).then(r => r.data),
+  embeddingsStatus: () =>
+    api.get<EmbeddingStatus>('/graph/embeddings/status').then(r => r.data),
+  embeddingsBackfill: (onlyMissing = true) =>
+    api.post(`/graph/embeddings/backfill?only_missing=${onlyMissing}`).then(r => r.data),
+  projection: (dim = 2, limit = 2000) =>
+    api.get<ProjectionResult>(`/graph/embeddings/projection?dim=${dim}&limit=${limit}`).then(r => r.data),
+  resolveEntities: (dryRun = false, labels?: string) =>
+    api.post(`/graph/resolve-entities?dry_run=${dryRun}${labels ? `&labels=${labels}` : ''}`).then(r => r.data),
+  crossCase: (label: string, value: string) =>
+    api.get<CrossCaseResult>(`/graph/cross-case?label=${encodeURIComponent(label)}&value=${encodeURIComponent(value)}`).then(r => r.data),
   clear: () => api.delete('/graph/clear?confirm=yes-delete-all-data').then(r => r.data),
 };
 
@@ -78,6 +92,14 @@ export const evaluationApi = {
     api.post<AggregateEvaluationResult>(`/evaluation/run-all?source_type=${sourceType}${model ? `&model=${model}` : ''}`).then(r => r.data),
   getResults: () =>
     api.get('/evaluation/results').then(r => r.data),
+  imageTypes: () =>
+    api.get<{ types: { image_type: string; attributes: { name: string; kind: string; note: string }[] }[] }>('/evaluation/image/types').then(r => r.data),
+  runImage: (imageType: string, limit = 5, model?: string) =>
+    api.post<ImageEvalResult>(`/evaluation/image/run?image_type=${imageType}&limit=${limit}${model ? `&model=${model}` : ''}`).then(r => r.data),
+  listRealCases: () =>
+    api.get<{ cases: { case_id: string; title: string; source: string; gold_persons: number }[] }>('/evaluation/real-cases/list').then(r => r.data),
+  runRealCases: (model?: string) =>
+    api.post<AggregateEvaluationResult>(`/evaluation/real-cases/run${model ? `?model=${model}` : ''}`).then(r => r.data),
 };
 
 export const collaborationApi = {

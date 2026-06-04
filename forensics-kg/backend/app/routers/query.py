@@ -6,6 +6,7 @@ from app.services.graph.neo4j_client import Neo4jClient
 from app.services.graph.operations import GraphOperations
 from app.services.ontology.schema import ForensicsOntologySchema
 from app.services.extraction.openai_client import OpenAIClient
+from app.services.graph.embedding_service import EmbeddingService
 from app.services.query.nl_to_cypher import NLToCypherEngine
 from app.services.query.query_service import QueryService
 from app.models.requests import NaturalLanguageQueryRequest, CypherQueryRequest
@@ -21,7 +22,10 @@ def _build_query_service(
     openai_client = OpenAIClient(settings)
     nl_engine = NLToCypherEngine(openai_client, schema)
     graph_ops = GraphOperations(client, schema)
-    return QueryService(nl_engine, client, graph_ops)
+    embedding_service = EmbeddingService(
+        client, openai_client, settings.embedding_dimensions
+    )
+    return QueryService(nl_engine, client, graph_ops, embedding_service)
 
 
 @router.post("/natural", response_model=QueryResponse)

@@ -16,6 +16,57 @@ export function useFullGraph(limit = 500) {
   });
 }
 
+// ─── Embeddings / Semantic Search ───────────────────────────────────
+export function useEmbeddingStatus() {
+  return useQuery({
+    queryKey: ['embeddingStatus'],
+    queryFn: graphApi.embeddingsStatus,
+  });
+}
+
+export function useEmbeddingBackfill() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (onlyMissing: boolean = true) => graphApi.embeddingsBackfill(onlyMissing),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['embeddingStatus'] });
+      qc.invalidateQueries({ queryKey: ['projection'] });
+    },
+  });
+}
+
+export function useProjection(dim: number, limit = 2000, enabled = true) {
+  return useQuery({
+    queryKey: ['projection', dim, limit],
+    queryFn: () => graphApi.projection(dim, limit),
+    enabled,
+  });
+}
+
+export function useSemanticSearch() {
+  return useMutation({
+    mutationFn: ({ q, k, labels }: { q: string; k?: number; labels?: string }) =>
+      graphApi.semanticSearch(q, k ?? 10, labels),
+  });
+}
+
+// ─── Cross-case entity resolution ───────────────────────────────────
+export function useResolveEntities() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ dryRun, labels }: { dryRun?: boolean; labels?: string } = {}) =>
+      graphApi.resolveEntities(dryRun ?? false, labels),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['graphStats'] }),
+  });
+}
+
+export function useCrossCase() {
+  return useMutation({
+    mutationFn: ({ label, value }: { label: string; value: string }) =>
+      graphApi.crossCase(label, value),
+  });
+}
+
 export function useCases() {
   return useQuery({
     queryKey: ['cases'],
@@ -224,6 +275,27 @@ export function useRunEvaluationSingle() {
   return useMutation({
     mutationFn: ({ docId, sourceType, model }: { docId: string; sourceType?: string; model?: string }) =>
       evaluationApi.runSingle(docId, sourceType, model),
+  });
+}
+
+export function useImageEvalTypes() {
+  return useQuery({ queryKey: ['imageEvalTypes'], queryFn: evaluationApi.imageTypes });
+}
+
+export function useRunImageEval() {
+  return useMutation({
+    mutationFn: ({ imageType, limit, model }: { imageType: string; limit?: number; model?: string }) =>
+      evaluationApi.runImage(imageType, limit ?? 5, model),
+  });
+}
+
+export function useRealCaseList() {
+  return useQuery({ queryKey: ['realCaseList'], queryFn: evaluationApi.listRealCases });
+}
+
+export function useRunRealCaseEval() {
+  return useMutation({
+    mutationFn: ({ model }: { model?: string } = {}) => evaluationApi.runRealCases(model),
   });
 }
 

@@ -5,6 +5,7 @@ from app.dependencies import get_neo4j_client, get_ontology_schema
 from app.services.graph.neo4j_client import Neo4jClient
 from app.services.ontology.schema import ForensicsOntologySchema
 from app.services.extraction.openai_client import OpenAIClient
+from app.services.graph.embedding_service import EmbeddingService
 from app.services.reasoning.engine import ForensicReasoningEngine
 from app.models.responses import AnalysisResponse
 
@@ -27,22 +28,38 @@ async def generate_hypothesis(
 
     settings = get_settings()
     openai_client = OpenAIClient(settings)
-    engine = ForensicReasoningEngine(openai_client, client)
+    embedding_service = EmbeddingService(client, openai_client, settings.embedding_dimensions)
+    engine = ForensicReasoningEngine(openai_client, client, embedding_service)
     result = await engine.generate_hypothesis(case_id, model_override=model)
     return AnalysisResponse(**result)
 
 
-@router.get("/statistics/{experiment_id}")
+@router.get("/statistics/{entity_id}")
 async def get_experiment_statistics(
-    experiment_id: str,
+    entity_id: str,
     client: Neo4jClient = Depends(get_neo4j_client),
 ):
-    query = """
-    MATCH (e:Experiment {experiment_id: $exp_id})
-    OPTIONAL MATCH (e)<-[:CAUSED_BY]-(p:BloodstainPattern)-[:CONTAINS_STAIN]->(s:Stain)
-    RETURN e, collect(properties(s)) as stains, properties(p) as pattern
-    """
-    results = await client.execute_query(query, {"exp_id": experiment_id})
-    if not results:
-        return {"error": "Experiment not found"}
-    return {"experiment": results[0]}
+    # Try as Experiment first, then as Case
+    stains: list = []
+    for query in [
+        """
+        MATCH (e:Experiment {experiment_id: $eid})
+        OPTIONAL MATCH (e)<-[:CAUSED_BY]-(p:BloodstainPattern)-[:CONTAINS_STAIN]->(s:Stain)
+        RETURN collect(s {.*, embedding: NULL, embed_text: NULL}) as stains
+        """,
+        """
+        MATCH (c:Case {case_id: $eid})
+        OPTIONAL MATCH (c)-[:HAS_PATTERN]->(p:BloodstainPattern)-[:CONTAINS_STAIN]->(s:Stain)
+        RETURN collect(s {.*, embedding: NULL, embed_text: NULL}) as stains
+        """,
+    ]:
+        results = await client.execute_query(query, {"eid": entity_id})
+        if results and results[0].get("stains"):
+            stains = results[0]["stains"]
+            break
+
+    if not stains:
+        return {"error": f"No stain data found for '{entity_id}'"}
+
+    engine = ForensicReasoningEngine(None, client)  # type: ignore[arg-type]
+    return engine._perform_statistical_analysis(stains)

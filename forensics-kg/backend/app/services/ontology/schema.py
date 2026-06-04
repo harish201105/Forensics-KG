@@ -212,4 +212,30 @@ class ForensicsOntologySchema:
             sources = "|".join(rt.source_types)
             targets = "|".join(rt.target_types)
             lines.append(f"  (:{sources})-[:{rt.name}]->(:{targets})")
+        # Surface key categorical property values so queries filter precisely
+        # (e.g. only victims, only suspects).
+        role_values = self._enums.get("PersonRole")
+        if role_values:
+            lines.append(
+                "\nKey property values:\n"
+                f"  Person.role is one of: {', '.join(role_values)}. "
+                "Use role to select a category of people (e.g. role='victim' to "
+                "list victims, role IN ['suspect','accused'] for the accused). "
+                "To find a person's CAUSE OF DEATH, traverse "
+                "(p:Person)<-[:CAUSE_OF_DEATH_OF]-(:CauseOfDeath) directly and do "
+                "NOT also filter that person by role (the deceased may be labelled "
+                "'victim' OR 'deceased')."
+            )
+        # Cross-case reasoning: SAME_AS links duplicate entities across cases.
+        if "SAME_AS" in self._relationship_types:
+            lines.append(
+                "\nCross-case reasoning:\n"
+                "  The same real-world Person/Location/Weapon may appear as separate "
+                "nodes in different cases, linked by SAME_AS. To find ALL cases "
+                "involving an entity, traverse SAME_AS first, e.g.: "
+                "MATCH (p:Person) WHERE toLower(p.name)=toLower($x) "
+                "MATCH (p)-[:SAME_AS*0..3]-(q:Person)-[:INVOLVED_IN]->(c:Case) "
+                "RETURN DISTINCT c. The '*0..3' includes the entity itself plus its "
+                "cross-case duplicates."
+            )
         return "\n".join(lines)

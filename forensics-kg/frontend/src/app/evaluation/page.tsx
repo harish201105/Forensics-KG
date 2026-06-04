@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRunEvaluationAll, useRunEvaluationSingle } from '@/lib/hooks';
+import { ImageEvaluation } from '@/components/evaluation/image-evaluation';
+import { RealCaseEvaluation } from '@/components/evaluation/real-case-evaluation';
 import { useToast } from '@/components/ui/toast';
 import { Spinner } from '@/components/ui/spinner';
 import { Card, CardTitle } from '@/components/ui/card';
@@ -36,6 +38,7 @@ export default function EvaluationPage() {
   const [singleResult, setSingleResult] = useState<EvaluationResult | null>(null);
   const [singleDocId, setSingleDocId] = useState('FIR-2024-0001');
   const [sourceType, setSourceType] = useState('fir');
+  const [mode, setMode] = useState<'text' | 'image' | 'real'>('text');
   const selectedModel = useAppStore((s) => s.selectedModel);
   const { toast } = useToast();
 
@@ -79,10 +82,29 @@ export default function EvaluationPage() {
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-2">Evaluation Framework</h1>
-      <p className="text-text-muted mb-6">
+      <p className="text-text-muted mb-4">
         Compare LLM extraction against gold standard annotations (precision / recall / F1)
       </p>
 
+      <div className="flex gap-2 mb-6">
+        {(['text', 'image', 'real'] as const).map((m) => (
+          <button
+            key={m}
+            type="button"
+            onClick={() => setMode(m)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+              mode === m ? 'bg-[var(--primary)] text-white' : 'bg-surface-hover text-text-muted'
+            }`}
+          >
+            {m === 'text' ? 'Text Extraction' : m === 'image' ? 'Image Analysis' : 'Real Cases'}
+          </button>
+        ))}
+      </div>
+
+      {mode === 'image' && <ImageEvaluation />}
+      {mode === 'real' && <RealCaseEvaluation />}
+
+      {mode === 'text' && (<>
       {/* Controls */}
       <div className="flex flex-wrap items-center gap-3 mb-8">
         <select
@@ -307,6 +329,7 @@ export default function EvaluationPage() {
           </p>
         </Card>
       )}
+      </>)}
     </div>
   );
 }

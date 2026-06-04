@@ -184,9 +184,13 @@ export default function AnalysisPage() {
             </>
           ) : (
             <>
-              <option value="">Select an experiment...</option>
+              <option value="">Select an experiment or case...</option>
               {experiments.map((e: any) => (
                 <option key={e.experiment_id} value={e.experiment_id}>{e.description} ({e.experiment_id})</option>
+              ))}
+              {cases.length > 0 && <option disabled>--- Cases ---</option>}
+              {cases.map((c: any) => (
+                <option key={`stat-${c.case_id}`} value={c.case_id}>{c.title} ({c.case_id})</option>
               ))}
             </>
           )}
@@ -195,7 +199,7 @@ export default function AnalysisPage() {
           value={selectedId}
           onChange={(e) => setSelectedId(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleAnalyze()}
-          placeholder={mode === 'hypothesis' ? '...or enter Case ID' : '...or enter Experiment ID'}
+          placeholder={mode === 'hypothesis' ? '...or enter Case ID' : '...or enter Experiment/Case ID'}
           aria-label={mode === 'hypothesis' ? 'Case ID' : 'Experiment ID'}
           className="flex-1 max-w-xs bg-[var(--card)] border border-border-default rounded-lg px-4 py-3 text-sm text-text-body focus:outline-none focus:border-[var(--primary)]/50"
         />

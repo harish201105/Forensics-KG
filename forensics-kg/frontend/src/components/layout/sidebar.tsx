@@ -10,6 +10,8 @@ const navItems = [
   { href: '/graph', label: 'Knowledge Graph', icon: '\u25C8' },
   { href: '/extract', label: 'Extract', icon: '\u2B21' },
   { href: '/query', label: 'Query', icon: '\u2B22' },
+  { href: '/projector', label: 'Projector', icon: '\u2735' },
+  { href: '/cross-case', label: 'Cross-Case', icon: '\u21C4' },
   { href: '/datasets', label: 'Datasets', icon: '\u25A6' },
   { href: '/cases', label: 'Cases', icon: '\u25A3' },
   { href: '/analysis', label: 'Analysis', icon: '\u25B3' },

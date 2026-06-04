@@ -53,7 +53,10 @@ yarn-error.log*
 # ========================
 # Data (large files — regenerate via API)
 # ========================
-data/
+data/*
+# …but keep the small, hand-curated real-case validation gold (documented-fact,
+# not LLM-generated — part of the research deliverable)
+!data/real_cases/
 
 # ========================
 # IDE & Editors
@@ -94,3 +97,6 @@ logs/
 # ========================
 *.tar
 *.gz
+
+# TS incremental build cache
+*.tsbuildinfo

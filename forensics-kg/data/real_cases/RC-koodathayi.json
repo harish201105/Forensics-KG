@@ -1,0 +1,69 @@
+{
+  "case_id": "RC-koodathayi",
+  "title": "Koodathayi cyanide killings",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Koodathayi_cyanide_killings",
+  "narrative": "FIR — Koodathayi serial poisoning case, Koodathayi, Kozhikode district, Kerala. Between 2002 and 2016 six members of one family died of cyanide poisoning. The accused, Jolly Joseph, administered cyanide through food, water, beverages and capsules. The deceased are Annamma Thomas (mother-in-law, 2002), Tom Thomas (father-in-law, 2008), Roy Thomas (husband, 2011), Mathew Manjadiyil (husband's uncle, 2014), Alphine Shaju (child, 2014) and Sily Shaju (2016). The deaths were initially recorded as heart attack, suicide and natural causes; later investigation found cyanide poisoning. The post-mortem of Roy Thomas recorded rice and gram curry, contradicting the accused's account. M. S. Mathew, a jeweller, and Praji Kumar, a goldsmith, supplied the cyanide. The investigation was led by Rural SP K. G. Simon; the accused was arrested in October 2019.",
+  "gold": {
+    "persons": [
+      [
+        "Jolly Joseph",
+        "accused"
+      ],
+      [
+        "Annamma Thomas",
+        "victim"
+      ],
+      [
+        "Tom Thomas",
+        "victim"
+      ],
+      [
+        "Roy Thomas",
+        "victim"
+      ],
+      [
+        "Mathew Manjadiyil",
+        "victim"
+      ],
+      [
+        "Alphine Shaju",
+        "victim"
+      ],
+      [
+        "Sily Shaju",
+        "victim"
+      ],
+      [
+        "M. S. Mathew",
+        "accused"
+      ],
+      [
+        "Praji Kumar",
+        "accused"
+      ],
+      [
+        "K. G. Simon",
+        "officer"
+      ]
+    ],
+    "locations": [
+      "Koodathayi, Kozhikode, Kerala"
+    ],
+    "weapons": [
+      "cyanide"
+    ],
+    "crime_types": [
+      "murder",
+      "poisoning"
+    ],
+    "time_events": [
+      "2002",
+      "2008",
+      "2011",
+      "2014",
+      "2016",
+      "October 2019 arrest"
+    ]
+  }
+}

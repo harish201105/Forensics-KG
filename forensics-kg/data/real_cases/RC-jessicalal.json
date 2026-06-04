@@ -1,0 +1,41 @@
+{
+  "case_id": "RC-jessicalal",
+  "title": "Murder of Jessica Lal",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Murder_of_Jessica_Lal",
+  "narrative": "FIR — 30 April 1999, Qutab Colonnade restaurant, Mehrauli, New Delhi. Jessica Lal, a 34-year-old model working as a celebrity barmaid, was shot dead with a .22 calibre pistol by Manu Sharma (Siddharth Vashisht), son of a politician, after she refused to serve him a drink. Witnesses included Shayan Munshi and Bina Ramani. The Delhi Police investigated. Manu Sharma was acquitted in 2006 by the trial court, then convicted by the Delhi High Court and sentenced to life imprisonment, upheld by the Supreme Court in 2010.",
+  "gold": {
+    "persons": [
+      [
+        "Jessica Lal",
+        "victim"
+      ],
+      [
+        "Manu Sharma",
+        "accused"
+      ],
+      [
+        "Shayan Munshi",
+        "witness"
+      ],
+      [
+        "Bina Ramani",
+        "witness"
+      ]
+    ],
+    "locations": [
+      "Mehrauli, New Delhi"
+    ],
+    "weapons": [
+      ".22 calibre pistol"
+    ],
+    "crime_types": [
+      "murder"
+    ],
+    "time_events": [
+      "30 April 1999",
+      "2006 acquittal",
+      "2010 Supreme Court"
+    ]
+  }
+}

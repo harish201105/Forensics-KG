@@ -1,0 +1,43 @@
+{
+  "case_id": "RC-aarushi",
+  "title": "2008 Noida double murder (Aarushi-Hemraj)",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/2008_Noida_double_murder_case",
+  "narrative": "FIR — night of 15-16 May 2008, L-32 Jalvayu Vihar, Sector 25, Noida. Aarushi Talwar, aged 13, and the domestic help Hemraj Banjade, aged 45, were found murdered with their throats slit by a sharp weapon and blunt-force head injuries. The parents, Dr. Rajesh Talwar and Dr. Nupur Talwar, were the accused. The post-mortem noted clinically precise neck incisions. Evidence included a blood-stained whisky bottle bearing both victims' DNA and drag marks on the terrace. The Uttar Pradesh Police investigated first; the Central Bureau of Investigation took over on 31 May 2008. The trial court convicted the Talwars in 2013; the Allahabad High Court acquitted them in 2017.",
+  "gold": {
+    "persons": [
+      [
+        "Aarushi Talwar",
+        "victim"
+      ],
+      [
+        "Hemraj Banjade",
+        "victim"
+      ],
+      [
+        "Rajesh Talwar",
+        "accused"
+      ],
+      [
+        "Nupur Talwar",
+        "accused"
+      ]
+    ],
+    "locations": [
+      "Jalvayu Vihar, Noida"
+    ],
+    "weapons": [
+      "sharp weapon",
+      "blunt instrument"
+    ],
+    "crime_types": [
+      "murder"
+    ],
+    "time_events": [
+      "15-16 May 2008",
+      "31 May 2008 CBI",
+      "2013 conviction",
+      "2017 acquittal"
+    ]
+  }
+}

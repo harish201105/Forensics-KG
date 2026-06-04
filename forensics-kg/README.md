@@ -38,7 +38,7 @@ Forensic investigation faces several critical challenges:
 
 - Using LLMs to automatically extract structured entities and relationships from **6 types** of unstructured forensic text (FIR reports, court judgments, post-mortem reports, lab reports, witness depositions, SOCO reports)
 - Combining traditional computer vision with LLM vision capabilities to analyze **6 types** of forensic images (bloodstain patterns, fingerprints, wound patterns, ballistics, document forensics, tool marks)
-- Storing everything in a knowledge graph with **38 node types** and **46 relationship types** that captures the semantic relationships between cases, people, evidence, locations, weapons, forensic patterns, and legal proceedings
+- Storing everything in a knowledge graph with **38 node types** and **48 relationship types** that captures the semantic relationships between cases, people, evidence, locations, weapons, forensic patterns, and legal proceedings
 - Enabling natural language querying and hypothesis generation over the connected evidence
 - Validating with **real case data** (Indian court judgments) alongside synthetic data for rigorous evaluation
 
@@ -69,10 +69,12 @@ Forensic investigation faces several critical challenges:
 | **Text Extraction (6 types)** | Extracts entities & relationships from FIR reports, court judgments, post-mortem reports, lab reports, witness depositions, SOCO reports | GPT-4o/4.1 with structured output — schema registry pattern dispatches type-specific schemas and prompts |
 | **Image Analysis (6 types)** | Analyzes bloodstain patterns, fingerprints, wound images, ballistics, document forensics, tool marks | Strategy pattern: OpenCV preprocessing + GPT-4o Vision per image type |
 | **Multi-modal Extraction** | Combined text + image analysis in a single pass | Parallel extraction via `asyncio.gather`, followed by GPT-4o synthesis pass that cross-references findings |
-| **Knowledge Graph** | Stores all extracted data as a connected graph | Neo4j with 38 node types and 46 relationship types defined by a forensics ontology |
-| **Natural Language Query** | Ask questions in plain English | RAG-augmented NL → Cypher → Execute → Interpret pipeline |
+| **Knowledge Graph** | Stores all extracted data as a connected graph | Neo4j with 38 node types and 48 relationship types defined by a forensics ontology |
+| **Natural Language Query** | Ask questions in plain English | RAG-augmented NL → Cypher → Execute → Interpret, with a self-correction loop that feeds Neo4j errors back to fix the query |
+| **Semantic Search + Projector** | Search the graph by meaning, not keywords | OpenAI embeddings on every node + a Neo4j vector index (cosine KNN); an interactive 2D PCA embedding-projector page |
+| **Cross-Case Entity Resolution** | Link the same real-world entity across cases | Embedding-blocked, context-aware `SAME_AS` linking ("show all cases involving X", "which judges recur") |
 | **Hypothesis Generation** | Generate forensic hypotheses from evidence | Retrieves case evidence from KG, performs statistical analysis, generates structured hypotheses with confidence scores |
-| **Evaluation Framework** | Quantitative extraction quality assessment | Compares LLM-extracted entities against gold standard annotations across all text document types — precision/recall/F1 per entity type |
+| **Evaluation Framework** | Quantitative quality assessment | P/R/F1 for text extraction (6 doc types); **quantitative image evaluation** (6 image types); **real-case validation** against human-curated documented facts (10 cases) |
 | **Temporal Reasoning** | Timeline reconstruction with gap detection | Queries TimeEvent nodes, sorts chronologically, detects gaps and inconsistencies |
 | **Multi-Model Support** | Compare extraction quality across models | Per-request model selection (GPT-4o, GPT-4o-mini, GPT-4.1, GPT-4.1-mini) |
 | **Real Data Ingestion** | Ingest real criminal case data | Court judgments from HuggingFace, Indian Kanoon API, or Kaggle CSV |
@@ -193,11 +195,11 @@ forensics-kg/
 │   │   ├── models/                   # Pydantic request/response models
 │   │   │   ├── requests.py           # TextExtractionRequest, SourceType enum (10 types)
 │   │   │   └── responses.py          # ExtractionResponse, QueryResponse, etc.
-│   │   ├── routers/                  # 9 routers, 40+ endpoints
+│   │   ├── routers/                  # 9 routers, 56 endpoints
 │   │   │   ├── extract.py            # POST /text, /image, /combined
 │   │   │   ├── graph.py              # GET/DELETE /graph/* + WebSocket
 │   │   │   ├── query.py              # POST /natural, /cypher
-│   │   │   ├── datasets.py           # 14 endpoints: generate, ingest, download, gold
+│   │   │   ├── datasets.py           # 18 endpoints: generate, ingest, download, gold, process
 │   │   │   ├── analysis.py           # POST /hypothesis/{case_id}
 │   │   │   ├── export.py             # GET /cases/csv, /graph/json, /case/report
 │   │   │   ├── evaluation.py         # POST /run-all, /run-single + validation
@@ -224,7 +226,7 @@ forensics-kg/
 │   │       │   ├── operations.py      # Entity/relationship storage (Cypher-safe)
 │   │       │   └── deduplication.py   # Fuzzy entity deduplication
 │   │       ├── ontology/
-│   │       │   └── schema.py          # YAML ontology loader (38 nodes, 46 rels)
+│   │       │   └── schema.py          # YAML ontology loader (38 nodes, 48 rels)
 │   │       ├── query/
 │   │       │   ├── nl_to_cypher.py    # NL → Cypher generation
 │   │       │   ├── query_service.py   # Query orchestrator
@@ -251,7 +253,7 @@ forensics-kg/
 │   └── requirements.txt               # Python dependencies
 ├── frontend/                          # Next.js 14 (TypeScript) — 27 source files
 │   └── src/
-│       ├── app/                       # 9 pages (Next.js App Router)
+│       ├── app/                       # 11 pages (Next.js App Router)
 │       │   ├── page.tsx               # Dashboard (stats + distributions)
 │       │   ├── extract/page.tsx       # 3 tabs: text (6 types) / image (6 types) / combined
 │       │   ├── graph/page.tsx         # Force-directed 2D graph + search + filter
@@ -273,7 +275,7 @@ forensics-kg/
 │       └── types/
 │           └── index.ts               # TypeScript interfaces + NODE_COLORS
 ├── ontology/
-│   └── forensics_ontology.yaml        # Domain ontology (38 node types, 46 relationships)
+│   └── forensics_ontology.yaml        # Domain ontology (38 node types, 48 relationships)
 └── data/                              # ~115K files (gitignored, regenerated via API)
     ├── fir_text/                      # 20 synthetic FIR reports (.txt)
     ├── gold/                          # 20 FIR gold standards (.json)
@@ -306,12 +308,12 @@ Browser (localhost:3000)
     │
     ▼
 Next.js Frontend ──────────────────────────────►  Neo4j Desktop
-    │  9 pages, 26 hooks, ModelSelector             (localhost:7687)
+    │  11 pages, 26 hooks, ModelSelector             (localhost:7687)
     │  7 API groups                                      ▲
     │                                                    │
     ▼                                                    │
 FastAPI Backend (localhost:8000)                          │
-    │  9 routers, 40+ endpoints                          │
+    │  9 routers, 56 endpoints                          │
     │                                                    │
     ├── OpenAI API (GPT-4o/4.1) ◄─ retry (3x, backoff) │
     │   - Text extraction (6 document types)             │
@@ -493,6 +495,59 @@ Key relationships organized by domain:
 - **File existence checks**: Missing gold/text files return 404 instead of 500
 - **Input validation**: Image type, file size, content type all validated at router level
 
+### 9. Semantic Layer (Vector Embeddings + Projector)
+
+- Every graph node is embedded (OpenAI `text-embedding-3-small`, 1536-dim) under a shared `:Embedded` label, indexed by a single Neo4j **vector index** (cosine)
+- **Semantic KNN search** replaces brittle substring matching — retrieval by meaning, not literal string overlap
+- **Embedding Projector** page: an interactive 2D PCA map of all nodes (TensorFlow-Projector style) with nearest-neighbour highlighting
+- Embeddings also ground NL→Cypher: the RAG context surfaces semantically-relevant nodes **and the real relationship patterns** connecting them, so generated Cypher traverses actual edges instead of guessing
+- Auto-embedding on every ingestion keeps the index current
+
+### 10. Cross-Case Entity Resolution (Connected Forensic Graph)
+
+The core promise of a forensic KG is **cross-case pattern discovery** — the same suspect across cases, a recurring judge, a shared location. But document-by-document extraction creates *per-case islands*: "Chandrasekhara Aiyar" in one judgment and "CHANDRASEKHARA AIYAR J." in another become **separate nodes**, so cross-case queries return nothing.
+
+This layer resolves that:
+
+- **Hybrid entity resolution**: node **embeddings block candidates** (cosine), then **type-specific name/string matching confirms** them (title-stripped, fuzzy + token-subset) — embeddings find the candidates, strings prevent false merges
+- **Non-destructive `SAME_AS` links** (not merges) — preserves per-case provenance, which is essential forensically (you must know which case each mention came from)
+- **Conservative + context-aware** by design: generic placeholder values are skipped, and weak matches (single common first names, conflicting initials like *G.C.* vs *G.S. Mathur*) are only accepted with **corroboration** — shared co-occurring entities (2-hop context) **or** a distinctive recurring role (judge/officer). Strong multi-token names pass on the name alone. Each `SAME_AS` edge records its `basis` (`name` / `name+role` / `name+context`) and confidence for transparency. False merges in forensics are dangerous, so the bar is deliberately high.
+- **Auto-runs incrementally after each ingestion** (O(new × total)), so the graph stays connected as cases are added; also exposed as `POST /api/graph/resolve-entities` (with `dry_run`) for whole-graph (re)linking
+- **`GET /api/graph/cross-case?label=&value=`** and a **Cross-Case page** answer "show all cases involving X," resolving aliases across cases
+- NL→Cypher is `SAME_AS`-aware, so plain-English cross-case questions ("which judges appear in more than one case?") traverse the links
+
+**Result**: queries that returned 0 before now surface real cross-case patterns — e.g. *Justice Chandrasekhara Aiyar presides over 3 cases* — discovered by linking `Chandrasekhara Aiyar` ≡ `CHANDRASEKHARA AIYAR J.`. This is the step that turns the system from a pipeline demonstration into demonstrated cross-case reasoning.
+
+### 11. Quantitative Image Evaluation (and an honest negative result)
+
+The original system evaluated text extraction with P/R/F1 but assessed image analysis only qualitatively. A quantitative framework now runs the **real CV + GPT-4o vision pipeline** on labelled images and scores predictions against ground truth (accuracy / precision-recall-F1 / MAE), one adapter per image type:
+
+| Image type | Ground truth | Result (sample) |
+|---|---|---|
+| **Bloodstain** | Attinger impact-spatter mechanism | **F1 = 1.0** — reliable |
+| Ballistics | synthetic gold caliber | ~0.5 caliber accuracy |
+| Tool marks | synthetic gold tool type | ~0.0 (misclassifies synthetic marks) |
+| Document (CEDAR) | genuine vs forged | F1 ≈ 0 (single-image forgery detection predicts "genuine") |
+| Wound (AZH) | wound present vs background | recall 1.0 / precision 0.5 (over-detects) |
+| Fingerprint (SOCOFing) | hand + finger | ~0.0 (model returns "unknown" — not visually recoverable) |
+
+**This is a genuine, defensible research finding, not a defect.** The pipeline is quantitatively reliable on **bloodstain** — the one image type with real, physics-grounded public ground truth (the project's core contribution) — and the framework honestly exposes where the others fall short: misaligned ground truth (SOCOFing labels finger position, not pattern type; AZH wounds are clinical, not forensic) or genuinely hard tasks (single-image forgery detection needs a reference signature). Building the framework also surfaced and fixed a real **evaluation-validity bug** — the image's filename (which encodes the label) was leaking into the prompt via metadata, inflating fingerprint accuracy to a false 100%.
+
+### 12. Scaled Real-Case Validation (breaking the circularity)
+
+The synthetic gold standards are LLM-generated, so evaluating LLM extraction against them is **circular** — it proves consistency, not real-world correctness. This validates extraction against **human-curated gold from authoritative public sources** (court records / Wikipedia) for **10 well-documented real Indian criminal cases** (Koodathayi cyanide killings, 2024 R.G. Kar, 2012 Delhi / Nirbhaya, Sheena Bora, Aarushi-Hemraj, Jessica Lal, Priyadarshini Mattoo, Nithari, Neeraj Grover, Nitish Katara). The pipeline extracts entities from a factual case narrative; predictions are scored (P/R/F1) against the established documented facts.
+
+| Entity type | Precision | Recall | F1 |
+|---|---|---|---|
+| **Person** (suspects/victims/witnesses) | 0.87 | 0.94 | **0.90** |
+| CrimeType | 0.74 | 0.93 | 0.82 |
+| TimeEvent (timeline) | 0.81 | 0.76 | 0.78 |
+| Weapon / method | 0.89 | 0.67 | 0.76 |
+| Location | 0.32 | 0.60 | 0.41 |
+| **Overall (micro-avg)** | **0.76** | **0.83** | **0.79** |
+
+**The headline: person identification reaches F1 = 0.90 on real, documented cases against human-authored ground truth** — converting "the pipeline is self-consistent" into "the pipeline is accurate on real forensic narratives." Each entity type uses a representation-appropriate matcher: persons/locations/weapons by fuzzy string match, **crime type** by canonical-keyword match against the case title (where the FIR extractor records it), and **timeline** by **date-aware matching** (year/month) so descriptive event names are compared fairly to documented dates — both transformed from earlier near-zero artifact scores (CrimeType 0.12 → 0.82, TimeEvent 0.03 → 0.78). Exposed at **Evaluation → Real Cases**; gold lives in `data/real_cases/`.
+
 ---
 
 ## Technology Stack
@@ -501,16 +556,16 @@ Key relationships organized by domain:
 | --- | --- | --- |
 | **LLM** | OpenAI GPT-4o / GPT-4.1 | Entity extraction, image analysis, synthesis, NL-to-Cypher, hypothesis generation, gold generation |
 | **Graph Database** | Neo4j 2026.x (Desktop) | Knowledge graph storage, Cypher queries, subgraph retrieval |
-| **Backend** | FastAPI + Python 3.12 | Async REST API, 9 routers, 40+ endpoints |
+| **Backend** | FastAPI + Python 3.12 | Async REST API, 9 routers, 56 endpoints |
 | **Image Processing** | OpenCV (headless) + NumPy + SciPy | 6 forensic image analysis strategies |
-| **Frontend** | Next.js 14 + TypeScript + Tailwind CSS 4 | 9-page web application |
+| **Frontend** | Next.js 14 + TypeScript + Tailwind CSS 4 | 11-page web application |
 | **Graph Viz** | react-force-graph-2d | Interactive 2D force-directed graph |
 | **Charts** | Recharts | Evaluation bar charts, timeline scatter plots |
 | **State Management** | Zustand + React Query v5 | Client state + server state caching (26 hooks) |
 | **HTTP Client** | Axios (frontend) + httpx (backend) | API communication + dataset downloads |
 | **Retry/Resilience** | tenacity | Exponential backoff on OpenAI API calls |
 | **Evaluation** | difflib (stdlib) | Fuzzy entity matching for P/R/F1 metrics |
-| **Ontology** | YAML + Pydantic | Domain schema (38 nodes, 46 rels, 10 enums) |
+| **Ontology** | YAML + Pydantic | Domain schema (38 nodes, 48 rels, 10 enums) |
 | **Logging** | loguru | Structured logging throughout backend |
 
 ---
@@ -524,13 +579,48 @@ Key relationships organized by domain:
 - **Neo4j Desktop** (download from [neo4j.com/download](https://neo4j.com/download/))
 - **OpenAI API Key** with GPT-4o access
 
+### Quick Start (recommended)
+
+After the one-time setup below, start the entire stack — Neo4j Desktop DBMS,
+backend, and frontend — with a single command from `forensics-kg/`:
+
+```bash
+./start.sh     # brings up Neo4j + backend (:8000) + frontend (:3000)
+./stop.sh      # stops all three
+```
+
+`start.sh` is idempotent (anything already running is left alone), creates the
+backend venv and installs deps on first run, and waits until each tier is
+healthy before reporting the live graph stats. The graph lives in the
+**`neo4j` database of your Neo4j Desktop DBMS** — `start.sh` launches that DBMS
+directly, so **do not** also press "Start" in the Neo4j Desktop GUI (two starts
+collide on port 7687).
+
+> **Port 7687 note:** if you also have Neo4j installed via Homebrew, it can
+> autostart on login and steal port 7687 from Neo4j Desktop (making the graph
+> appear empty). Disable its autostart once with `brew services stop neo4j`.
+
+For the manual, step-by-step setup (or first-time configuration), continue below.
+
 ### Step 1: Neo4j Database
 
 1. Open Neo4j Desktop
 2. Create a new project, add a new local DBMS
-3. Set database name: `forensics-kg`, password: `forensics_kg_2024`
-4. Start the database
+3. Set the DBMS password to `forensics_kg_2024` (matching `NEO4J_PASSWORD` in `.env`)
+4. Start the DBMS
 5. Verify it's running at `bolt://localhost:7687`
+
+> **The app uses the DBMS's default `neo4j` database** (config default
+> `NEO4J_DATABASE=neo4j`) — all data is read/written there. Do **not** create a
+> separate database named `forensics-kg`; an empty named database will make the
+> graph appear empty even though the DBMS is running.
+>
+> **Do not start Neo4j with `docker compose` for normal use.** The bundled
+> [docker-compose.yml](docker-compose.yml) spins up a *separate, empty* Neo4j and
+> will collide on port 7687 with your Neo4j Desktop DBMS — making your data look
+> lost. It exists only for throwaway/CI setups. If Homebrew Neo4j is also
+> installed, disable its login autostart once with `brew services stop neo4j` for
+> the same reason.
 
 ### Step 2: Backend
 
@@ -669,21 +759,32 @@ Browse all forensic cases. Click any case for the detail view:
 
 ### 6. Query Page (`/query`)
 
-- **Natural Language**: Ask questions in English → system generates Cypher, executes, and interprets results
+- **Natural Language**: Ask questions in English → semantic RAG retrieval → Cypher generation → execute → interpret, with a **self-correction loop** (feeds Neo4j errors back to fix the query). Surfaces the answer, confidence, generated Cypher, key entities, clickable follow-up questions, and retrieved graph context
 - **Cypher**: Write queries directly (destructive queries blocked for safety)
 
-### 7. Analysis Page (`/analysis`)
+### 7. Projector Page (`/projector`)
+
+- Interactive **2D PCA embedding map** of every graph node (TensorFlow-Projector style), coloured by node type
+- **Semantic search** highlights the nearest neighbours of a query; toggle node types; "Embed new nodes" backfills embeddings
+- Shows embedding coverage (nodes embedded / total)
+
+### 8. Cross-Case Page (`/cross-case`)
+
+- **Entity resolution**: preview (dry-run) or apply `SAME_AS` linking of duplicate entities across cases, with per-label link counts and example matches
+- **"Show all cases involving X"**: pick an entity (e.g. a recurring judge) and see every case it appears in, with resolved aliases
+
+### 9. Analysis Page (`/analysis`)
 
 - **Hypothesis mode**: Generates primary + alternative hypotheses with confidence, supporting/contradicting evidence, reasoning chain, recommendations
 - **Statistics mode**: Descriptive statistics on stain/experiment features
 
-### 8. Evaluation Page (`/evaluation`)
+### 10. Evaluation Page (`/evaluation`)
 
-- Select **source type** (FIR, Court Judgment, Post-Mortem, Lab Report, Deposition, SOCO)
-- Select **model** (GPT-4o, GPT-4o-mini, GPT-4.1, GPT-4.1-mini)
-- **Run All**: Evaluate across all gold standard cases for that type
-- **Run Single**: Evaluate one document with matched entity pair details
-- View: Overall P/R/F1, per-entity-type bar chart, per-case breakdown
+Three tabs:
+
+- **Text Extraction** — select source type (FIR, Court Judgment, Post-Mortem, Lab Report, Deposition, SOCO) and model; Run All / Run Single; view overall P/R/F1, per-entity-type chart, per-case breakdown
+- **Image Analysis** — pick an image type and sample size; runs the real CV + vision pipeline on labelled images and scores accuracy / P-R-F1 / MAE against ground truth
+- **Real Cases** — runs extraction on 10 documented real cases and scores P/R/F1 against human-curated gold (breaks the circular-evaluation problem)
 
 ---
 
@@ -747,13 +848,19 @@ POST /api/extract/combined
 Body: FormData (file, text, source_type, image_type, experiment_id?, case_id?, store_in_graph, model?)
 ```
 
-### Graph (6 endpoints)
+### Graph (12 endpoints)
 
 ```http
 GET  /api/graph/stats
 GET  /api/graph/full?limit=500
 GET  /api/graph/subgraph/{id}?label=Case&key=case_id&depth=2
 GET  /api/graph/search?q=text&labels=Case,Person
+GET  /api/graph/semantic-search?q=text&k=10            # embedding KNN search
+GET  /api/graph/embeddings/status                      # embedding coverage
+POST /api/graph/embeddings/backfill?only_missing=true  # embed nodes
+GET  /api/graph/embeddings/projection?dim=2&limit=2000 # PCA for projector
+POST /api/graph/resolve-entities?dry_run=false         # cross-case SAME_AS linking
+GET  /api/graph/cross-case?label=Person&value=Bose     # all cases involving X
 GET  /api/graph/node/{label}/{key}/{value}
 DELETE /api/graph/clear?confirm=yes-delete-all-data
 ```
@@ -768,7 +875,7 @@ POST /api/query/cypher
 Body: { "query": "MATCH ...", "parameters": {} }
 ```
 
-### Datasets (14 endpoints)
+### Datasets (18 endpoints)
 
 ```http
 GET  /api/datasets/                                    # List all datasets
@@ -794,15 +901,24 @@ POST /api/analysis/hypothesis/{case_id}?model=gpt-4o
 GET  /api/analysis/statistics/{experiment_id}
 ```
 
-### Evaluation (3 endpoints)
+### Evaluation (9 endpoints)
 
 ```http
-POST /api/evaluation/run-all?source_type=fir&model=gpt-4o
-POST /api/evaluation/run-single/{doc_id}?source_type=fir&model=gpt-4o
+# Text extraction
+POST /api/evaluation/run-all?source_type=fir&model=gpt-4.1
+POST /api/evaluation/run-single/{doc_id}?source_type=fir&model=gpt-4.1
 GET  /api/evaluation/results
+# Image analysis (quantitative)
+GET  /api/evaluation/image/types
+POST /api/evaluation/image/run?image_type=bloodstain&limit=5&model=gpt-4.1
+GET  /api/evaluation/image/results
+# Real-case validation (documented-fact gold)
+GET  /api/evaluation/real-cases/list
+POST /api/evaluation/real-cases/run?model=gpt-4.1
+GET  /api/evaluation/real-cases/results
 ```
 
-Note: `source_type` must be a text-based type (fir, court_judgment, postmortem, lab_report, witness_deposition, soco_report). Image-only types return 400.
+Note: text `source_type` must be a text-based type (fir, court_judgment, postmortem, lab_report, witness_deposition, soco_report). Image-only types return 400.
 
 ### Temporal (2 endpoints)
 
@@ -907,8 +1023,9 @@ The evaluation framework provides **quantitative evidence** that LLM-based extra
 ### Current Limitations
 
 - **LLM dependency**: All extraction depends on OpenAI API availability and cost
-- **Synthetic text data**: FIRs and forensic documents (except court judgments and depositions) are LLM-generated — real-world accuracy needs further validation
-- **No image evaluation**: Evaluation framework covers only text extraction; image analysis quality is assessed qualitatively
+- **Synthetic text data**: FIRs and forensic documents (except court judgments and depositions) are LLM-generated — though extraction is now also validated against human-curated gold for **10 real documented cases** (Key Research Outcome #12, overall F1 = 0.79 / Person F1 = 0.90)
+- **Image analysis reliable mainly on bloodstain**: the quantitative image-evaluation framework (Outcome #11) shows the vision pipeline is dependable on bloodstain (F1 = 1.0 — the type with real, physics-grounded ground truth) but weaker on others, limited by ground-truth alignment (e.g. SOCOFing labels finger position, not pattern type) or genuinely hard tasks (single-image forgery detection)
+- **Location extraction precision**: on real cases the extractor over-emits granular/multiple locations (Location F1 ≈ 0.41) relative to the single documented location
 - **No user authentication**: The system has no login/roles — not suitable for production forensic use without security hardening
 - **English-only**: NL queries and document generation are English-only
 - **OpenAI-only models**: Multi-model support is limited to OpenAI models due to `json_schema` + `strict: True` structured output requirement
@@ -916,24 +1033,26 @@ The evaluation framework provides **quantitative evidence** that LLM-based extra
 
 ### Implemented Enhancements
 
+- **Semantic layer** (Outcome #9): OpenAI embeddings on every node + Neo4j vector index (cosine KNN); interactive 2D embedding-projector page; auto-embedding on ingestion
+- **Cross-case entity resolution** (Outcome #10): context-aware `SAME_AS` linking of duplicate entities across cases; "show all cases involving X"
+- **Quantitative image evaluation** (Outcome #11): all 6 image pipelines scored against ground truth — accuracy / P-R-F1 / MAE
+- **Scaled real-case validation** (Outcome #12): 10 documented real cases with human-curated, documented-fact gold — breaks the circular evaluation
+- **Self-correcting NL→Cypher**: semantic-RAG context + relationship-pattern grounding + an error-feedback retry loop
 - Evaluation framework with 6 gold adapters (P/R/F1 per entity type per document type)
 - Multi-modal reasoning (combined text + image with GPT-4o synthesis)
 - Temporal reasoning (timeline reconstruction with gap detection)
-- RAG-based querying (graph-augmented retrieval for NL-to-Cypher)
 - Collaborative features (annotations, case status, activity log)
-- Multi-model support (per-request model selection)
-- Schema registry for 6 document types
-- Strategy pattern for 6 image types
+- Multi-model support (per-request model selection; GPT-4.1 default)
+- Schema registry (6 document types) + strategy pattern (6 image types)
 - Real data ingestion (court judgments, fingerprints, signatures, wounds, depositions)
-- LLM gold standard generation from real case data
-- Cypher injection prevention and input validation
+- APOC enabled (faster subgraph/stats); Cypher injection prevention and input validation
 - Synthetic image generation (ballistics, tool marks via OpenCV)
 
 ### Future Work
 
 - **Real FIR data**: Validate with actual (anonymized) police reports from Indian police stations
-- **Image evaluation**: Quantitative metrics for image analysis quality (not just text)
-- **Vector embeddings**: Sentence embeddings for semantic search and improved RAG retrieval
+- **Location precision**: tighten location extraction to reduce over-emission of granular sub-locations
+- **Human-expert annotation**: extend real-case validation beyond 10 cases and beyond public documented facts to expert-annotated ground truth
 - **Non-OpenAI models**: Support Claude and Gemini with adapter pattern for structured output
 - **Multi-view analysis**: Compare multiple images of the same evidence
 - **User authentication**: Role-based access control for production forensic use
@@ -961,4 +1080,4 @@ The evaluation framework provides **quantitative evidence** that LLM-based extra
 ---
 
 *UROP Research Project — Forensics Knowledge Graph System*
-*94 source files | 38 node types | 46 relationship types | 40+ API endpoints | 9 frontend pages | 115K+ data items | 120 gold standards*
+*38 node types | 48 relationship types (incl. SAME_AS cross-case links) | 56 API endpoints | 11 frontend pages | semantic vector search + embedding projector | cross-case entity resolution | quantitative image evaluation | 115K+ data items | 120 synthetic gold standards + 10 documented real-case validations*

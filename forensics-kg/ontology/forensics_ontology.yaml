@@ -40,7 +40,9 @@ enums:
 
   PersonRole:
     - victim
+    - deceased
     - suspect
+    - accused
     - witness
     - officer
     - forensic_analyst
@@ -703,6 +705,22 @@ relationship_types:
     target: [CauseOfDeath]
     properties:
       contribution: string
+
+  CAUSE_OF_DEATH_OF:
+    source: [CauseOfDeath]
+    target: [Person]
+    properties:
+      description: string
+
+  # Cross-case entity resolution: links nodes that refer to the same real-world
+  # entity (or, for Weapon/CrimeType, the same type) across different cases.
+  # Created by the entity-resolution layer, not by document extraction.
+  SAME_AS:
+    source: [Person, Location, Weapon, Vehicle, CrimeType, Organization]
+    target: [Person, Location, Weapon, Vehicle, CrimeType, Organization]
+    properties:
+      score: float
+      basis: string
 
   TOXICOLOGY_OF:
     source: [ToxicologyResult]

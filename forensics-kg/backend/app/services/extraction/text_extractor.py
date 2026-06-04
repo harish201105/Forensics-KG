@@ -68,7 +68,9 @@ def _postmortem_entity_prompt(source_type: str, type_descriptions: str) -> str:
         f"- For CauseOfDeath, include primary and contributing causes.\n"
         f"- For ToxicologyResult, include substance, concentration, and method.\n"
         f"- Extract the estimated time of death as a TimeEvent.\n"
-        f"- Include the examining pathologist as a Person with role 'examiner'."
+        f"- The deceased subject of the report is a Person with role 'victim' "
+        f"(use 'victim', NOT 'deceased', for consistency).\n"
+        f"- Include the examining pathologist as a Person with role 'forensic_analyst'."
     )
 
 
@@ -242,6 +244,13 @@ class TextExtractor:
             f"- {rt.name}: ({', '.join(rt.source_types)}) -> ({', '.join(rt.target_types)})"
             for rt in rel_types
         )
+        death_hint = ""
+        if source_type in ("postmortem", "lab_report"):
+            death_hint = (
+                "- IMPORTANT: when a CauseOfDeath is identified, link it to the "
+                "deceased Person with CAUSE_OF_DEATH_OF (CauseOfDeath -> Person), "
+                "so the cause of death is directly attributable to the victim.\n"
+            )
         return (
             f"You are a forensic data extraction expert. Extract relationships "
             f"between entities from {source_type} reports.\n\n"
@@ -249,6 +258,7 @@ class TextExtractor:
             f"Rules:\n"
             f"- Only create relationships between entities already extracted.\n"
             f"- Use the exact entity_id values from the entity list.\n"
+            f"{death_hint}"
             f"- Assign confidence 0.0-1.0 (1.0 = explicitly stated, "
             f"0.7+ = strongly implied, 0.5 = inferred).\n"
             f"- Include the exact text span that supports the relationship "

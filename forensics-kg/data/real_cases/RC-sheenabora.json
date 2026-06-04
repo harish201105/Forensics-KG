@@ -1,0 +1,44 @@
+{
+  "case_id": "RC-sheenabora",
+  "title": "Murder of Sheena Bora",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Murder_of_Sheena_Bora",
+  "narrative": "FIR — 24 April 2012, Bandra, Mumbai. Sheena Bora, aged 25, was strangled. The accused are Indrani Mukerjea (her mother), Sanjeev Khanna (Indrani's ex-husband), Peter Mukerjea (Indrani's husband) and the driver Shyamvar Rai, who later turned approver. The body was taken to Gagode village in Raigad district, doused in petrol and burned. DNA from a femur bone matched Indrani Mukerjea. The Mumbai Police investigated; charges were filed under IPC sections 302, 201, 364 and 120-B.",
+  "gold": {
+    "persons": [
+      [
+        "Sheena Bora",
+        "victim"
+      ],
+      [
+        "Indrani Mukerjea",
+        "accused"
+      ],
+      [
+        "Sanjeev Khanna",
+        "accused"
+      ],
+      [
+        "Peter Mukerjea",
+        "accused"
+      ],
+      [
+        "Shyamvar Rai",
+        "witness"
+      ]
+    ],
+    "locations": [
+      "Bandra, Mumbai"
+    ],
+    "weapons": [
+      "strangulation"
+    ],
+    "crime_types": [
+      "murder"
+    ],
+    "time_events": [
+      "24 April 2012",
+      "September 2015 DNA match"
+    ]
+  }
+}
