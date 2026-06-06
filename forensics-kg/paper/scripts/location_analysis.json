@@ -379,5 +379,7 @@
         "Ashok Yatri Niwas hotel"
       ]
     }
-  ]
+  ],
+  "principal_selection_first_mention": 0.75,
+  "principal_selection_hits": "21/28"
 }

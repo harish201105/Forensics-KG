@@ -875,7 +875,11 @@ mismatches (Chhaparvad vs.\ Randhikpur), and even under-counts---missing cases
 where the system named only a sub-scene (``St Pius X Convent'' for Kottayam). The
 system therefore recovers the correct principal place far more often
 ($\approx\!0.86$) than the strict per-mention metric ($0.27$) suggests; what it
-lacks is \emph{principal-location selection}, not place recognition.
+lacks is \emph{principal-location selection}, not place recognition. A simple,
+gold-free selector confirms this is fixable: taking the \emph{first-mentioned}
+extracted location as the principal scene identifies it correctly in $21/28$ cases
+($0.75$)---a concrete, near-term improvement over the $0.27$ per-mention
+$\mathrm{F1}$, not a fundamental limitation.
 \emph{Date coverage}---the fraction of documented years recovered anywhere in the
 extracted timeline---is $0.95$, confirming that the pipeline does recover the
 documented dates: the looser coverage metric and the corrected per-mention

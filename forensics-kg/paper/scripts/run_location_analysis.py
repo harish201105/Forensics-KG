@@ -69,9 +69,15 @@ async def main():
         rows.append({"case": c["case_id"], "gold": gold, "strict": s, "place": p, "extracted": ext})
         print(f"  {c['case_id']:<22} strict={int(s)} place={int(p)}", flush=True)
     n = len(cases)
+    # Principal-location SELECTOR: pick ONE principal scene with a gold-free rule
+    # (first-mentioned extracted location) and score it (containment-aware) against
+    # the single gold principal location.
+    sel_hits = sum(1 for r in rows if r["extracted"] and place_match(r["gold"], r["extracted"][0]))
     out = {"n_cases": n,
            "strict_principal_recall": round(strict_hits / n, 3),
            "containment_principal_recall": round(place_hits / n, 3),
+           "principal_selection_first_mention": round(sel_hits / n, 3),
+           "principal_selection_hits": f"{sel_hits}/{n}",
            "strict_hits": f"{strict_hits}/{n}", "place_hits": f"{place_hits}/{n}",
            "flipped_miss_to_hit": flipped, "rows": rows}
     (Path(__file__).parent / "location_analysis.json").write_text(json.dumps(out, indent=2, ensure_ascii=False))
