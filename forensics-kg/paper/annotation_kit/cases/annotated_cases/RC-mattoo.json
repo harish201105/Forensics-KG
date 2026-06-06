@@ -1,0 +1,40 @@
+{
+  "case_id": "RC-mattoo",
+  "title": "Murder of Priyadarshini Mattoo",
+  "source": "https://en.wikipedia.org/wiki/Priyadarshini_Mattoo",
+  "narrative": "FIR — 23 January 1996, Vasant Kunj, New Delhi. Priyadarshini Mattoo, a 25-year-old law student, was raped, struck repeatedly with a motorcycle helmet and strangled with an electric wire at her uncle's residence. The accused was Santosh Kumar Singh, a college senior and son of a senior police officer. Evidence included the helmet with a shattered visor and DNA testing. The Central Bureau of Investigation investigated. He was acquitted in 1999, convicted by the Delhi High Court in 2006 and given life imprisonment by the Supreme Court in 2010.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Priyadarshini Mattoo",
+        "victim"
+      ],
+      [
+        "Santosh Kumar Singh",
+        "accused"
+      ],
+      [
+        "Central Bureau of Investigation",
+        "officer"
+      ]
+    ],
+    "locations": [
+      "uncle's residence, Vasant Kunj, New Delhi"
+    ],
+    "weapons": [
+      "motorcycle helmet",
+      "electric wire"
+    ],
+    "crime_types": [
+      "rape",
+      "murder"
+    ],
+    "time_events": [
+      "23 January 1996",
+      "1999",
+      "2006",
+      "2010"
+    ]
+  }
+}

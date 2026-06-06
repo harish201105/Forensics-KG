@@ -1,0 +1,39 @@
+{
+  "case_id": "RC-gaurilankesh",
+  "title": "Murder of Gauri Lankesh",
+  "source": "https://en.wikipedia.org/wiki/Gauri_Lankesh",
+  "narrative": "FIR — Murder of Gauri Lankesh, Rajarajeshwari Nagar, Bengaluru, Karnataka. On 5 September 2017, Gauri Lankesh, a journalist and editor known as a critic of right-wing Hindu extremism, was shot dead with a pistol by a helmeted assailant in the driveway of her home. The Special Investigation Team identified Parashuram Waghmare as the shooter and Amol Kale among the masterminds, linking the conspiracy to a radical organisation. Eighteen people were arrested and charged in the case.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Gauri Lankesh",
+        "victim"
+      ],
+      [
+        "Parashuram Waghmare",
+        "accused"
+      ],
+      [
+        "Amol Kale",
+        "accused"
+      ],
+      [
+        "Special Investigation Team",
+        "officer"
+      ]
+    ],
+    "locations": [
+      "driveway of her home, Rajarajeshwari Nagar, Bengaluru, Karnataka"
+    ],
+    "weapons": [
+      "pistol"
+    ],
+    "crime_types": [
+      "murder"
+    ],
+    "time_events": [
+      "5 September 2017"
+    ]
+  }
+}

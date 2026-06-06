@@ -1,0 +1,42 @@
+{
+  "case_id": "RC-rgkar",
+  "title": "2024 Kolkata R. G. Kar rape and murder",
+  "source": "https://en.wikipedia.org/wiki/2024_Kolkata_rape_and_murder",
+  "narrative": "Post-mortem and FIR — R. G. Kar Medical College and Hospital, Kolkata, West Bengal, 9 August 2024. The deceased, a 31-year-old female postgraduate trainee doctor, was raped and killed by manual strangulation; the autopsy recorded a fracture of the thyroid cartilage. The accused, Sanjay Roy, a civic volunteer with the Kolkata Police, was arrested on 10 August 2024. The investigation was transferred to the Central Bureau of Investigation on 13 August 2024. Sanjay Roy was convicted under the Bharatiya Nyaya Sanhita and sentenced to life imprisonment.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "31-year-old female postgraduate trainee doctor",
+        "victim"
+      ],
+      [
+        "Sanjay Roy",
+        "accused"
+      ],
+      [
+        "Kolkata Police",
+        "officer"
+      ],
+      [
+        "Central Bureau of Investigation",
+        "officer"
+      ]
+    ],
+    "locations": [
+      "R. G. Kar Medical College and Hospital, Kolkata, West Bengal"
+    ],
+    "weapons": [
+      "manual strangulation"
+    ],
+    "crime_types": [
+      "rape",
+      "murder"
+    ],
+    "time_events": [
+      "9 August 2024",
+      "10 August 2024",
+      "13 August 2024"
+    ]
+  }
+}

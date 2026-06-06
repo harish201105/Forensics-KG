@@ -1,0 +1,53 @@
+{
+  "case_id": "RC-bmwhitrun",
+  "title": "1999 Delhi BMW hit-and-run case",
+  "source": "https://en.wikipedia.org/wiki/1999_Delhi_hit-and-run_case",
+  "narrative": "FIR — 1999 Delhi BMW hit-and-run case, Lodhi Road, New Delhi. In the early hours of 10 January 1999, a speeding BMW driven by Sanjeev Nanda, returning from a party, ran over a police checkpoint at Lodhi Road, killing six people including CRPF constable Rajan Kumar and home guards Peru Lal and Ram Raj. Nanda, accompanied by Siddhartha Gupta and Manik Kapoor, fled the scene and the car was taken to a house in Golf Links to be cleaned. Inspector Jagdish Pandey traced the vehicle by following the oil leak. Nanda was convicted of culpable homicide not amounting to murder on 2 September 2008.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Sanjeev Nanda",
+        "accused"
+      ],
+      [
+        "Rajan Kumar",
+        "victim"
+      ],
+      [
+        "Peru Lal",
+        "victim"
+      ],
+      [
+        "Ram Raj",
+        "victim"
+      ],
+      [
+        "Siddhartha Gupta",
+        "accused"
+      ],
+      [
+        "Manik Kapoor",
+        "accused"
+      ],
+      [
+        "Inspector Jagdish Pandey",
+        "officer"
+      ]
+    ],
+    "locations": [
+      "Lodhi Road, New Delhi"
+    ],
+    "weapons": [
+      "BMW"
+    ],
+    "crime_types": [
+      "hit-and-run",
+      "culpable homicide"
+    ],
+    "time_events": [
+      "10 January 1999",
+      "2 September 2008"
+    ]
+  }
+}

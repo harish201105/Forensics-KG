@@ -1,0 +1,43 @@
+{
+  "case_id": "RC-neerajgrover",
+  "title": "Murder of Neeraj Grover",
+  "source": "https://en.wikipedia.org/wiki/Murder_of_Neeraj_Grover",
+  "narrative": "FIR — 7 May 2008, Mumbai. Neeraj Grover, a 26-year-old television executive, was stabbed to death with a kitchen knife. The accused were Maria Susairaj, an actress, and her fiance Lieutenant Emile Jerome Mathew, a naval officer. The body was dismembered, placed in bags, taken to a forest near Manor in Maharashtra and burned with petrol. The Mumbai Crime Branch investigated; mobile-phone location tracing to Manor contradicted the alibi and the knife was recovered from a garbage chute. Mathew was convicted of culpable homicide and Susairaj of destroying evidence.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Neeraj Grover",
+        "victim"
+      ],
+      [
+        "Maria Susairaj",
+        "accused"
+      ],
+      [
+        "Lieutenant Emile Jerome Mathew",
+        "accused"
+      ],
+      [
+        "Mumbai Crime Branch",
+        "officer"
+      ]
+    ],
+    "locations": [
+      "Mumbai"
+    ],
+    "weapons": [
+      "kitchen knife",
+      "petrol",
+      "fire"
+    ],
+    "crime_types": [
+      "murder",
+      "culpable homicide",
+      "destruction of evidence"
+    ],
+    "time_events": [
+      "7 May 2008"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "case_id": "RC-shraddha",
+  "title": "Murder of Shraddha Walkar",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Murder_of_Shraddha_Walkar",
+  "narrative": "FIR — Murder of Shraddha Walkar, Mehrauli, New Delhi. On 18 May 2022, Shraddha Walkar, aged 27, was strangled to death by her live-in partner Aaftab Amin Poonawalla at their rented house in Mehrauli following an argument. Poonawalla then dismembered the body into several pieces, stored the remains in a refrigerator, and disposed of them over the following days in the Chhatarpur forest area. The crime came to light months later after Shraddha's father lodged a missing-person complaint. Poonawalla was arrested by Delhi Police on 12 November 2022 and charged with murder.",
+  "gold": {
+    "persons": [
+      ["Aaftab Amin Poonawalla", "accused"],
+      ["Shraddha Walkar", "victim"]
+    ],
+    "locations": ["Mehrauli, New Delhi"],
+    "weapons": ["strangulation"],
+    "crime_types": ["murder"],
+    "time_events": ["18 May 2022", "12 November 2022"]
+  }
+}

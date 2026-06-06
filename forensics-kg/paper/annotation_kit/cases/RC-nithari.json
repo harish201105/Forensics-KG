@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-nithari",
+  "title": "2006 Noida (Nithari) serial murders",
+  "source": "https://en.wikipedia.org/wiki/2006_Noida_serial_murders",
+  "narrative": "FIR — house D-5, Sector 31, near Nithari village, Noida, Uttar Pradesh; crimes between February and October 2006. The accused were the house owner Moninder Singh Pandher and his domestic servant Surinder Koli. The victims were mostly young girls and children from the neighbourhood, who were strangled and dismembered, their remains disposed of in drains behind the house. One adult victim was identified as Payal, aged 20. Nineteen skulls and skeletal remains in polythene bags were recovered. The Central Bureau of Investigation took over the investigation in January 2007. The Allahabad High Court acquitted both accused in 2023.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-dabholkar",
+  "title": "Murder of Narendra Dabholkar",
+  "source": "https://en.wikipedia.org/wiki/Narendra_Dabholkar",
+  "narrative": "FIR — Murder of Narendra Dabholkar, Pune, Maharashtra. On 20 August 2013, Narendra Dabholkar, a 67-year-old physician and anti-superstition rationalist who founded the Maharashtra Andhashraddha Nirmoolan Samiti, was shot dead with a pistol by two motorcycle-borne assailants during his morning walk on the Vitthal Ramji Shinde (Omkareshwar) bridge. After a long investigation by the CBI, Sachin Andure and Sharad Kalaskar were identified as the shooters. A special court in Pune convicted and sentenced the two men to life imprisonment on 11 May 2024.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

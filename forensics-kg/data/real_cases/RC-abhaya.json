@@ -1,0 +1,18 @@
+{
+  "case_id": "RC-abhaya",
+  "title": "Sister Abhaya murder case",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Sister_Abhaya_murder_case",
+  "narrative": "FIR — Sister Abhaya murder case, St Pius X Convent, Kottayam, Kerala. On 27 March 1992, Sister Abhaya, a 21-year-old Knanaya Catholic nun, was found dead in a water well at the convent after she went to the kitchen early in the morning. The local police initially recorded it as a case of suicide, but the CBI later concluded it was murder. According to the CBI, Sister Sephy struck Abhaya on the head with an axe, and Father Thomas Kottoor, assisted by Sephy, dumped the body in the well. On 22 December 2020, a CBI court convicted Father Thomas Kottoor and Sister Sephy of murder and sentenced them to life imprisonment.",
+  "gold": {
+    "persons": [
+      ["Sister Abhaya", "victim"],
+      ["Thomas Kottoor", "accused"],
+      ["Sister Sephy", "accused"]
+    ],
+    "locations": ["Kottayam, Kerala"],
+    "weapons": ["axe"],
+    "crime_types": ["murder"],
+    "time_events": ["27 March 1992", "2020"]
+  }
+}

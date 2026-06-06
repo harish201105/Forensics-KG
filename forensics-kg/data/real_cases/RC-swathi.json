@@ -1,0 +1,17 @@
+{
+  "case_id": "RC-swathi",
+  "title": "Swathi murder case",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Swathi_murder_case",
+  "narrative": "FIR — Swathi murder case, Nungambakkam railway station, Chennai, Tamil Nadu. On 24 June 2016, S. Swathi, a 24-year-old Infosys software engineer, was stabbed to death with a sickle at the Nungambakkam railway station while waiting for a train to her office. The attacker, P. Ramkumar, who had stalked her, fled the scene. Ramkumar was arrested at Tirunelveli on 1 July 2016. He died in custody at Puzhal central prison on 18 September 2016 in circumstances the police described as suicide by electrocution.",
+  "gold": {
+    "persons": [
+      ["Swathi", "victim"],
+      ["Ramkumar", "accused"]
+    ],
+    "locations": ["Nungambakkam, Chennai"],
+    "weapons": ["sickle"],
+    "crime_types": ["murder"],
+    "time_events": ["24 June 2016", "1 July 2016", "18 September 2016"]
+  }
+}

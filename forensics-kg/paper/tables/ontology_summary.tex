@@ -1,0 +1,24 @@
+% Ontology node-group summary (spans both columns)
+\begin{table*}[t]
+  \centering
+  \caption{The forensic ontology organises 38 node types into six semantic
+  groups and connects them with 48 typed relationships. Required properties and
+  controlled enumerations (e.g.\ \texttt{PatternType}, \texttt{InjuryType},
+  \texttt{FingerprintClass}) are enforced at insertion time.}
+  \label{tab:ontology}
+  \small
+  \begin{tabular}{@{}P{2.6cm} c P{11.2cm}@{}}
+    \toprule
+    \textbf{Semantic group} & \textbf{\# types} & \textbf{Representative node types} \\
+    \midrule
+    Core case        & 8 & \texttt{Case}, \texttt{Person}, \texttt{Location}, \texttt{Evidence}, \texttt{Weapon}, \texttt{Vehicle}, \texttt{CrimeType}, \texttt{TimeEvent} \\
+    Legal / judicial & 3 & \texttt{LegalSection}, \texttt{Verdict}, \texttt{CourtOrder} \\
+    Medical / lab    & 8 & \texttt{InjuryPattern}, \texttt{CauseOfDeath}, \texttt{ToxicologyResult}, \texttt{OrganFinding}, \texttt{Sample}, \texttt{TestResult}, \texttt{DNAProfile}, \texttt{ChemicalCompound} \\
+    Scene / procedural & 4 & \texttt{CrimeScene}, \texttt{PhysicalEvidence}, \texttt{ChainOfCustody}, \texttt{Statement} \\
+    Forensic image   & 12 & \texttt{BloodstainPattern}, \texttt{Stain}, \texttt{FingerprintPattern}, \texttt{MinutiaePoint}, \texttt{RidgeDetail}, \texttt{WoundPattern}, \texttt{TissueAnalysis}, \texttt{BallisticsPattern}, \texttt{HandwritingFeature}, \texttt{InkAnalysis}, \texttt{ForgeryIndicator}, \texttt{ToolMarkPattern} \\
+    Reasoning        & 3 & \texttt{Hypothesis}, \texttt{ImpactMechanismNode}, \texttt{Experiment} \\
+    \midrule
+    \multicolumn{3}{@{}P{15.5cm}@{}}{\textit{Relationship families:} involvement (\texttt{INVOLVED\_IN}, \texttt{WITNESSED\_BY}, \texttt{PRESIDED\_BY}); spatial/temporal (\texttt{OCCURRED\_AT}, \texttt{HAPPENED\_ON}, \texttt{PRECEDES}, \texttt{FOLLOWS}); causal/medical (\texttt{LED\_TO\_DEATH}, \texttt{CAUSE\_OF\_DEATH\_OF}, \texttt{WOUND\_CAUSED\_BY}, \texttt{INJURY\_CAUSED\_BY}); evidential (\texttt{HAS\_EVIDENCE}, \texttt{SUPPORTS}, \texttt{CONTRADICTS}, \texttt{CORROBORATES}); image-derived (\texttt{HAS\_PATTERN}, \texttt{HAS\_MINUTIAE}, \texttt{FIRED\_FROM}); and cross-case (\texttt{SAME\_AS}).} \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

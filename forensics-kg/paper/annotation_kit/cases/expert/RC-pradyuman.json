@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-pradyuman",
+  "title": "Murder of Pradyuman Thakur",
+  "source": "https://en.wikipedia.org/wiki/Murder_of_Pradyuman_Thakur",
+  "narrative": "FIR — Murder of Pradyuman Thakur, Ryan International School, Gurugram, Haryana. On 8 September 2017, Pradyuman Thakur, a seven-year-old student, was found with his throat slit with a knife outside a washroom at the Ryan International School and later died of his injuries. The Gurugram police initially arrested a school bus conductor, Ashok Kumar, but he was exonerated after the CBI took over the investigation and charged a sixteen-year-old student of the same school with the murder. Four police officers were later charged with framing the bus conductor.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

@@ -141,7 +141,11 @@ class RealCaseEvaluator:
         gold_dates = [str(t) for t in (gold.get("time_events", []) or [])]
         if gold_dates:
             ev_texts = [
-                f"{e['properties'].get('name','')} {e['properties'].get('description','')}"
+                # include the structured `date` field, not just name/description:
+                # the full pipeline stores the calendar date here (ISO), and omitting
+                # it under-counts recovered dates and unfairly favours name-embedded dates.
+                f"{e['properties'].get('name','')} {e['properties'].get('description','')} "
+                f"{e['properties'].get('date','')}"
                 for e in entities if e.get("entity_type") == "TimeEvent"
             ]
             used = set()

@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-rajagopal",
+  "title": "Murder of Prince Santhakumar (Saravana Bhavan case)",
+  "source": "https://en.wikipedia.org/wiki/P._Rajagopal_(businessman)",
+  "narrative": "FIR — Murder of Prince Santhakumar, Tamil Nadu. P. Rajagopal, the founder of the Saravana Bhavan restaurant chain, sought to marry Jeevajothi, who had instead married Prince Santhakumar, a mathematics teacher in Chennai. After repeated attempts to coerce her, Rajagopal employed a gang to abduct Santhakumar in October 2001; Santhakumar was murdered and his body was found in Kodaikanal. A sessions court convicted Rajagopal and his accomplices in 2004; the Madras High Court enhanced the sentence to life imprisonment, which the Supreme Court upheld on 29 March 2019.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

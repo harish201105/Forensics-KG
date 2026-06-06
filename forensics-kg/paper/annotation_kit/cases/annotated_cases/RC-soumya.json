@@ -1,0 +1,32 @@
+{
+  "case_id": "RC-soumya",
+  "title": "Soumya murder case",
+  "source": "https://en.wikipedia.org/wiki/Soumya_murder_case",
+  "narrative": "FIR — Soumya murder case, Kerala. On 1 February 2011, Soumya, a 23-year-old saleswoman, was travelling alone in the women's coach of a passenger train from Ernakulam to Shoranur when she was attacked by Govindachamy, a repeat offender from Tamil Nadu. He pushed her from the moving train near Vallathol Nagar, jumped off, and raped her. She succumbed to her injuries at a hospital on 6 February 2011. Govindachamy was arrested on 3 February 2011, convicted, and initially sentenced to death; the Supreme Court later commuted the murder conviction, retaining the sentence for rape.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Soumya",
+        "victim"
+      ],
+      [
+        "Govindachamy",
+        "accused"
+      ]
+    ],
+    "locations": [
+      "near Vallathol Nagar, Kerala"
+    ],
+    "weapons": [],
+    "crime_types": [
+      "rape",
+      "murder"
+    ],
+    "time_events": [
+      "1 February 2011",
+      "3 February 2011",
+      "6 February 2011"
+    ]
+  }
+}

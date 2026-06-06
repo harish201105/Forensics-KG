@@ -1,0 +1,62 @@
+{
+  "case_id": "RC-nirbhaya",
+  "title": "2012 Delhi gang rape and murder",
+  "source": "https://en.wikipedia.org/wiki/2012_Delhi_gang_rape_and_murder",
+  "narrative": "FIR — 16 December 2012, a private bus in Munirka, Delhi. Jyoti Singh, a 22-year-old physiotherapy intern, was gang-raped, tortured with an iron rod and murdered; her companion Awindra Pratap Pandey was assaulted and survived. The accused were Ram Singh (the bus driver, who died in custody), Mukesh Singh, Vinay Sharma, Akshay Thakur, Pawan Gupta and a juvenile. An iron rod was used. The Delhi Police Special Investigation Team was led by Pramod Kumar Kushwaha. Evidence included DNA, fingerprints, dental bite-mark modelling and two blood-stained metal rods. The four adult convicts were sentenced to death and executed on 20 March 2020.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Jyoti Singh",
+        "victim"
+      ],
+      [
+        "Awindra Pratap Pandey",
+        "victim"
+      ],
+      [
+        "Ram Singh",
+        "accused"
+      ],
+      [
+        "Mukesh Singh",
+        "accused"
+      ],
+      [
+        "Vinay Sharma",
+        "accused"
+      ],
+      [
+        "Akshay Thakur",
+        "accused"
+      ],
+      [
+        "Pawan Gupta",
+        "accused"
+      ],
+      [
+        "juvenile",
+        "accused"
+      ],
+      [
+        "Pramod Kumar Kushwaha",
+        "officer"
+      ]
+    ],
+    "locations": [
+      "private bus in Munirka, Delhi"
+    ],
+    "weapons": [
+      "iron rod"
+    ],
+    "crime_types": [
+      "rape",
+      "gang rape",
+      "murder"
+    ],
+    "time_events": [
+      "16 December 2012",
+      "20 March 2020"
+    ]
+  }
+}

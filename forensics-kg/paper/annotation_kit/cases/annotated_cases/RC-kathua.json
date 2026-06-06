@@ -1,0 +1,45 @@
+{
+  "case_id": "RC-kathua",
+  "title": "Kathua rape and murder case",
+  "source": "https://en.wikipedia.org/wiki/Kathua_Rape_and_Murder_case",
+  "narrative": "FIR — Kathua rape and murder case, Rasana village near Kathua, Jammu and Kashmir. In January 2018, Asifa Bano, an eight-year-old girl of the nomadic Bakarwal community, was abducted while grazing horses, held captive for several days inside a temple, sedated, gang-raped, and then murdered by strangulation and a blow to the head with a stone. Her father Mohammad Yusuf reported her missing on 12 January 2018 and her body was recovered a week later. The crime branch named Sanji Ram, a temple custodian, as the mastermind, along with special police officer Deepak Khajuria and others. The trial concluded on 10 June 2019 with six of the seven accused convicted.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Asifa Bano",
+        "victim"
+      ],
+      [
+        "Mohammad Yusuf",
+        "witness"
+      ],
+      [
+        "Sanji Ram",
+        "accused"
+      ],
+      [
+        "Deepak Khajuria",
+        "accused"
+      ]
+    ],
+    "locations": [
+      "temple in Rasana village near Kathua, Jammu and Kashmir"
+    ],
+    "weapons": [
+      "strangulation",
+      "stone"
+    ],
+    "crime_types": [
+      "kidnapping",
+      "rape",
+      "gang rape",
+      "murder"
+    ],
+    "time_events": [
+      "January 2018",
+      "12 January 2018",
+      "10 June 2019"
+    ]
+  }
+}

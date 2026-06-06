@@ -1,0 +1,23 @@
+% Dataset summary (spans both columns)
+\begin{table*}[t]
+  \centering
+  \caption{Datasets used for development and evaluation. Synthetic gold is useful
+  for regression testing but circular for validity; documented real cases and
+  physics-grounded image data provide the stronger external evidence.}
+  \label{tab:datasets}
+  \small
+  \begin{tabular}{@{}P{3.2cm} P{2.7cm} r P{4.3cm} P{3.6cm}@{}}
+    \toprule
+    \textbf{Dataset} & \textbf{Source} & \textbf{Items} & \textbf{Role / modality} & \textbf{Ground-truth alignment} \\
+    \midrule
+    Indian court judgments & Public records / HF~\cite{indiancourt} & 38 & Real legal text extraction & Document text (no per-entity gold) \\
+    Documented real cases  & Court records / public sources & 28 & Real-case entity validation & Two-annotator documented facts \\
+    Synthetic FIR / PM / lab / deposition / SOCO & LLM-generated & 120 & Text extraction regression & Self-consistent (circular) \\
+    Attinger bloodstain~\cite{attinger2018bloodstain} & Published (2018) & 61 exp. & Bloodstain image analysis & Physics-grounded mechanism \\
+    SOCOFing~\cite{socofing} & Kaggle & 110{,}540 & Fingerprint image analysis & Hand/finger label (not pattern class) \\
+    CEDAR signatures~\cite{cedar2004signature} & Public release & 2{,}640 & Document forgery detection & Genuine vs.\ forged \\
+    AZH wounds~\cite{azhwound} & Public release & 1{,}867 & Wound image analysis & Clinical class (not forensic type) \\
+    Synthetic ballistics / tool marks & Procedurally generated & 40 & Image analysis regression & Known synthetic parameters \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-hathras",
+  "title": "2020 Hathras gang rape and murder",
+  "source": "https://en.wikipedia.org/wiki/2020_Hathras_gang_rape_and_murder",
+  "narrative": "FIR — 2020 Hathras gang rape and murder, Hathras district, Uttar Pradesh. On 14 September 2020, a 19-year-old Dalit woman was assaulted and gang-raped in a field; she sustained severe injuries and named four upper-caste men, Sandeep, Ravi, Luv Kush and Ramu, as her attackers. She died of her injuries at a Delhi hospital on 29 September 2020. Her body was cremated by the police at night, drawing national outrage. On 2 March 2023, a special court convicted Sandeep under culpable homicide and the SC/ST Act while acquitting the other three accused.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "case_id": "RC-kathua",
+  "title": "Kathua rape and murder case",
+  "crime_type": "rape",
+  "source": "https://en.wikipedia.org/wiki/Kathua_Rape_and_Murder_case",
+  "narrative": "FIR — Kathua rape and murder case, Rasana village near Kathua, Jammu and Kashmir. In January 2018, Asifa Bano, an eight-year-old girl of the nomadic Bakarwal community, was abducted while grazing horses, held captive for several days inside a temple, sedated, gang-raped, and then murdered by strangulation and a blow to the head with a stone. Her father Mohammad Yusuf reported her missing on 12 January 2018 and her body was recovered a week later. The crime branch named Sanji Ram, a temple custodian, as the mastermind, along with special police officer Deepak Khajuria and others. The trial concluded on 10 June 2019 with six of the seven accused convicted.",
+  "gold": {
+    "persons": [
+      ["Sanji Ram", "accused"],
+      ["Deepak Khajuria", "accused"],
+      ["Asifa Bano", "victim"],
+      ["Mohammad Yusuf", "witness"]
+    ],
+    "locations": ["Rasana, Kathua, Jammu and Kashmir"],
+    "weapons": ["strangulation", "stone"],
+    "crime_types": ["rape", "gang rape", "murder", "kidnapping"],
+    "time_events": ["10 January 2018", "17 January 2018", "2019"]
+  }
+}
