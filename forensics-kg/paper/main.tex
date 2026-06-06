@@ -950,9 +950,10 @@ deliberately include negative results. Bloodstain impact-spatter recognition
 reaches $\mathrm{F1}=1.0$ on the \emph{full} Attinger impact-spatter set
 ($n{=}61$, every sample scored, none skipped)---the one modality with real,
 physics-grounded ground truth. We still read this conservatively: it is a coarse
-binary detection metric (the dataset is all impact-spatter) on a single dataset and
-the prompt was not separately held out, so it is a focused positive result rather
-than a broad image-forensics claim. Wound \emph{detection} (present vs.\ absent) over-detects
+binary detection metric (the dataset is all impact-spatter, so there are no hard
+negatives) on a single dataset and the prompt was not separately held out. It is
+therefore evidence of full-set impact-spatter \emph{detection} on one dataset,
+\emph{not} general bloodstain-pattern recognition or a broad image-forensics claim. Wound \emph{detection} (present vs.\ absent) over-detects
 (recall $1.0$, precision $0.5$). Ballistics caliber is recovered at roughly
 chance-level accuracy on synthetic data. The remaining tasks fail: single-image
 document forgery detection is near zero because deciding genuineness generally

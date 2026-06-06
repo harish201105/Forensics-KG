@@ -375,15 +375,15 @@ def fig_image_eval_summary():
             "hard task": C["red"], "misaligned": C["red"]}
     colors = [cmap[a] for a in align]
 
-    fig, ax = plt.subplots(figsize=(9.4, 3.5))
+    fig, ax = plt.subplots(figsize=(9.8, 3.4))
     y = np.arange(len(names))[::-1]
-    ax.barh(y, scores, color=colors, edgecolor="white", height=0.62, linewidth=0.6)
+    ax.barh(y, scores, color=colors, edgecolor="white", height=0.64, linewidth=0.6)
     for yi, s, m in zip(y, scores, metric):
         ax.text(min(s + 0.015, 0.90), yi, f"{s:.2f} {m}", va="center",
-                ha="left", fontsize=10.6, color=C["ink"])
-    ax.set_yticks(y); ax.set_yticklabels(names, fontsize=11.6)
-    ax.set_xlim(0, 1.06); ax.set_xlabel("Evaluation score", fontsize=11.5)
-    ax.tick_params(axis="x", labelsize=10.6)
+                ha="left", fontsize=12.5, color=C["ink"])
+    ax.set_yticks(y); ax.set_yticklabels(names, fontsize=13.5)
+    ax.set_xlim(0, 1.06); ax.set_xlabel("Evaluation score", fontsize=13.0)
+    ax.tick_params(axis="x", labelsize=12.0)
     ax.set_axisbelow(True)
     ax.xaxis.grid(True, color=C["gridgray"], lw=0.6)
     for s in ("top", "right"):
@@ -397,10 +397,10 @@ def fig_image_eval_summary():
         mpatches.Patch(color=C["amber"], label="partial / proxy GT"),
         mpatches.Patch(color=C["red"],   label="misaligned GT or intrinsically hard"),
     ]
-    ax.legend(handles=legend, frameon=False, fontsize=10.0,
+    ax.legend(handles=legend, frameon=False, fontsize=11.5,
               loc="lower right", bbox_to_anchor=(1.0, 0.02))
     ax.set_title("Image analysis is reliable only where ground truth is "
-                 "task-aligned", fontsize=11.0, color=C["ink"], pad=8)
+                 "task-aligned", fontsize=12.5, color=C["ink"], pad=8)
     _save(fig, "image_eval_summary")
 
 
