@@ -42,6 +42,10 @@
 
 \begin{document}
 
+% Page-1 draft/version stamp: OFF for submission/camera-ready. Set
+% \draftstamptrue to re-enable it for internal review copies.
+\newif\ifdraftstamp\draftstampfalse
+
 \title{Evidence-Centric Forensic Knowledge Graphs:\\Ontology-Constrained Multimodal
 Extraction with Validity-Aware Evaluation}
 
@@ -53,7 +57,7 @@ Mahalingam\textsuperscript{1}, Helen Victoria A\textsuperscript{2,\,*}}
 \textit{SRM Institute of Science and Technology}, Chennai, India\\
 hp5491@srmist.edu.in, \ vm7798@srmist.edu.in, \ helenvia@srmist.edu.in}%
 \thanks{\textsuperscript{*}Corresponding author: Dr.\ Helen Victoria A.}%
-\thanks{\textit{Working draft compiled \today\ (rev.\ v14). Remove this note for camera-ready.}}%
+\ifdraftstamp\thanks{\textit{Internal review copy compiled \today\ (rev.\ v15).}}\fi%
 }
 
 \maketitle
