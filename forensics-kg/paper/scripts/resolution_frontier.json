@@ -2,6 +2,38 @@
   "pool_size": 243,
   "should_link_in_pool": 176,
   "n_cases": 28,
+  "by_task_conservative": {
+    "instance": {
+      "P": 0.92,
+      "R": 0.79,
+      "tp": 11,
+      "fp": 1,
+      "pool_sl": 14
+    },
+    "category": {
+      "P": 1.0,
+      "R": 0.1,
+      "tp": 16,
+      "fp": 0,
+      "pool_sl": 162
+    }
+  },
+  "by_task_relaxed_nameidentity": {
+    "instance": {
+      "P": 0.93,
+      "R": 1.0,
+      "tp": 14,
+      "fp": 1,
+      "pool_sl": 14
+    },
+    "category": {
+      "P": 1.0,
+      "R": 1.0,
+      "tp": 162,
+      "fp": 0,
+      "pool_sl": 162
+    }
+  },
   "category_should_link": 162,
   "instance_should_link": 14,
   "conservative": {

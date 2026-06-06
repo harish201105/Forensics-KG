@@ -96,8 +96,22 @@ def line(name, acc, rev=None):
     return s
 
 
+def split_by_task(accepted):
+    res = {}
+    for grp in ("instance", "category"):
+        pool = [x for x in C if x["cat"] == grp]
+        tot = sum(x["gold"] for x in pool)
+        acc = [x for x in accepted if x["cat"] == grp]
+        tp = sum(x["gold"] for x in acc); fp = len(acc) - tp
+        res[grp] = {"P": round(tp / len(acc), 2) if acc else 1.0,
+                    "R": round(tp / tot, 2) if tot else 0.0, "tp": tp, "fp": fp, "pool_sl": tot}
+    return res
+
+
 out = {
     "pool_size": len(C), "should_link_in_pool": TOTAL_SL, "n_cases": N_CASES,
+    "by_task_conservative": split_by_task([c for c in C if c["accepted"]]),
+    "by_task_relaxed_nameidentity": split_by_task([c for c in C if c["name_score"] >= 0.95]),
     "category_should_link": sum(c["gold"] for c in C if c["cat"] == "category"),
     "instance_should_link": sum(c["gold"] for c in C if c["cat"] == "instance"),
     "conservative": dict(zip(("P", "R", "tp", "fp"), metrics(cons))),

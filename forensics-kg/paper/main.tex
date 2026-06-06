@@ -53,7 +53,7 @@ Mahalingam\textsuperscript{1}, Helen Victoria A\textsuperscript{2,\,*}}
 \textit{SRM Institute of Science and Technology}, Chennai, India\\
 hp5491@srmist.edu.in, \ vm7798@srmist.edu.in, \ helenvia@srmist.edu.in}%
 \thanks{\textsuperscript{*}Corresponding author: Dr.\ Helen Victoria A.}%
-\thanks{\textit{Working draft compiled \today\ (rev.\ v13). Remove this note for camera-ready.}}%
+\thanks{\textit{Working draft compiled \today\ (rev.\ v14). Remove this note for camera-ready.}}%
 }
 
 \maketitle
@@ -809,7 +809,7 @@ the subsections that follow elaborate each in turn.
     RQ1 & ablation (\cref{fig:ablation}) & ontology guidance lifts macro-F1 $0.53\!\to\!0.73$ and recovers \node{Weapon} $0.00\!\to\!0.72$ \\
     RQ2 & \cref{sec:tracks}, \cref{tab:realcase} & synthetic gold is consistency-only; real-case micro-F1 $0.78$ (CI $[0.74,0.82]$, $n{=}28$) \\
     RQ3 & \cref{tab:imgresults} & only bloodstain has task-aligned ground truth (F1 $1.0$, full set $n{=}61$) \\
-    RQ4 & \cref{sec:res_eval}, \cref{tab:resolution} & precision-oriented \rel{same\_as}: $27/28$ accepts correct ($1$ common-name merge), recall $0.15$; recovers the $3$ genuine shared suspects \\
+    RQ4 & \cref{sec:res_eval}, \cref{tab:resolution,tab:frontier} & precision-oriented \rel{same\_as}: \emph{instance-identity} P$0.92$/R$0.79$ (shared suspects, agencies), separable from category normalization; $1$ common-name merge \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -1076,10 +1076,12 @@ disagreement---the bare-common-name collision the design tries to suppress. \tex
 the $151$ misses are overwhelmingly identical crime types ($146$,
 \emph{Murder}\,$=$\,\emph{Murder} across cases) the decision rejects for lacking
 corroborating context---a deliberate choice not to link on a bare common word.
-Candidate-set $\mathrm{F1}$ is thus $0.26$, quantifying the high-precision /
-low-recall trade-off the design intends over a $5.4\times$ larger search space
-than the ten-case pilot---a candidate-set, not a global, benchmark (should-link
-labels follow the objective rule of \cref{tab:resolution}). Links are
+Candidate-set $\mathrm{F1}$ is thus $0.26$. This blended figure, however, mixes two
+distinct tasks; separated, the forensically-relevant instance-identity recall is
+$0.79$ at precision $0.92$ (\cref{tab:frontier}, discussed next), and the low
+blended recall is an artefact of category normalization. This is a candidate-set,
+not a global, benchmark (should-link labels follow the objective rule of
+\cref{tab:resolution}; absolute recall is bounded by blocking). Links are
 non-destructive, so a cross-case query traverses \rel{same\_as} edges without
 collapsing provenance.
 
@@ -1107,46 +1109,49 @@ collapsing provenance.
   \end{tabular}
 \end{table}
 
-\paragraph*{Recall is a tunable design choice: a calibrated tiered resolver}
-The deployed resolver fixes \emph{one} deliberately conservative operating point---a
-name match must be corroborated by context or role. Sweeping the decision over the
-same labelled candidate pool shows candidate-set recall is tunable, not a fixed
-limitation (\cref{tab:frontier}). Of the $176$ true cross-case identities in the
-pool, $162$ are \emph{category} nodes (e.g.\ crime types, where a name match carries
-no collision risk) and $14$ are \emph{instance} nodes (persons, locations, weapons).
-Relaxing the decision to accept on name identity lifts candidate-set recall from
-$0.15$ to $1.00$ at precision $0.99$; the \emph{single} residual error is the
-common-name person collision noted above (``Ajay Kumar''). A \emph{type-aware
-tiered} resolver---auto-merge identical category nodes (safe), and route identical
-\emph{instance} names that lack corroboration to a human-review queue
-($\approx\!0.1$ pairs/case)---isolates that collision, giving precision
-$\approx\!1.0$ at recall $1.0$; accepting \emph{weak} name matches (name-score
-$\ge0.5$) instead degrades precision to $0.77$. Two honest caveats: this is
-\emph{candidate-set} recall (absolute recall stays bounded by the embedding-blocking
-floor, a separate and also-tunable stage), and the pool is dominated by category
-merges, so the tier that matters for genuine cross-case \emph{instance} links
-(shared suspects, recurring agencies) is the type-aware one. The contribution is the
-method and its \emph{calibrated frontier}: a practitioner picks recall against a
-quantified review budget rather than accepting a single fixed point.
+\paragraph*{Instance identity vs.\ category normalization}
+Cross-case \rel{same\_as} spans two tasks that should not share one recall number:
+\emph{instance identity}---is \emph{Ravi Kapoor} in two cases the same person; is
+this the recurring CBI?---and \emph{category normalization}, where every
+\node{Murder} denotes the same crime \emph{class}. The blended candidate-set recall
+of $0.15$ (\cref{tab:resolution}) conflates them, and is dominated by the $162$
+category identities in the pool versus only $14$ instance identities. Separating
+them (\cref{tab:frontier}) is far more informative. On the forensically-relevant
+\textbf{instance-identity} task the deployed conservative resolver already attains
+precision $0.92$ at candidate-set recall $0.79$ ($11/14$): it recovers the three
+shared suspects (Ravi Kapoor, Amit Shukla, Baljeet Malik across the Jigisha Ghosh
+and Soumya Vishwanathan cases), the recurring Central Bureau of Investigation and
+Delhi Police, and the overlapping Vasant Kunj location, with a single common-name
+false merge (``Ajay Kumar''). \textbf{Category normalization} is a separate, easier
+task with no collision risk; the conservative rule's $0.10$ recall there is
+over-cautious and is what depresses the blended figure. A \emph{type-aware tiered}
+policy---which we propose rather than deploy---would auto-merge identical category
+nodes (trivially reaching recall $1.0$ at precision $1.0$) and route identical
+\emph{instance} names lacking corroboration to a human-review queue
+($\approx\!0.1$ pairs/case), which \emph{would} recover the remaining instance
+identities; the queue is a proposed operating mode, not an adjudicated automatic
+result. We therefore report the conservative resolver as the deployed forensic
+setting and the tier as a normalization/review variant. All recall here is
+candidate-set (absolute recall remains bounded by the embedding-blocking floor).
 
 \begin{table}[t]
   \centering
-  \caption{Tiered cross-case resolver: the precision / recall / review-load
-  frontier over the candidate pool (recall is candidate-set, bounded by blocking).
-  The deployed system uses the conservative point; the type-aware tier recovers
-  near-complete in-pool recall at precision $\approx\!1.0$ by routing $\sim\!0.1$
-  pairs/case to review.}
+  \caption{Cross-case \rel{same\_as} \emph{by task type}: instance identity (the
+  forensic task) reported separately from category normalization. Recall is
+  candidate-set (bounded by blocking). \emph{Conservative} is the deployed
+  resolver; \emph{tiered} is a proposed normalization\,$+$\,review variant
+  (instance recall via a $\approx\!0.1$ pairs/case review queue).}
   \label{tab:frontier}
   \footnotesize
-  \setlength{\tabcolsep}{4pt}
-  \begin{tabular}{@{}P{4.45cm}ccc@{}}
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{@{}P{3.9cm}cccc@{}}
     \toprule
-    \textbf{Operating point} & \textbf{P} & \textbf{R} & \textbf{Rev./case} \\
+     & \multicolumn{2}{c}{\textbf{Conservative}} & \multicolumn{2}{c}{\textbf{Tiered}} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}
+    \textbf{Task} & \textbf{P} & \textbf{R} & \textbf{P} & \textbf{R} \\
     \midrule
-    Conservative (corroboration req.; \emph{deployed}) & 0.96 & 0.15 & --- \\
-    Relaxed (accept on name identity)        & 0.99 & 1.00 & --- \\
-    Type-aware tiered (auto-merge categories; review instances) & $\approx$1.00 & 1.00 & 0.1 \\
-    Aggressive (name-score $\ge0.5$)         & 0.77 & 1.00 & --- \\
+    Instance identity (Person/Loc/Weapon) & 0.92 & 0.79 & 0.93 & 1.00 \\
+    Category normalization (CrimeType)     & 1.00 & 0.10 & 1.00 & 1.00 \\
     \bottomrule
   \end{tabular}
 \end{table}
