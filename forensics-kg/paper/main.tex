@@ -53,7 +53,7 @@ Mahalingam\textsuperscript{1}, Helen Victoria A\textsuperscript{2,\,*}}
 \textit{SRM Institute of Science and Technology}, Chennai, India\\
 hp5491@srmist.edu.in, \ vm7798@srmist.edu.in, \ helenvia@srmist.edu.in}%
 \thanks{\textsuperscript{*}Corresponding author: Dr.\ Helen Victoria A.}%
-\thanks{\textit{Working draft compiled \today\ (rev.\ v11). Remove this note for camera-ready.}}%
+\thanks{\textit{Working draft compiled \today\ (rev.\ v12). Remove this note for camera-ready.}}%
 }
 
 \maketitle
@@ -156,11 +156,17 @@ a dataset's ground truth actually operationalises the forensic task.
 
 \paragraph*{Contributions} We make the following contributions:
 \begin{enumerate}[leftmargin=1.4em,itemsep=2pt,topsep=2pt]
-\item A \emph{validity-aware evaluation methodology} for forensic LLM/KG systems:
-the schema-compliance / consistency / validity distinction above, instantiated as
-a documented-fact protocol that breaks circular evaluation and a ground-truth-%
-alignment analysis that explains \emph{why} some multimodal forensic benchmarks
-cannot validate the task they appear to (\cref{sec:setup,sec:results}).
+\item A \emph{validity-aware evaluation methodology} for forensic LLM/KG
+systems---the paper's primary methodological contribution: the schema-compliance /
+consistency / validity distinction above, instantiated as (i) a documented-fact,
+two-annotator protocol (Cohen's $\kappa=0.95$/$1.0$, \cref{sec:iaa}) that breaks
+circular evaluation, and (ii) a ground-truth-alignment analysis that explains
+\emph{why} some multimodal forensic benchmarks cannot validate the task they
+appear to. The methodology is not merely a framing: applying it surfaced two
+concrete validity errors in our \emph{own} pipeline---a label leak that inflated
+fingerprint accuracy from a true $\approx\!0$ to a false $100\%$, and a metric that
+scored recovered dates from the wrong field ($\mathrm{F1}=0.09$ vs.\ the correct
+$0.88$)---both diagnosed, corrected, and reported (\cref{sec:setup,sec:results}).
 \item A domain-specific forensic ontology of 38 node types and 48 relationship
 types spanning legal, medical, evidentiary, temporal, scene, and visual-forensic
 entities, with type-checked graph construction as an invariant
@@ -168,9 +174,13 @@ entities, with type-checked graph construction as an invariant
 \item Ontology-constrained multimodal extraction: a schema-registry text
 pipeline over six document types and a hybrid CV\,$+$\,LLM image pipeline over six
 image types, fused into one typed graph (\cref{sec:text,sec:image,sec:fusion}).
-\item A conservative, provenance-preserving cross-case entity-resolution method
-using embedding-blocked candidate generation and name/role/context verification
-with non-destructive \rel{same\_as} links (\cref{sec:resolution}).
+\item A conservative cross-case entity-resolution method with a
+\emph{non-destructive guarantee}: candidate nodes are never merged, only linked by
+\rel{same\_as}, so provenance is never collapsed and a wrong link stays
+recoverable---the failure mode that matters most in forensics. It pairs
+embedding-blocked candidate generation with name/role/context verification and, on
+a labelled $9{,}973$-pair benchmark, attains precision $0.96$ at the deliberately
+conservative recall the setting demands (\cref{sec:resolution,sec:res_eval}).
 \item A graph-centred reasoning layer---semantic retrieval, grounded
 NL-to-graph querying, evidence-chain hypothesis support, and a
 temporal-reconstruction module over recovered dated events
@@ -843,10 +853,23 @@ $[0.74,0.82]$ (micro) and $[0.68,0.78]$ (macro).
 
 To check whether the strict per-mention metrics understate practical usefulness,
 we add two complementary measures. \emph{Principal-location recall}---does any
-extracted location match the single gold principal location?---is $0.39$
-($11/28$ cases); much of the gap to the precision-driven $\mathrm{F1}$ ($0.27$) is
-additional, genuinely-mentioned locations counted as false positives, and many
-``misses'' are \emph{more specific} than the gold (\cref{sec:erroranalysis}).
+extracted location match the single gold principal location under the strict
+fuzzy matcher?---is $0.39$ ($11/28$ cases); much of the gap to the precision-driven
+$\mathrm{F1}$ ($0.27$) is additional, genuinely-mentioned locations counted as
+false positives, and many ``misses'' are \emph{more specific} than the gold
+(\cref{sec:erroranalysis}). The human inter-annotator study (\cref{sec:iaa}) shows
+this is granularity, not error: two annotators name the same place but at different
+specificity. Quantifying that, a \emph{granularity-tolerant} principal-location
+recall---which credits the gold place when an extracted location names it at any
+granularity (token superset or subset)---reaches $\mathbf{0.86}$ ($24/28$). The
+cases it credits over the strict matcher are the same place named more or less
+specifically (``Vasant Vihar'' vs.\ ``Vasant Vihar, New Delhi''; ``Koodathayi''
+vs.\ ``Koodathayi, Kozhikode''); it deliberately does \emph{not} credit genuine
+mismatches (Chhaparvad vs.\ Randhikpur), and even under-counts---missing cases
+where the system named only a sub-scene (``St Pius X Convent'' for Kottayam). The
+system therefore recovers the correct principal place far more often
+($\approx\!0.86$) than the strict per-mention metric ($0.27$) suggests; what it
+lacks is \emph{principal-location selection}, not place recognition.
 \emph{Date coverage}---the fraction of documented years recovered anywhere in the
 extracted timeline---is $0.95$, confirming that the pipeline does recover the
 documented dates: the looser coverage metric and the corrected per-mention
