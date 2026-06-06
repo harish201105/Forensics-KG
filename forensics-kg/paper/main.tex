@@ -53,7 +53,7 @@ Mahalingam\textsuperscript{1}, Helen Victoria A\textsuperscript{2,\,*}}
 \textit{SRM Institute of Science and Technology}, Chennai, India\\
 hp5491@srmist.edu.in, \ vm7798@srmist.edu.in, \ helenvia@srmist.edu.in}%
 \thanks{\textsuperscript{*}Corresponding author: Dr.\ Helen Victoria A.}%
-\thanks{\textit{Working draft compiled \today\ (rev.\ v12). Remove this note for camera-ready.}}%
+\thanks{\textit{Working draft compiled \today\ (rev.\ v13). Remove this note for camera-ready.}}%
 }
 
 \maketitle
@@ -179,8 +179,10 @@ image types, fused into one typed graph (\cref{sec:text,sec:image,sec:fusion}).
 \rel{same\_as}, so provenance is never collapsed and a wrong link stays
 recoverable---the failure mode that matters most in forensics. It pairs
 embedding-blocked candidate generation with name/role/context verification and, on
-a labelled $9{,}973$-pair benchmark, attains precision $0.96$ at the deliberately
-conservative recall the setting demands (\cref{sec:resolution,sec:res_eval}).
+a labelled $9{,}973$-pair benchmark, attains precision $0.96$ at its deliberately
+conservative default---with a \emph{calibrated, type-aware tiered} extension that
+makes recall a tunable choice against a quantified human-review budget
+(\cref{tab:frontier}, \cref{sec:resolution,sec:res_eval}).
 \item A graph-centred reasoning layer---semantic retrieval, grounded
 NL-to-graph querying, evidence-chain hypothesis support, and a
 temporal-reconstruction module over recovered dated events
@@ -1101,6 +1103,50 @@ collapsing provenance.
     True identities missed in pool (FN)       & 151 \\
     \midrule
     \multicolumn{2}{@{}l}{Candidate-set precision $0.96$, recall $0.15$, F1 $0.26$} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph*{Recall is a tunable design choice: a calibrated tiered resolver}
+The deployed resolver fixes \emph{one} deliberately conservative operating point---a
+name match must be corroborated by context or role. Sweeping the decision over the
+same labelled candidate pool shows candidate-set recall is tunable, not a fixed
+limitation (\cref{tab:frontier}). Of the $176$ true cross-case identities in the
+pool, $162$ are \emph{category} nodes (e.g.\ crime types, where a name match carries
+no collision risk) and $14$ are \emph{instance} nodes (persons, locations, weapons).
+Relaxing the decision to accept on name identity lifts candidate-set recall from
+$0.15$ to $1.00$ at precision $0.99$; the \emph{single} residual error is the
+common-name person collision noted above (``Ajay Kumar''). A \emph{type-aware
+tiered} resolver---auto-merge identical category nodes (safe), and route identical
+\emph{instance} names that lack corroboration to a human-review queue
+($\approx\!0.1$ pairs/case)---isolates that collision, giving precision
+$\approx\!1.0$ at recall $1.0$; accepting \emph{weak} name matches (name-score
+$\ge0.5$) instead degrades precision to $0.77$. Two honest caveats: this is
+\emph{candidate-set} recall (absolute recall stays bounded by the embedding-blocking
+floor, a separate and also-tunable stage), and the pool is dominated by category
+merges, so the tier that matters for genuine cross-case \emph{instance} links
+(shared suspects, recurring agencies) is the type-aware one. The contribution is the
+method and its \emph{calibrated frontier}: a practitioner picks recall against a
+quantified review budget rather than accepting a single fixed point.
+
+\begin{table}[t]
+  \centering
+  \caption{Tiered cross-case resolver: the precision / recall / review-load
+  frontier over the candidate pool (recall is candidate-set, bounded by blocking).
+  The deployed system uses the conservative point; the type-aware tier recovers
+  near-complete in-pool recall at precision $\approx\!1.0$ by routing $\sim\!0.1$
+  pairs/case to review.}
+  \label{tab:frontier}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}P{4.45cm}ccc@{}}
+    \toprule
+    \textbf{Operating point} & \textbf{P} & \textbf{R} & \textbf{Rev./case} \\
+    \midrule
+    Conservative (corroboration req.; \emph{deployed}) & 0.96 & 0.15 & --- \\
+    Relaxed (accept on name identity)        & 0.99 & 1.00 & --- \\
+    Type-aware tiered (auto-merge categories; review instances) & $\approx$1.00 & 1.00 & 0.1 \\
+    Aggressive (name-score $\ge0.5$)         & 0.77 & 1.00 & --- \\
     \bottomrule
   \end{tabular}
 \end{table}

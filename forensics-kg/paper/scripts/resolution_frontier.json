@@ -1,0 +1,159 @@
+{
+  "pool_size": 243,
+  "should_link_in_pool": 176,
+  "n_cases": 28,
+  "category_should_link": 162,
+  "instance_should_link": 14,
+  "conservative": {
+    "P": 0.964,
+    "R": 0.153,
+    "tp": 27,
+    "fp": 1
+  },
+  "type_aware_auto": {
+    "P": 0.994,
+    "R": 0.983,
+    "tp": 173,
+    "fp": 1
+  },
+  "type_aware_review_pairs": 3,
+  "type_aware_review_per_case": 0.11,
+  "type_aware_review_true": 3,
+  "type_aware_review_collision": 0,
+  "high_recall_norescue": {
+    "P": 0.994,
+    "R": 1.0,
+    "tp": 176,
+    "fp": 1
+  },
+  "frontier": [
+    {
+      "name_thr": 1.0,
+      "accepted": 171,
+      "P": 0.994,
+      "R": 0.966,
+      "tp": 170,
+      "fp": 1
+    },
+    {
+      "name_thr": 0.95,
+      "accepted": 177,
+      "P": 0.994,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 1
+    },
+    {
+      "name_thr": 0.81,
+      "accepted": 178,
+      "P": 0.989,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 2
+    },
+    {
+      "name_thr": 0.63,
+      "accepted": 180,
+      "P": 0.978,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 4
+    },
+    {
+      "name_thr": 0.62,
+      "accepted": 185,
+      "P": 0.951,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 9
+    },
+    {
+      "name_thr": 0.57,
+      "accepted": 204,
+      "P": 0.863,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 28
+    },
+    {
+      "name_thr": 0.56,
+      "accepted": 205,
+      "P": 0.859,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 29
+    },
+    {
+      "name_thr": 0.55,
+      "accepted": 206,
+      "P": 0.854,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 30
+    },
+    {
+      "name_thr": 0.53,
+      "accepted": 208,
+      "P": 0.846,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 32
+    },
+    {
+      "name_thr": 0.5,
+      "accepted": 228,
+      "P": 0.772,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 52
+    },
+    {
+      "name_thr": 0.48,
+      "accepted": 230,
+      "P": 0.765,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 54
+    },
+    {
+      "name_thr": 0.47,
+      "accepted": 231,
+      "P": 0.762,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 55
+    },
+    {
+      "name_thr": 0.42,
+      "accepted": 234,
+      "P": 0.752,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 58
+    },
+    {
+      "name_thr": 0.36,
+      "accepted": 235,
+      "P": 0.749,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 59
+    },
+    {
+      "name_thr": 0.33,
+      "accepted": 241,
+      "P": 0.73,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 65
+    },
+    {
+      "name_thr": 0.24,
+      "accepted": 243,
+      "P": 0.724,
+      "R": 1.0,
+      "tp": 176,
+      "fp": 67
+    }
+  ]
+}
