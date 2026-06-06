@@ -817,11 +817,18 @@ crime-type, weapon/method, and dated-event extraction are strong and \emph{stabl
 $\mathrm{F1}=0.88\pm0.01$, $0.91\pm0.01$, $0.72\pm0.01$, and $0.88\pm0.01$
 respectively, with standard deviations at or below $0.01$. \node{TimeEvent}
 matching scores against the structured \texttt{date} field, where the pipeline
-records each event's calendar date in ISO form; an earlier evaluation that read
-only the free-text event \emph{name} under-counted recovery at $\mathrm{F1}=0.09$,
-conflating ``stored in a separate field'' with ``not extracted''---exactly the
-schema-compliance-versus-validity distinction this paper argues for
-(\cref{sec:erroranalysis}). \node{Location} is the one genuinely weak type
+records each event's calendar date in ISO form. The matching rule is deliberately
+explicit: a gold date counts as recovered when the extracted date shares its
+\emph{year}, refined to year-\emph{and}-month when both sides name a month;
+day-level exactness is \emph{not} required. This year-or-year-month rule (rather
+than exact-ISO matching) matches the gold's own granularity---several documented
+dates are recorded year-only (e.g.\ a conviction in ``2003'')---and the
+\emph{identical} rule scores both the full system and the baseline, so it cannot
+favour one. An earlier evaluation that read
+only the free-text event \emph{name} (not the \texttt{date} field) under-counted
+recovery at $\mathrm{F1}=0.09$, conflating ``stored in a separate field'' with
+``not extracted''---exactly the schema-compliance-versus-validity distinction this
+paper argues for (\cref{sec:erroranalysis}). \node{Location} is the one genuinely weak type
 ($\mathrm{F1}=0.27$) because the gold names a single principal location while the
 narrative mentions many places. Overall micro-$\mathrm{F1}$ is $0.78$ ($\pm0.01$)
 and macro-$\mathrm{F1}$ $0.73$ ($\pm0.01$); the small gap between them reflects that
