@@ -79,8 +79,9 @@ that forensic AI must keep three notions distinct---schema compliance, extractio
 consistency, and external factual validity---and we build an evaluation that does.
 We separate circular synthetic-gold regression from validation against the
 documented facts of 28 real Indian criminal cases (gold from two independent
-annotators; inter-annotator Cohen's $\kappa=0.95$ on roles, $1.0$ on crime type).
-Over three runs, the system recovers
+annotators; inter-annotator Cohen's $\kappa=0.95$ on roles, $1.0$ on crime type),
+with the ontology and protocol independently judged plausible in a faculty domain
+review. Over three runs, the system recovers
 persons, crime types, weapons, and dated events with strong, stable performance
 ($\mathrm{F1}=0.88$, $0.91$, $0.72$, $0.88$; standard deviation $\le0.01$), with
 overall micro-/macro-$\mathrm{F1}=0.78/0.73$ (bootstrap $95\%$ CI $[0.74,0.82]$).
@@ -1004,6 +1005,32 @@ A forensic-expert third pass (\cref{sec:future}) remains the natural next step.
   \end{tabular}
 \end{table}
 
+\subsection{Faculty-supervised domain-plausibility review}
+\label{sec:facultyreview}
+Beyond the two-annotator gold, a faculty domain reviewer---\emph{not} a forensic or
+legal practitioner---assessed the manuscript for research design, ontology
+plausibility, and forensic/evidence-structuring relevance. The review judged the
+node categories (\node{Case}, \node{Person}, \node{Location}, \node{Evidence},
+\node{Weapon}, \node{TimeEvent}, \node{InjuryPattern}, \node{CauseOfDeath},
+\node{ToxicologyResult}, \node{DNAProfile}, \node{CrimeScene},
+\node{ChainOfCustody}, \node{Statement}, and the image-derived patterns)
+\emph{broadly plausible} for evidence-centric case modelling, and the relationship
+families (involvement, spatial/temporal, causal/medical, evidential, image-derived,
+and cross-case) \emph{appropriate} for forensic reasoning support. It found the
+two-track evaluation and the two-annotator gold ($\kappa$ for categorical labels,
+pairwise F1 for open sets) an appropriate methodological choice, the
+granularity reading of the lower \node{Location} agreement reasonable, and the
+conservative claim framing---decision/hypothesis support, not legally admissible
+evidence or a replacement for experts---correct. We \emph{adopt} the review's
+recommendations: keep claims at the level of a \emph{research prototype} and
+validity-aware evaluation framework, and treat review by forensic/legal
+\emph{practitioners}, a larger and less self-selected case set, stronger
+principal-location adjudication, and an explicit mapping between Indian legal and
+forensic-medical categories and the graph schema as future work
+(\cref{sec:future}). We stress that this is a \emph{plausibility} review of the
+design and ontology, not forensic-expert ground-truth validation of the labels,
+which remains future work.
+
 \subsection{Image analysis}
 \Cref{tab:imgresults} and \cref{fig:imgeval} report image evaluation, and they
 deliberately include negative results. Bloodstain impact-spatter recognition
@@ -1430,8 +1457,11 @@ immediate priority: completing the controlled component matrix beyond the three
 ablations reported here (removing the graph entirely and
 disabling resolution); and expanding real-case validation beyond 28 cases with
 formal significance testing. \emph{Expert
-annotation}: extend the two-annotator gold (\cref{sec:iaa}) with
-\emph{forensic-expert} annotators to enable rigorous, attribute-level validation. \emph{More real data}: incorporate larger
+annotation}: building on the faculty domain-plausibility review
+(\cref{sec:facultyreview}), extend the two-annotator gold (\cref{sec:iaa}) with
+forensic/legal \emph{practitioner} validation for rigorous, attribute-level review,
+and add an explicit mapping between Indian legal categories (IPC/CrPC sections),
+forensic-medical categories, and the graph node/relationship types. \emph{More real data}: incorporate larger
 corpora of real FIR, police, and laboratory documents, and \emph{multilingual}
 Indian legal and forensic text. \emph{Multi-view image evidence}: support
 exemplar-based and multi-view comparison for forgery, tool-mark, and ballistic
