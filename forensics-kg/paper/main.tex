@@ -882,13 +882,36 @@ lacks is \emph{principal-location selection}, not place recognition. A simple,
 gold-free selector confirms this is fixable: taking the \emph{first-mentioned}
 extracted location as the principal scene identifies it correctly in $21/28$ cases
 ($0.75$)---a concrete, near-term improvement over the $0.27$ per-mention
-$\mathrm{F1}$, not a fundamental limitation.
+$\mathrm{F1}$, though principal-location \emph{selection} (vs.\ place recognition)
+remains the open problem (\cref{tab:locmetrics}).
 \emph{Date coverage}---the fraction of documented years recovered anywhere in the
 extracted timeline---is $0.95$, confirming that the pipeline does recover the
 documented dates: the looser coverage metric and the corrected per-mention
 \node{TimeEvent} score agree. The one genuinely weak type is \node{Location}:
 partly a matching-design issue and partly a principal-location selection problem
 (the system does not yet single out the principal scene from secondary places).
+
+\begin{table}[t]
+  \centering
+  \caption{\node{Location} by metric. The strict per-mention F1 understates place
+  recovery: the system finds the principal place at \emph{some} granularity $0.86$
+  of the time, and a gold-free first-mention selector picks it correctly $0.75$ of
+  the time. Principal-location \emph{selection}---not place recognition---is the
+  open problem.}
+  \label{tab:locmetrics}
+  \footnotesize
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{@{}P{5.8cm}c@{}}
+    \toprule
+    \textbf{Location metric} & \textbf{Result} \\
+    \midrule
+    Per-mention F1 (strict)                          & 0.27 \\
+    Principal-location recall (strict fuzzy)         & 0.39 \\
+    Principal-location recall (granularity-tolerant) & 0.86 \\
+    Principal-location selection (first-mention rule) & \textbf{0.75} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \begin{table}[t]
   \centering
