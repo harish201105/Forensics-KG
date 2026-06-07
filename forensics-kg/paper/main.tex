@@ -1357,15 +1357,17 @@ and crime types ($\mathrm{F1}\approx0.86$--$0.88$, sd\,$\le0.03$) and the measur
 ablation gain from ontology guidance---come from this protocol precisely because
 the gold was not produced by an LLM.
 
-\paragraph*{Why the location score is low} \node{Location} is low for a
-structural reason: the gold records the \emph{principal} location while the
-extractor returns every place mentioned, so genuinely-relevant secondary places
-count as false positives. The fix is structural---bind the case to its principal
-location (via \rel{occurred\_at}) and score against that---a concrete, near-term
-improvement rather than a fundamental limitation. It shows that part of the value
-gap lies in evaluation design, not only in extraction---the same lesson the
-\node{TimeEvent} \texttt{date}-field correction (\cref{sec:erroranalysis}) makes
-plain.
+\paragraph*{Why the location score is low} \node{Location} extraction remains
+limited: the system reliably recovers valid \emph{mentioned} places but does not
+reliably \emph{select} the single principal event location, so the gold's principal
+location is diluted by genuinely-relevant secondary places counted as false
+positives. This is \emph{both} an evaluation-granularity issue \emph{and} a real
+modelling problem requiring explicit principal-location classification---not merely
+a metric artefact. We take a first step (a gold-free first-mention selector recovers
+the principal scene in $21/28$ cases, \cref{tab:locmetrics}), and binding the case
+to its principal location via \rel{occurred\_at} and scoring against that is the
+natural next step; but reliable principal-location selection is a genuine remaining
+problem.
 
 \paragraph*{Why image results contain negatives} The image negatives are
 informative. They separate genuine model limitations (single-image forgery
