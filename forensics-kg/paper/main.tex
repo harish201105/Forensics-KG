@@ -27,6 +27,11 @@
 \usepackage[hidelinks,hypertexnames=false]{hyperref}
 \usepackage{cleveref}
 
+% Distribute justification stretch within long URLs (e.g. the archived FBI
+% SWGSTAIN link) instead of dumping it into the single space before the URL,
+% which otherwise leaves an awkward gap after ``Available:'' in references.
+\Urlmuskip=0mu plus 1mu\relax
+
 \graphicspath{{figures/}}
 
 % ragged-right paragraph column: avoids overfull/underfull from justifying
@@ -57,7 +62,7 @@ Mahalingam\textsuperscript{1}, Helen Victoria A\textsuperscript{2,\,*}}
 \textit{SRM Institute of Science and Technology}, Chennai, India\\
 hp5491@srmist.edu.in, \ vm7798@srmist.edu.in, \ helenvia@srmist.edu.in}%
 \thanks{\textsuperscript{*}Corresponding author: Dr.\ Helen Victoria A.}%
-\ifdraftstamp\thanks{\textit{Internal review copy compiled \today\ (rev.\ v24).}}\fi%
+\ifdraftstamp\thanks{\textit{Internal review copy compiled \today\ (rev.\ v25).}}\fi%
 }
 
 \maketitle
