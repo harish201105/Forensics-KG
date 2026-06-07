@@ -57,7 +57,7 @@ Mahalingam\textsuperscript{1}, Helen Victoria A\textsuperscript{2,\,*}}
 \textit{SRM Institute of Science and Technology}, Chennai, India\\
 hp5491@srmist.edu.in, \ vm7798@srmist.edu.in, \ helenvia@srmist.edu.in}%
 \thanks{\textsuperscript{*}Corresponding author: Dr.\ Helen Victoria A.}%
-\ifdraftstamp\thanks{\textit{Internal review copy compiled \today\ (rev.\ v15).}}\fi%
+\ifdraftstamp\thanks{\textit{Internal review copy compiled \today\ (rev.\ v22).}}\fi%
 }
 
 \maketitle
@@ -75,8 +75,8 @@ constrains schema-bounded large language model (LLM) extraction over six documen
 types and a hybrid computer-vision/LLM pipeline over six image types, populating
 one typed graph that supports semantic retrieval, grounded query generation, and
 conservative cross-case entity resolution. Our central methodological claim is
-that forensic AI must keep three notions distinct---schema compliance, extraction
-consistency, and external factual validity---and we build an evaluation that does.
+that forensic AI must keep three notions distinct (schema compliance, extraction
+consistency, and external factual validity) and we build an evaluation that does.
 We separate circular synthetic-gold regression from validation against the
 documented facts of 28 real Indian criminal cases (gold from two independent
 annotators; inter-annotator Cohen's $\kappa=0.95$ on roles, $1.0$ on crime type),
@@ -91,7 +91,7 @@ An ablation shows ontology guidance is decisive: it alone recovers weapons
 Image analysis is reliable only where ground truth is task-aligned
 (full-set bloodstain $\mathrm{F1}=1.0$, $n{=}61$); misaligned tasks score near zero,
 which we report as evidence of evaluation honesty. The contribution is this
-validity-aware framework and its auditable reasoning---not a system that replaces
+validity-aware framework and its auditable reasoning, not a system that replaces
 forensic experts.
 \end{abstract}
 
@@ -110,8 +110,8 @@ that case is fragmented across institutional boundaries: a police FIR, a
 forensic laboratory report, an autopsy, a sequence of witness statements, a
 scene-of-crime officer (SOCO) inventory, and a court judgment are typically
 authored by different agencies, in different formats, and stored in different
-systems. Visual evidence---photographs of bloodstains, fingerprints, wounds,
-fired projectiles, tool marks, and questioned documents---lives in yet another
+systems. Visual evidence (photographs of bloodstains, fingerprints, wounds,
+fired projectiles, tool marks, and questioned documents) lives in yet another
 silo. Investigators and analysts must mentally reconstruct the connections that
 span these artefacts, and they must do so repeatedly, case after case, without
 the benefit of an explicit, queryable representation that ties the evidence
@@ -143,7 +143,7 @@ property graph. Over that graph we define a reasoning layer for semantic
 retrieval, grounded natural-language querying, hypothesis support, conservative
 cross-case entity resolution, and temporal reconstruction. The
 contribution is this ontology-guided, multimodal framework together with its
-evaluation methodology---not a software product; a prototype implementation
+evaluation methodology, not a software product; a prototype implementation
 exists only to produce the measurements reported here.
 
 A central argument runs through the paper. Much LLM-forensics work reports
@@ -156,22 +156,22 @@ label set?), and \emph{external factual validity} (does the output match facts
 established independently of any model?). Conflating them inflates apparent
 performance. The framework is therefore built so that schema compliance is an
 invariant, consistency is measured only as a regression signal, and validity is
-measured against the documented facts of real cases---and, for vision, only where
+measured against the documented facts of real cases, and, for vision, only where
 a dataset's ground truth actually operationalises the forensic task.
 
 \paragraph*{Contributions} We make the following contributions:
 \begin{enumerate}[leftmargin=1.4em,itemsep=2pt,topsep=2pt]
 \item A \emph{validity-aware evaluation methodology} for forensic LLM/KG
-systems---the paper's primary methodological contribution: the schema-compliance /
+systems, the paper's primary methodological contribution: the schema-compliance /
 consistency / validity distinction above, instantiated as (i) a documented-fact,
 two-annotator protocol (Cohen's $\kappa=0.95$/$1.0$, \cref{sec:iaa}) that breaks
 circular evaluation, and (ii) a ground-truth-alignment analysis that explains
 \emph{why} some multimodal forensic benchmarks cannot validate the task they
 appear to. The methodology is not merely a framing: applying it surfaced two
-concrete validity errors in our \emph{own} pipeline---a label leak that inflated
+concrete validity errors in our \emph{own} pipeline: a label leak that inflated
 fingerprint accuracy from a true $\approx\!0$ to a false $100\%$, and a metric that
 scored recovered dates from the wrong field ($\mathrm{F1}=0.09$ vs.\ the correct
-$0.88$)---both diagnosed, corrected, and reported (\cref{sec:setup,sec:results}).
+$0.88$), both diagnosed, corrected, and reported (\cref{sec:setup,sec:results}).
 \item A domain-specific forensic ontology of 38 node types and 48 relationship
 types spanning legal, medical, evidentiary, temporal, scene, and visual-forensic
 entities, with type-checked graph construction as an invariant
@@ -182,13 +182,13 @@ image types, fused into one typed graph (\cref{sec:text,sec:image,sec:fusion}).
 \item A conservative cross-case entity-resolution method with a
 \emph{non-destructive guarantee}: candidate nodes are never merged, only linked by
 \rel{same\_as}, so provenance is never collapsed and a wrong link stays
-recoverable---the failure mode that matters most in forensics. It pairs
+recoverable, the failure mode that matters most in forensics. It pairs
 embedding-blocked candidate generation with name/role/context verification and, on
 a labelled $9{,}973$-pair benchmark, attains precision $0.96$ at its deliberately
-conservative default---with a \emph{calibrated, type-aware tiered} extension that
+conservative default, with a \emph{calibrated, type-aware tiered} extension that
 makes recall a tunable choice against a quantified human-review budget
 (\cref{tab:frontier}, \cref{sec:resolution,sec:res_eval}).
-\item A graph-centred reasoning layer---semantic retrieval, schema-grounded
+\item A graph-centred reasoning layer: semantic retrieval, schema-grounded
 NL-to-graph querying (an ablation shows grounding lifts answer correctness
 $0.04\!\to\!0.67$ and cuts schema hallucination $0.96\!\to\!0.04$ vs.\ naive
 LLM-to-Cypher, \cref{tab:queryabl}), evidence-chain hypothesis support, and a
@@ -228,8 +228,8 @@ forensic domains, NLP and structured-representation methods have been applied to
 statutes, cases, and entities~\cite{legalkg2023,chalkidis2020legalbert}, but most
 efforts focus on a single modality (legal text) and do not integrate physical or
 visual forensic evidence. Our work differs in unifying legal, medical, procedural, and
-\emph{visual} forensic evidence within one ontology-constrained graph, and---more
-distinctively---in pairing that graph with an evaluation protocol that separates
+\emph{visual} forensic evidence within one ontology-constrained graph, and, more
+distinctively, in pairing that graph with an evaluation protocol that separates
 extraction \emph{consistency} from external factual \emph{validity}.
 
 \subsection{LLM-based information extraction}
@@ -250,7 +250,7 @@ comparison~\cite{afte}, fingerprint and document examination. Vision-language
 models~\cite{radford2021clip} enable general image interpretation, but
 domain forensic tasks demand measurable, physics- or procedure-grounded outputs.
 We pair classical CV feature extraction with LLM vision interpretation under a
-strategy pattern, and---importantly---evaluate each modality against the most
+strategy pattern, and, importantly, evaluate each modality against the most
 appropriate available ground truth, reporting where that ground truth is
 misaligned with the task.
 
@@ -268,7 +268,7 @@ graph, reducing schema-mismatch errors.
 Record linkage and entity resolution have a long
 history~\cite{fellegi1969record,getoor2012er,christophides2020er}: the task is to
 decide when two records refer to the same real-world entity. In forensic
-settings a false merge is dangerous---it can fabricate a connection between
+settings a false merge is dangerous: it can fabricate a connection between
 unrelated cases or people. We therefore adopt a conservative, blocking-then-verify
 design and, critically, make resolution \emph{non-destructive}: candidate
 duplicates are linked, never merged, preserving the provenance of every source
@@ -374,8 +374,8 @@ hypotheses) back into the graph.
 \label{sec:ontology}
 
 The ontology is the backbone of the framework. It defines six semantic groups of
-node types---core case, legal/judicial, medical/laboratory, scene/procedural,
-forensic-image, and reasoning entities---together with the typed relationships
+node types (core case, legal/judicial, medical/laboratory, scene/procedural,
+forensic-image, and reasoning entities) together with the typed relationships
 that connect them (\cref{fig:ontology}, \cref{tab:ontology}). Core case entities
 (\node{Case}, \node{Person}, \node{Location}, \node{Evidence}, \node{Weapon},
 \node{TimeEvent}, \dots) anchor every case. Legal entities (\node{LegalSection},
@@ -544,7 +544,7 @@ co-refer (for example, a \node{Weapon} mentioned in an FIR and a
 weapon that a post-mortem attributes it to via \rel{wound\_caused\_by}). Because
 the two branches are independent, fusion degrades gracefully: a text-only case
 still yields a valid case graph, as does an image-only case. This robustness is a
-direct consequence of the shared ontology---each branch produces typed,
+direct consequence of the shared ontology: each branch produces typed,
 self-contained structure that the graph can absorb in isolation or together.
 
 \begin{figure*}[t]
@@ -580,8 +580,8 @@ the set of \emph{realised} schema edges
 \label{eq:patterns}
 \end{equation}
 and pass $(q,\text{props},\mathcal{P})$ to the generator, so it filters on values
-that exist and traverses edges that exist---e.g.\
-\texttt{(:InjuryPattern)-[:LED\_TO\_DEATH]->(:CauseOfDeath)}---rather than
+that exist and traverses edges that exist, e.g.\
+\texttt{(:InjuryPattern)-[:LED\_TO\_DEATH]->(:CauseOfDeath)}, rather than
 hypothesising schema. A bounded loop repairs an erroneous query by returning the
 database error to the generator (at most a few attempts), and a static guard
 rejects destructive operations. These are means to grounded, trustworthy
@@ -591,7 +591,7 @@ querying rather than contributions in themselves.
 \label{sec:resolution}
 
 Each document is extracted into its own namespace, so the same real-world
-entity---a recurring judge, a shared location, a weapon type---appears as
+entity (a recurring judge, a shared location, a weapon type) appears as
 distinct nodes across cases. Resolution links these without merging them
 (\cref{fig:resolution}, \cref{alg:resolve}).
 
@@ -620,8 +620,8 @@ the Jaccard overlap of the nodes' 2-hop context bags (neighbour names, excluding
 \end{equation}
 where $\mathrm{unamb}$ holds when the shorter name is multi-token with no
 conflicting initials and $\mathrm{distinct}$ holds when both share a recurring
-distinctive role (judge, investigating officer). Weak signals---single-token or
-common names, conflicting initials---therefore cannot link without corroborating
+distinctive role (judge, investigating officer). Weak signals (single-token or
+common names, conflicting initials) therefore cannot link without corroborating
 context or role.
 
 \textbf{Non-destructive linking.} An accepted pair receives a transparent
@@ -633,7 +633,7 @@ c_{ij}=0.6\,\sigma_{ij}+0.25\min(\omega_{ij},1)+0.15\,\rho_{ij}
 and is joined by an edge $i\xrightarrow{\rel{same\_as}\{c_{ij}\}}j$; connected
 components (union--find) yield cross-case clusters. Because $|V|$ is unchanged,
 provenance is preserved exactly: no node is merged or deleted. This reflects a
-forensic priority---a false merge fabricates a connection between unrelated cases
+forensic priority, a false merge fabricates a connection between unrelated cases
 and is far more damaging than a missed link.
 
 \begin{figure*}[t]
@@ -679,15 +679,15 @@ attached to a case. As \cref{sec:results} reports, the pipeline recovers the
 documented dates well (\node{TimeEvent} $\mathrm{F1}=0.88$, date coverage $0.95$),
 so this module operates on reliable dated events. The analyser parses heterogeneous
 timestamp strings, orders events chronologically, computes the overall time span,
-and flags inconsistencies---large gaps between consecutive events and
+and flags inconsistencies, large gaps between consecutive events and
 contradictions between explicit \rel{precedes}/\rel{follows} edges and parsed
 timestamps. Such gaps and contradictions are exactly the cues an
 investigator looks for (an unexplained interval, a statement that is
 chronologically impossible).
 
-Hypothesis support retrieves a case's connected evidence---persons, locations,
+Hypothesis support retrieves a case's connected evidence (persons, locations,
 patterns, mechanisms, and (for bloodstain experiments) per-stain statistical
-features---and asks an LLM to produce a primary hypothesis with explicit
+features) and asks an LLM to produce a primary hypothesis with explicit
 supporting and contradicting evidence, alternative hypotheses, and a reasoning
 chain. The hypothesis is stored as a \node{Hypothesis} node linked to the case
 and embedded, so it becomes part of the queryable, semantically searchable graph.
@@ -736,19 +736,19 @@ procedurally generated ballistics and tool-mark images.
 \subsection{Two evaluation tracks}
 \label{sec:tracks}
 We separate two tracks with deliberately different epistemic status.
-\emph{Track~1---synthetic-gold regression.} The 120 synthetic FIR, post-mortem,
+\emph{Track~1: synthetic-gold regression.} The 120 synthetic FIR, post-mortem,
 laboratory, deposition, and SOCO documents carry LLM-generated gold. Because the
 gold and the system under test are the same class of model, agreement measures
 \emph{self-consistency}, not correctness; we use it only to detect regressions and
 never report it as external evidence.
-\emph{Track~2---real-case validation (primary).} The 28 well-documented cases
-carry gold curated from authoritative public records---documented facts not
+\emph{Track~2: real-case validation (primary).} The 28 well-documented cases
+carry gold curated from authoritative public records, documented facts not
 produced by any LLM. A first annotator curated the gold from the cited sources
 (dropping two unnatural-death cases as edge cases of non-canonical crime type, and
 normalising entries such as name spellings and the principal location); a
 \emph{second} annotator then independently re-annotated all 28 cases blind to the
-first. Inter-annotator agreement is high---Cohen's $\kappa=0.95$ on person roles
-and $1.0$ on crime type (\cref{sec:iaa}, \cref{tab:iaa})---which validates the
+first. Inter-annotator agreement is high: Cohen's $\kappa=0.95$ on person roles
+and $1.0$ on crime type (\cref{sec:iaa}, \cref{tab:iaa}), which validates the
 first annotator's curation as the gold used here; the full disagreement list is
 released for adjudication. The pipeline extracts entities from a factual narrative and
 is scored against those facts. This is our \textbf{primary} result because it
@@ -842,51 +842,51 @@ records each event's calendar date in ISO form. The matching rule is deliberatel
 explicit: a gold date counts as recovered when the extracted date shares its
 \emph{year}, refined to year-\emph{and}-month when both sides name a month;
 day-level exactness is \emph{not} required. This year-or-year-month rule (rather
-than exact-ISO matching) matches the gold's own granularity---several documented
-dates are recorded year-only (e.g.\ a conviction in ``2003'')---and the
+than exact-ISO matching) matches the gold's own granularity, several documented
+dates are recorded year-only (e.g.\ a conviction in ``2003''), and the
 \emph{identical} rule scores both the full system and the baseline, so it cannot
 favour one. An earlier evaluation that read
 only the free-text event \emph{name} (not the \texttt{date} field) under-counted
 recovery at $\mathrm{F1}=0.09$, conflating ``stored in a separate field'' with
-``not extracted''---exactly the schema-compliance-versus-validity distinction this
+``not extracted'', exactly the schema-compliance-versus-validity distinction this
 paper argues for (\cref{sec:erroranalysis}). \node{Location} is the one genuinely weak type
 ($\mathrm{F1}=0.27$) because the gold names a single principal location while the
 narrative mentions many places. Overall micro-$\mathrm{F1}$ is $0.78$ ($\pm0.01$)
 and macro-$\mathrm{F1}$ $0.73$ ($\pm0.01$); the small gap between them reflects that
 only \node{Location} lags. We regard the strong, low-variance recovery of persons,
-crime types, weapons, and dates on \emph{real} data---validated against documented
-facts no synthetic benchmark could provide---as the substantive result. Per case,
+crime types, weapons, and dates on \emph{real} data, validated against documented
+facts no synthetic benchmark could provide, as the substantive result. Per case,
 full-system $\mathrm{F1}$ ranges from $0.60$ (Soumya, train) to $0.94$ (Dabholkar),
 mean $0.78$ (\cref{tab:cases}). A case-level bootstrap ($B{=}2000$, resampling the
 28 cases) places the $95\%$ confidence interval for overall $\mathrm{F1}$ at
 $[0.74,0.82]$ (micro) and $[0.68,0.78]$ (macro).
 
 To check whether the strict per-mention metrics understate practical usefulness,
-we add two complementary measures. \emph{Principal-location recall}---does any
+we add two complementary measures. \emph{Principal-location recall} (does any
 extracted location match the single gold principal location under the strict
-fuzzy matcher?---is $0.39$ ($11/28$ cases); much of the gap to the precision-driven
+fuzzy matcher?) is $0.39$ ($11/28$ cases); much of the gap to the precision-driven
 $\mathrm{F1}$ ($0.27$) is additional, genuinely-mentioned locations counted as
 false positives, and many ``misses'' are \emph{more specific} than the gold
 (\cref{sec:erroranalysis}). The human inter-annotator study (\cref{sec:iaa}) shows
 this is granularity, not error: two annotators name the same place but at different
 specificity. Quantifying that, a \emph{granularity-tolerant} principal-location
-recall---which credits the gold place when an extracted location names it at any
-granularity (token superset or subset)---reaches $\mathbf{0.86}$ ($24/28$). The
+recall, which credits the gold place when an extracted location names it at any
+granularity (token superset or subset), reaches $\mathbf{0.86}$ ($24/28$). The
 cases it credits over the strict matcher are the same place named more or less
 specifically (``Vasant Vihar'' vs.\ ``Vasant Vihar, New Delhi''; ``Koodathayi''
 vs.\ ``Koodathayi, Kozhikode''); it deliberately does \emph{not} credit genuine
-mismatches (Chhaparvad vs.\ Randhikpur), and even under-counts---missing cases
+mismatches (Chhaparvad vs.\ Randhikpur), and even under-counts, missing cases
 where the system named only a sub-scene (``St Pius X Convent'' for Kottayam). The
 system therefore recovers the correct principal place far more often
 ($\approx\!0.86$) than the strict per-mention metric ($0.27$) suggests; what it
 lacks is \emph{principal-location selection}, not place recognition. A simple,
 gold-free selector confirms this is fixable: taking the \emph{first-mentioned}
 extracted location as the principal scene identifies it correctly in $21/28$ cases
-($0.75$)---a concrete, near-term improvement over the $0.27$ per-mention
+($0.75$): a concrete, near-term improvement over the $0.27$ per-mention
 $\mathrm{F1}$, though principal-location \emph{selection} (vs.\ place recognition)
 remains the open problem (\cref{tab:locmetrics}).
-\emph{Date coverage}---the fraction of documented years recovered anywhere in the
-extracted timeline---is $0.95$, confirming that the pipeline does recover the
+\emph{Date coverage}, the fraction of documented years recovered anywhere in the
+extracted timeline, is $0.95$, confirming that the pipeline does recover the
 documented dates: the looser coverage metric and the corrected per-mention
 \node{TimeEvent} score agree. The one genuinely weak type is \node{Location}:
 partly a matching-design issue and partly a principal-location selection problem
@@ -897,7 +897,7 @@ partly a matching-design issue and partly a principal-location selection problem
   \caption{\node{Location} by metric. The strict per-mention F1 understates place
   recovery: the system finds the principal place at \emph{some} granularity $0.86$
   of the time, and a gold-free first-mention selector picks it correctly $0.75$ of
-  the time. Principal-location \emph{selection}---not place recognition---is the
+  the time. Principal-location \emph{selection}, not place recognition, is the
   open problem.}
   \label{tab:locmetrics}
   \footnotesize
@@ -953,13 +953,13 @@ partly a matching-design issue and partly a principal-location selection problem
 To validate the documented-fact gold beyond a single curator, a second annotator
 independently re-annotated all 28 cases from the case narratives, blind to the
 first annotator's gold; \cref{tab:iaa} reports agreement. On the two genuinely
-\emph{categorical} decisions---each shared person's role and each case's primary
-crime type---Cohen's $\kappa$ is $0.95$ and $1.0$ (``almost perfect'' and
+\emph{categorical} decisions, each shared person's role and each case's primary
+crime type, Cohen's $\kappa$ is $0.95$ and $1.0$ (``almost perfect'' and
 ``perfect'' on the Landis--Koch scale). On the open-set mention categories, where
 $\kappa$ is degenerate (no closed true-negative universe) and pairwise
 $\mathrm{F1}$ is the standard agreement metric, agreement is high for
 \node{Person} ($0.86$), \node{CrimeType} ($0.97$), \node{TimeEvent} ($0.93$), and
-\node{Weapon} ($0.75$). \node{Location} agreement is \emph{low} ($0.36$)---and
+\node{Weapon} ($0.75$). \node{Location} agreement is \emph{low} ($0.36$), and
 tellingly so: manual inspection shows the two annotators name the same place in
 $16$ of $18$ ``disagreements,'' differing only in granularity (``Munirka'' vs.\
 ``a private bus in Munirka''; ``Bagiya restaurant'' vs.\ ``Bagiya barbecue
@@ -975,7 +975,7 @@ high agreement validates; because the system metric matches person \emph{names}
 (not roles), the few role disagreements do not affect the reported scores. One
 caveat: the second annotator worked from the case narratives while the first
 curated from the cited sources, so the agreement also spans that
-source-to-narrative representation gap---which makes the reported $\kappa$ a
+source-to-narrative representation gap, which makes the reported $\kappa$ a
 \emph{conservative} estimate of curation reliability rather than an inflated one.
 A forensic-expert third pass (\cref{sec:future}) remains the natural next step.
 
@@ -1007,8 +1007,8 @@ A forensic-expert third pass (\cref{sec:future}) remains the natural next step.
 
 \subsection{Faculty-supervised domain-plausibility review}
 \label{sec:facultyreview}
-Beyond the two-annotator gold, a faculty domain reviewer---\emph{not} a forensic or
-legal practitioner---assessed the manuscript for research design, ontology
+Beyond the two-annotator gold, a faculty domain reviewer, \emph{not} a forensic or
+legal practitioner, assessed the manuscript for research design, ontology
 plausibility, and forensic/evidence-structuring relevance. The review judged the
 node categories (\node{Case}, \node{Person}, \node{Location}, \node{Evidence},
 \node{Weapon}, \node{TimeEvent}, \node{InjuryPattern}, \node{CauseOfDeath},
@@ -1020,8 +1020,8 @@ and cross-case) \emph{appropriate} for forensic reasoning support. It found the
 two-track evaluation and the two-annotator gold ($\kappa$ for categorical labels,
 pairwise F1 for open sets) an appropriate methodological choice, the
 granularity reading of the lower \node{Location} agreement reasonable, and the
-conservative claim framing---decision/hypothesis support, not legally admissible
-evidence or a replacement for experts---correct. We \emph{adopt} the review's
+conservative claim framing (decision/hypothesis support, not legally admissible
+evidence or a replacement for experts) correct. We \emph{adopt} the review's
 recommendations: keep claims at the level of a \emph{research prototype} and
 validity-aware evaluation framework, and treat review by forensic/legal
 \emph{practitioners}, a larger and less self-selected case set, stronger
@@ -1035,7 +1035,7 @@ which remains future work.
 \Cref{tab:imgresults} and \cref{fig:imgeval} report image evaluation, and they
 deliberately include negative results. Bloodstain impact-spatter recognition
 reaches $\mathrm{F1}=1.0$ on the \emph{full} Attinger impact-spatter set
-($n{=}61$, every sample scored, none skipped)---the one modality with real,
+($n{=}61$, every sample scored, none skipped): the one modality with real,
 physics-grounded ground truth. We still read this conservatively: it is a coarse
 binary detection metric (the dataset is all impact-spatter, so there are no hard
 negatives) on a single dataset and the prompt was not separately held out. It is
@@ -1046,13 +1046,13 @@ chance-level accuracy on synthetic data. The remaining tasks fail: single-image
 document forgery detection is near zero because deciding genuineness generally
 requires a reference exemplar; tool-mark tool-type classification is near zero on
 synthetic marks; and fingerprint pattern recognition is near zero \emph{because
-the dataset labels encode hand and finger position, not pattern class}---the
+the dataset labels encode hand and finger position, not pattern class}, the
 ground truth does not contain the attribute the task needs. We report these
 faithfully: they are not defects to be hidden but a map of the framework's
 operating envelope, and they expose a concrete evaluation-validity bug. The
 label-leak fix of \cref{sec:setup} moved the \emph{reported} fingerprint score
 from a false $100\%$ (the filename label leaking into the prompt) to an honest
-$\approx\!0\%$---a swing that is itself evidence for why honest, leakage-free
+$\approx\!0\%$: a swing that is itself evidence for why honest, leakage-free
 evaluation matters.
 
 \begin{table}[t]
@@ -1090,7 +1090,7 @@ evaluation matters.
 \paragraph*{Hybrid ablation} On the full impact-spatter set ($n{=}61$) we ablate the
 image pipeline into CV-only, LLM-only, and the full CV$+$LLM hybrid
 (\cref{tab:bloodstainabl}). Classical CV features \emph{alone} produce no pattern
-label, so CV-only detection is $\mathrm{F1}=0$---the CV stage extracts stain
+label, so CV-only detection is $\mathrm{F1}=0$: the CV stage extracts stain
 geometry, not a semantic class. The LLM vision step alone detects impact spatter
 on all $61$ samples ($\mathrm{F1}=1.0$), and the full hybrid matches it ($1.0$).
 The honest reading is that the \emph{LLM} drives the high-level classification and
@@ -1126,17 +1126,17 @@ accepts $28$. \textbf{Precision is $27/28=0.96$}: the accepts comprise $16$
 crime-type category links, $7$ recurring person/organisation identities, $3$
 generic weapon-type links, and $1$ location. Crucially, the resolver recovers the
 three \emph{genuine} shared-suspect links the dataset contains by
-construction---the gang members \emph{Ravi Kapoor}, \emph{Amit Shukla}, and
+construction: the gang members \emph{Ravi Kapoor}, \emph{Amit Shukla}, and
 \emph{Baljeet Malik}, shared by the Jigisha Ghosh and Soumya Vishwanathan murders
 (confidence $0.80$, name-plus-context), plus the recurring Central Bureau of
 Investigation (three cases) and Delhi Police. The \textbf{single false merge} is
 instructive: a \emph{witness} ``Ajay Kumar'' in the Nitish Katara case is linked to
 an \emph{accused} of the same common name in Soumya Vishwanathan, accepted on the
 identical name alone (confidence $0.60$, the lowest of any accept) despite the role
-disagreement---the bare-common-name collision the design tries to suppress. \textbf{Candidate-set recall is $0.15$} ($27$ of $178$ pool identities):
+disagreement, the bare-common-name collision the design tries to suppress. \textbf{Candidate-set recall is $0.15$} ($27$ of $178$ pool identities):
 the $151$ misses are overwhelmingly identical crime types ($146$,
 \emph{Murder}\,$=$\,\emph{Murder} across cases) the decision rejects for lacking
-corroborating context---a deliberate choice not to link on a bare common word.
+corroborating context, a deliberate choice not to link on a bare common word.
 Candidate-set $\mathrm{F1}$ is thus $0.26$. This blended figure, however, mixes two
 distinct tasks; separated, the forensically-relevant instance-identity recall is
 $0.79$ at precision $0.92$ (\cref{tab:frontier}, discussed next), and the low
@@ -1172,8 +1172,8 @@ collapsing provenance.
 
 \paragraph*{Instance identity vs.\ category normalization}
 Cross-case \rel{same\_as} spans two tasks that should not share one recall number:
-\emph{instance identity}---is \emph{Ravi Kapoor} in two cases the same person; is
-this the recurring CBI?---and \emph{category normalization}, where every
+\emph{instance identity} (is \emph{Ravi Kapoor} in two cases the same person; is
+this the recurring CBI?) and \emph{category normalization}, where every
 \node{Murder} denotes the same crime \emph{class}. The blended candidate-set recall
 of $0.15$ (\cref{tab:resolution}) conflates them, and is dominated by the $162$
 category identities in the pool versus only $14$ instance identities. Separating
@@ -1186,7 +1186,7 @@ Delhi Police, and the overlapping Vasant Kunj location, with a single common-nam
 false merge (``Ajay Kumar''). \textbf{Category normalization} is a separate, easier
 task with no collision risk; the conservative rule's $0.10$ recall there is
 over-cautious and is what depresses the blended figure. A \emph{type-aware tiered}
-policy---which we propose rather than deploy---would auto-merge identical category
+policy, which we propose rather than deploy, would auto-merge identical category
 nodes (trivially reaching recall $1.0$ at precision $1.0$) and route identical
 \emph{instance} names lacking corroboration to a human-review queue
 ($\approx\!0.1$ pairs/case), which \emph{would} recover the remaining instance
@@ -1232,7 +1232,7 @@ binding the case to its principal event/location (via
 \emph{``St Pius X Convent''} (the actual scene) against the gold's
 \emph{``Kottayam''}; for Dabholkar, \emph{``Omkareshwar bridge''} against
 \emph{``Pune''}; and for Gauri Lankesh, \emph{``the driveway of her home''}
-against \emph{``Rajarajeshwari Nagar''}. These are not wrong---underscoring that
+against \emph{``Rajarajeshwari Nagar''}. These are not wrong, underscoring that
 for \node{Location} the metric, not the extraction, is the limiting factor.
 
 \node{TimeEvent} illustrates the same principle at the level of \emph{where} a
@@ -1241,7 +1241,7 @@ structured \texttt{date} field (e.g.\ \texttt{2017-09-05} for Gauri Lankesh) and
 gives the node a descriptive name (\emph{``Murder of Gauri Lankesh''}); an
 evaluation that read only the name scored \node{TimeEvent} at $\mathrm{F1}=0.09$
 and date coverage at $0.10$, suggesting a recovery gap. Reading the field the
-schema designates for dates---as the system itself does when querying---raises
+schema designates for dates, as the system itself does when querying, raises
 \node{TimeEvent} to $0.88$ and date coverage to $0.95$. The dates were always
 extracted; the earlier metric conflated schema \emph{location} with
 non-recovery, precisely the validity confusion this paper warns against. (The
@@ -1270,21 +1270,21 @@ either way.)
 \label{sec:ablation}
 To isolate the contribution of ontology-guided extraction we compare the full
 system against a baseline that uses the \emph{same} LLM and JSON output but a
-single generic entity-extraction prompt---no forensic ontology type descriptions,
-no per-type rules, and no two-stage relation grounding---scored by the
+single generic entity-extraction prompt (no forensic ontology type descriptions,
+no per-type rules, and no two-stage relation grounding) scored by the
 \emph{identical} matcher over the same 28 cases, three runs each
 (\cref{fig:ablation}). The result is decisive. Ontology guidance is
 what makes the \emph{structured forensic types} recoverable at all: it lifts
-\node{Weapon}/method from $\mathrm{F1}=0.00$ to $0.72$---the baseline records no
-usable weapon across any case (it never tags, e.g., \emph{cyanide}, the Koodathayi
-murder agent, as a \node{Weapon}/method), whereas the ontology-guided extractor
-recovers weapons at recall $0.66$---lifts \node{CrimeType} from $0.75$ to $0.91$
+\node{Weapon}/method from $\mathrm{F1}=0.00$ to $0.72$ (the baseline records no
+usable weapon across any case, never tagging, e.g., \emph{cyanide}, the Koodathayi
+murder agent, as a \node{Weapon}/method, whereas the ontology-guided extractor
+recovers weapons at recall $0.66$); it lifts \node{CrimeType} from $0.75$ to $0.91$
 and \node{Location} from $0.13$ to $0.27$, and matches the baseline on
 \node{Person} ($0.88$) and \node{TimeEvent} ($0.88$ vs.\ $0.91$). The full system
 therefore wins on \emph{both} aggregate measures: macro-$\mathrm{F1}$
 $0.73$ vs.\ $0.53$ and micro-$\mathrm{F1}$ $0.78$ vs.\ $0.68$. (An earlier
-evaluation that scored \node{TimeEvent} from the event name alone---see
-\cref{sec:erroranalysis}---made the baseline appear to win micro-$\mathrm{F1}$;
+evaluation that scored \node{TimeEvent} from the event name alone
+(\cref{sec:erroranalysis}) made the baseline appear to win micro-$\mathrm{F1}$;
 reading the structured \texttt{date} field removes that artefact.) The honest
 reading is that ontology guidance helps wherever forensic typing matters and costs
 nothing on the types both systems already handle. A further
@@ -1292,21 +1292,21 @@ design choice with a \emph{measured} effect reported above is the label-free
 evaluation fix that corrected a false fingerprint score from $100\%$ to
 $\approx0\%$ (\cref{sec:setup}). A second ablation isolates the bloodstain image
 pipeline (CV-only vs.\ LLM-only vs.\ CV$+$LLM), reported in \cref{sec:results}.
-A \emph{third} ablation evaluates the NL-to-Cypher reasoning layer---the component
-previously described but not measured---over $24$ factual questions on the populated
+A \emph{third} ablation evaluates the NL-to-Cypher reasoning layer, the component
+previously described but not measured, over $24$ factual questions on the populated
 graph (\cref{tab:queryabl}). It compares the deployed \emph{grounded} generator
 (the ontology schema in the prompt, over a graph normalised so every entity is
 anchored to its case via the ontology-defined relationship, plus a Cypher
 self-correction loop) against a \emph{naive} ungrounded LLM-to-Cypher baseline.
 Grounding is decisive: answer correctness rises from $0.04$ to $\mathbf{0.67}$ and
-schema hallucination---queries naming a node label or relationship type absent from
-the graph---falls from $0.96$ to $\mathbf{0.04}$, while both produce executable
+schema hallucination, queries naming a node label or relationship type absent from
+the graph, falls from $0.96$ to $\mathbf{0.04}$, while both produce executable
 Cypher. The residual errors are concentrated in weapon questions, for which the
 ontology defines no direct Case--Weapon edge (weapons attach via \rel{used\_weapon}
 from a person/event); victim, accused, crime-type, location, and aggregate
 questions are answered reliably. This fills the reasoning-layer evaluation gap and
 quantifies why schema grounding and a case-anchored graph matter. The remaining
-comparisons---removing the graph entirely and disabling resolution---are left to
+comparisons, removing the graph entirely and disabling resolution, are left to
 future work (\cref{sec:future}).
 
 \begin{table}[t]
@@ -1344,17 +1344,17 @@ future work (\cref{sec:future}).
 \label{sec:discussion}
 
 \paragraph*{Why graph structure helps} Representing a case as a typed graph makes
-the relationships that matter to investigation---who was involved, what caused
-death, what preceded what, which evidence supports which hypothesis---explicit and
+the relationships that matter to investigation (who was involved, what caused
+death, what preceded what, which evidence supports which hypothesis) explicit and
 traversable. Multi-hop and cross-case questions become graph patterns rather than
 brittle joins, and evidence chains become first-class objects that a human can
 audit.
 
 \paragraph*{Why real-case validation matters} Validating against documented facts
 of real cases is the difference between measuring self-consistency and measuring
-correctness. Our most defensible findings---stable recovery of persons, weapons,
+correctness. Our most defensible findings: stable recovery of persons, weapons,
 and crime types ($\mathrm{F1}\approx0.86$--$0.88$, sd\,$\le0.03$) and the measured
-ablation gain from ontology guidance---come from this protocol precisely because
+ablation gain from ontology guidance, come from this protocol precisely because
 the gold was not produced by an LLM.
 
 \paragraph*{Why the location score is low} \node{Location} extraction remains
@@ -1362,7 +1362,7 @@ limited: the system reliably recovers valid \emph{mentioned} places but does not
 reliably \emph{select} the single principal event location, so the gold's principal
 location is diluted by genuinely-relevant secondary places counted as false
 positives. This is \emph{both} an evaluation-granularity issue \emph{and} a real
-modelling problem requiring explicit principal-location classification---not merely
+modelling problem requiring explicit principal-location classification, not merely
 a metric artefact. We take a first step (a gold-free first-mention selector recovers
 the principal scene in $21/28$ cases, \cref{tab:locmetrics}), and binding the case
 to its principal location via \rel{occurred\_at} and scoring against that is the
@@ -1397,7 +1397,7 @@ visible and auditable.
 \paragraph*{Internal validity} Extraction and scoring share fuzzy-matching
 heuristics, so a lenient matcher could over-credit extraction. We mitigate this
 with exact documented-fact gold, conservative matchers, and per-type reporting
-that would expose leniency---location precision is reported low ($0.19$), not
+that would expose leniency: location precision is reported low ($0.19$), not
 masked. LLM stochasticity is a second internal threat: schema constraints bound,
 but do not remove, run-to-run variance; we report mean\,$\pm$\,standard deviation
 over three runs and a case-level bootstrap $95\%$ CI ($[0.74,0.82]$ for overall
@@ -1414,7 +1414,7 @@ deliberately excluded from our headline claims for exactly this reason
 (\cref{sec:tracks}).
 
 \paragraph*{Construct validity} Our metrics measure recovery of entities and
-relations against documented facts---a proxy for, not a guarantee of, investigative
+relations against documented facts: a proxy for, not a guarantee of, investigative
 usefulness. The image negatives are partly a construct problem: a dataset label
 (finger position) can fail to operationalise the intended construct (pattern
 class), so a low score reflects measurement mismatch rather than model
@@ -1447,7 +1447,7 @@ intrinsically limited for comparison tasks (forgery, tool-mark, ballistic
 matching) that need reference exemplars or multi-view evidence. \textbf{(6)}
 Real-world deployment would require audit logging, security, privacy protection,
 and expert review that are out of scope here. \textbf{(7)} Evaluation sample
-sizes---28 real cases and small per-modality image samples---remain limited, so
+sizes, 28 real cases and small per-modality image samples, remain limited, so
 the reported numbers should be read as indicative rather than definitive.
 
 % =====================================================================
@@ -1497,7 +1497,7 @@ automate forensic judgement: the framework structures evidence and supports
 hypotheses for a human expert, and establishing forensic validity would require
 expert-annotated data and prospective study, which we leave to future work. Within
 those bounds, the contribution is a reproducible framework and an evaluation
-methodology---in particular a documented-fact protocol---that can help discourage
+methodology, in particular a documented-fact protocol, that can help discourage
 circular benchmarking in forensic AI.
 
 % =====================================================================
@@ -1514,8 +1514,8 @@ circular benchmarking in forensic AI.
 \label{app:cases}
 \Cref{tab:cases} lists the 28 documented cases and the composition of their gold
 (counts of gold Person/Location/Weapon/TimeEvent entries). Gold annotations were
-curated from authoritative public records---the English-language encyclopedic
-summary of each case and contemporaneous court reporting---by a first annotator,
+curated from authoritative public records, the English-language encyclopedic
+summary of each case and contemporaneous court reporting, by a first annotator,
 who dropped two unnatural-death cases (the Burari deaths and the Sunanda Pushkar
 death) whose ``crime type'' does not map to a canonical category and normalised
 entries (name spellings, the choice of principal location, weapon/method). A
@@ -1583,7 +1583,7 @@ no per-type rules, and no two-stage relation pass. It asks the model to extract
 entities of type \node{Person}, \node{Location}, \node{Weapon}, \node{CrimeType},
 \node{TimeEvent}, or \node{Case} from the factual narrative into JSON
 (\texttt{\{entity\_type, properties\}}), with \node{Person} carrying name and role
-and the others a name/type---and nothing about the forensic ontology,
+and the others a name/type, and nothing about the forensic ontology,
 relationships, or evidence spans. Both conditions are scored by the identical
 matcher; the released experiment script contains the exact prompt.
 

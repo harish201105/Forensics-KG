@@ -103,15 +103,15 @@ def fig_architecture():
     fig, ax = plt.subplots(figsize=(9.4, 5.0))
     ax.set_xlim(0, 10); ax.set_ylim(0, 6.2); ax.axis("off")
 
-    # Column headers
+    # Column headers (centred over each column)
     headers = [
-        (0.55, "Heterogeneous\nEvidence"),
-        (2.75, "Modality-Specific\nExtraction"),
-        (5.15, "Ontology-Validated\nKnowledge Graph"),
-        (7.75, "Graph-Centered\nReasoning"),
+        (1.125, "Heterogeneous\nEvidence"),
+        (3.525, "Modality-Specific\nExtraction"),
+        (5.925, "Ontology-Validated\nKnowledge Graph"),
+        (8.650, "Graph-Centered\nReasoning"),
     ]
     for hx, ht in headers:
-        ax.text(hx + 0.9, 5.95, ht, ha="center", va="center",
+        ax.text(hx, 5.95, ht, ha="center", va="center",
                 fontsize=10.5, weight="bold", color=C["blue"])
 
     # --- Column 1: evidence sources ---
@@ -154,20 +154,20 @@ def fig_architecture():
     arrow(ax, (2.12, 4.5), (2.53, 4.5), color=C["blue"])
     arrow(ax, (2.12, 2.0), (2.53, 2.0), color=C["teal"])
     # extractors -> ontology validation
-    arrow(ax, (4.52, 4.55), (4.93, 4.8), color=C["blue"], rad=-0.12)
-    arrow(ax, (4.52, 1.95), (4.93, 4.6), color=C["teal"], rad=0.22)
+    arrow(ax, (4.52, 4.55), (4.93, 4.85), color=C["blue"], rad=-0.12)
+    arrow(ax, (4.52, 1.95), (4.90, 4.5), color=C["teal"], rad=0.34)
     # ontology validation -> KG
     arrow(ax, (5.92, 4.23), (5.92, 3.83), color=C["amber"])
-    # KG -> reasoning (bus)
-    arrow(ax, (6.92, 2.7), (7.48, 2.7), color=C["slate"])
-    ax.plot([7.3, 7.3], [1.0, 4.98], color=C["slate"], lw=1.4, zorder=0)
+    # KG -> reasoning (distribution bus)
+    arrow(ax, (6.92, 2.675), (7.28, 2.675), color=C["slate"])
+    ax.plot([7.3, 7.3], [1.77, 4.98], color=C["slate"], lw=1.4, zorder=0)
     for yy in (4.98, 3.91, 2.84, 1.77):
-        arrow(ax, (7.3, yy), (7.5, yy), color=C["slate"], lw=1.3, mut=9)
+        arrow(ax, (7.3, yy), (7.48, yy), color=C["slate"], lw=1.3, mut=9)
 
     # Feedback loop: reasoning writes hypotheses back to KG (dashed)
-    arrow(ax, (7.5, 1.4), (6.92, 1.7), color=C["violet"], ls=(0, (4, 3)),
-          lw=1.3, rad=0.25)
-    ax.text(7.15, 1.18, "hypotheses written back\n& embedded", ha="center",
+    arrow(ax, (7.48, 1.62), (6.92, 1.9), color=C["violet"], ls=(0, (4, 3)),
+          lw=1.3, rad=0.28)
+    ax.text(7.0, 1.08, "hypotheses written back\n& embedded", ha="center",
             va="center", fontsize=7.0, color=C["violet"], style="italic")
 
     _save(fig, "architecture")
@@ -334,22 +334,23 @@ def fig_ablation():
     ax.bar(x + w/2, full, w, label="Full (ontology-guided)",
            color=C["blue"], edgecolor="white", linewidth=0.6)
     for i in range(len(types)):
-        ax.text(x[i] - w/2, base[i] + 0.015, f"{base[i]:.2f}", ha="center",
-                va="bottom", fontsize=6.9, color=C["ink"])
-        ax.text(x[i] + w/2, full[i] + 0.015, f"{full[i]:.2f}", ha="center",
-                va="bottom", fontsize=6.9, color=C["ink"])
+        ax.text(x[i] - w/2, base[i] + 0.012, f"{base[i]:.2f}", ha="center",
+                va="bottom", fontsize=8.2, color=C["ink"])
+        ax.text(x[i] + w/2, full[i] + 0.012, f"{full[i]:.2f}", ha="center",
+                va="bottom", fontsize=8.2, color=C["ink"])
     ax.axvline(len(types) - 2.5, color=C["gridgray"], lw=1.0, ls=(0, (4, 3)))
-    ax.set_xticks(x); ax.set_xticklabels(types, fontsize=8.6)
-    ax.set_ylim(0, 1.06); ax.set_ylabel("F1", fontsize=10)
+    ax.set_xticks(x); ax.set_xticklabels(types, fontsize=9.2)
+    ax.set_ylim(0, 1.18); ax.set_ylabel("F1", fontsize=10.5)
     ax.set_yticks(np.arange(0, 1.01, 0.2))
     ax.set_axisbelow(True)
     ax.yaxis.grid(True, color=C["gridgray"], lw=0.6)
     for s in ("top", "right"):
         ax.spines[s].set_visible(False)
-    ax.legend(ncol=1, frameon=False, fontsize=8.4, loc="upper right")
+    ax.legend(ncol=1, frameon=False, fontsize=9.0, loc="upper right",
+              bbox_to_anchor=(1.0, 1.0))
     ax.set_title("Ontology guidance is decisive: it recovers Weapon and lifts "
-                 "CrimeType, Location,\nand both micro- and macro-F1, while matching "
-                 "the baseline on Person/TimeEvent", fontsize=8.6, color=C["ink"], pad=6)
+                 "CrimeType, Location, and both micro-\nand macro-F1, while matching "
+                 "the baseline on Person/TimeEvent", fontsize=9.0, color=C["ink"], pad=8)
     _save(fig, "ablation")
 
 
@@ -375,30 +376,32 @@ def fig_image_eval_summary():
             "hard task": C["red"], "misaligned": C["red"]}
     colors = [cmap[a] for a in align]
 
-    fig, ax = plt.subplots(figsize=(10.6, 3.4))
+    fig, ax = plt.subplots(figsize=(10.6, 3.6))
     y = np.arange(len(names))[::-1]
     ax.barh(y, scores, color=colors, edgecolor="white", height=0.64, linewidth=0.6)
     for yi, s, m in zip(y, scores, metric):
-        ax.text(min(s + 0.015, 0.90), yi, f"{s:.2f} {m}", va="center",
-                ha="left", fontsize=14.5, color=C["ink"])
+        ax.text(s + 0.02, yi, f"{s:.2f} {m}", va="center",
+                ha="left", fontsize=14.0, color=C["ink"])
     ax.set_yticks(y); ax.set_yticklabels(names, fontsize=15.5)
-    ax.set_xlim(0, 1.06); ax.set_xlabel("Evaluation score", fontsize=15.0)
+    ax.set_xlim(0, 1.34); ax.set_xlabel("Evaluation score", fontsize=15.0)
+    ax.set_xticks(np.arange(0, 1.01, 0.2))
     ax.tick_params(axis="x", labelsize=14.0)
     ax.set_axisbelow(True)
     ax.xaxis.grid(True, color=C["gridgray"], lw=0.6)
     for s in ("top", "right"):
         ax.spines[s].set_visible(False)
 
-    # threshold guides
-    ax.axvline(0.8, color=C["green"], lw=1.0, ls=(0, (4, 3)), alpha=0.7)
+    # reliability threshold guide
+    ax.axvline(0.8, color=C["green"], lw=1.0, ls=(0, (4, 3)), alpha=0.6)
 
     legend = [
-        mpatches.Patch(color=C["green"], label="ground truth aligned"),
+        mpatches.Patch(color=C["green"], label="GT aligned"),
         mpatches.Patch(color=C["amber"], label="partial / proxy GT"),
-        mpatches.Patch(color=C["red"],   label="misaligned GT or intrinsically hard"),
+        mpatches.Patch(color=C["red"],   label="misaligned / hard"),
     ]
-    ax.legend(handles=legend, frameon=False, fontsize=13.5,
-              loc="lower right", bbox_to_anchor=(1.0, 0.02))
+    ax.legend(handles=legend, frameon=False, fontsize=12.5,
+              loc="lower right", bbox_to_anchor=(1.0, 0.05),
+              handlelength=1.3, handletextpad=0.5, labelspacing=0.35)
     ax.set_title("Image analysis is reliable only where ground truth is "
                  "task-aligned", fontsize=14.0, color=C["ink"], pad=8)
     _save(fig, "image_eval_summary")
@@ -412,8 +415,8 @@ def fig_entity_resolution():
     ax.set_xlim(0, 12); ax.set_ylim(0, 5.6); ax.axis("off")
 
     # Stage 1: per-case islands with duplicate mentions
-    ax.text(1.5, 5.25, "1. Per-case islands", fontsize=9.6, weight="bold",
-            color=C["blue"])
+    ax.text(1.5, 5.5, "1. Per-case islands", fontsize=9.6, weight="bold",
+            color=C["blue"], ha="center", va="top")
     box(ax, 0.2, 3.5, 2.6, 1.25,
         "Case A\n“Justice R. Banerjee”\n“cyanide”", C["blue_l"],
         ec=C["blue"], fs=8.0)
@@ -422,8 +425,9 @@ def fig_entity_resolution():
         ec=C["blue"], fs=8.0)
 
     # Stage 2: embedding blocking
-    ax.text(4.55, 5.25, "2. Embedding\n   blocking", fontsize=9.6,
-            weight="bold", color=C["violet"])
+    ax.text(4.625, 5.5, "2. Embedding\nblocking", fontsize=9.6,
+            weight="bold", color=C["violet"], ha="center", va="top",
+            linespacing=1.3)
     box(ax, 3.7, 2.35, 1.85, 1.5,
         "cosine KNN\nover node\nembeddings\n→ candidate\npairs", C["violet_l"],
         ec=C["violet"], fs=8.0)
@@ -431,23 +435,24 @@ def fig_entity_resolution():
     arrow(ax, (2.82, 2.0), (3.68, 2.9), color=C["blue"], rad=0.12)
 
     # Stage 3: verification
-    ax.text(6.75, 5.25, "3. Verification", fontsize=9.6, weight="bold",
-            color=C["amber"])
+    ax.text(7.075, 5.5, "3. Verification", fontsize=9.6, weight="bold",
+            color=C["amber"], ha="center", va="top")
     box(ax, 6.0, 2.1, 2.15, 2.0,
         "name similarity\n+ role match\n+ shared context\n\nconservative;\nreject weak\nor conflicting",
         C["amber_l"], ec=C["amber"], fs=8.0)
     arrow(ax, (5.57, 3.1), (5.98, 3.1), color=C["violet"])
 
     # Stage 4: non-destructive SAME_AS
-    ax.text(9.5, 5.25, "4. Non-destructive\n   link", fontsize=9.6,
-            weight="bold", color=C["teal"])
+    ax.text(10.15, 5.5, "4. Non-destructive\nlink", fontsize=9.6,
+            weight="bold", color=C["teal"], ha="center", va="top",
+            linespacing=1.3)
     box(ax, 8.7, 3.5, 2.9, 1.0, "Case A entity", C["blue_l"], ec=C["blue"], fs=8.2)
     box(ax, 8.7, 1.5, 2.9, 1.0, "Case B entity", C["blue_l"], ec=C["blue"], fs=8.2)
     arrow(ax, (10.15, 3.48), (10.15, 2.52), color=C["teal"], style="<|-|>", lw=2.0)
     ax.text(10.32, 3.0, "SAME_AS\nscore, basis", ha="left", va="center",
             fontsize=7.8, color=C["teal"], weight="bold")
-    arrow(ax, (8.18, 3.1), (8.68, 3.0), color=C["amber"], rad=0.05)
-    arrow(ax, (8.18, 3.0), (8.68, 2.0), color=C["amber"], rad=-0.12)
+    arrow(ax, (8.18, 3.35), (8.66, 3.92), color=C["amber"], rad=0.12)
+    arrow(ax, (8.18, 2.85), (8.66, 2.08), color=C["amber"], rad=-0.12)
 
     ax.text(6.0, 0.45,
             "Provenance is preserved: original per-case nodes are never merged "
@@ -460,8 +465,8 @@ def fig_entity_resolution():
 # 7. Example evidence chain
 # ============================================================================
 def fig_evidence_chain():
-    fig, ax = plt.subplots(figsize=(9.4, 5.0))
-    ax.set_xlim(0, 12); ax.set_ylim(0, 6.4); ax.axis("off")
+    fig, ax = plt.subplots(figsize=(9.4, 5.2))
+    ax.set_xlim(0, 12); ax.set_ylim(-0.45, 6.4); ax.axis("off")
 
     def node(x, y, label, fc, ec, w=2.0, h=0.78, fs=8.4):
         box(ax, x - w / 2, y - h / 2, w, h, label, fc, ec=ec, fs=fs,
@@ -485,29 +490,29 @@ def fig_evidence_chain():
             ax.text(lpos[0], lpos[1], label, ha="center", va="center",
                     fontsize=fs, color=color, weight="bold")
 
-    # case -> actors
+    # case -> actors (labels kept to the left, clear of the arrows)
     edge((2.45, 3.55), (3.05, 4.7), "INVOLVED_IN", C["blue"], rad=-0.1,
-         lpos=(2.35, 4.35))
+         lpos=(1.95, 4.55))
     edge((2.45, 3.05), (3.05, 1.95), "INVOLVED_IN", C["blue"], rad=0.1,
-         lpos=(2.35, 2.25))
+         lpos=(1.95, 2.05))
     # medical cause attaches to the victim
     edge((5.7, 5.0), (5.0, 5.0), "CAUSE_OF_DEATH_OF", C["red"],
-         lpos=(5.35, 5.6), fs=6.7)
+         lpos=(5.35, 5.62), fs=6.7)
     # case evidence -> cause of death
-    edge((2.5, 3.3), (5.7, 3.3), "HAS_EVIDENCE", C["amber"], lpos=(4.05, 3.5))
+    edge((2.5, 3.3), (5.7, 3.3), "HAS_EVIDENCE", C["amber"], lpos=(4.05, 3.52))
     edge((6.7, 3.69), (6.7, 4.61), "LED_TO_DEATH", C["red"],
-         lpos=(7.72, 4.15), fs=6.7)
+         lpos=(7.35, 4.15), fs=6.7)
     # timeline
     edge((1.75, 2.9), (5.75, 0.78), "HAPPENED_ON", C["teal"], rad=-0.33,
-         lpos=(2.55, 1.55))
-    edge((7.7, 0.75), (8.3, 0.75), "PRECEDES", C["teal"], lpos=(8.0, 1.0))
+         lpos=(4.35, 0.5))
+    edge((7.7, 0.75), (8.3, 0.75), "PRECEDES", C["teal"], lpos=(8.0, 1.08))
     # supporting evidence -> hypothesis (auditable edges)
     edge((7.7, 3.45), (9.35, 4.0), "SUPPORTS", C["green"], rad=-0.12,
-         lpos=(8.5, 3.95))
+         lpos=(8.55, 3.5))
     edge((7.75, 4.95), (9.4, 4.45), "SUPPORTS", C["green"], rad=0.1,
-         lpos=(8.6, 5.0))
+         lpos=(8.5, 5.05))
     edge((9.6, 1.15), (10.15, 3.7), "SUPPORTS", C["green"], rad=-0.22,
-         lpos=(10.35, 2.3))
+         lpos=(10.45, 2.4))
 
     # legend for edge semantics
     leg = [
@@ -516,8 +521,9 @@ def fig_evidence_chain():
         Line2D([0], [0], color=C["blue"], lw=2, label="case / actor edge"),
         Line2D([0], [0], color=C["teal"], lw=2, label="temporal edge"),
     ]
-    ax.legend(handles=leg, frameon=False, fontsize=8.0, ncol=2,
-              loc="lower center", bbox_to_anchor=(0.5, -0.02))
+    ax.legend(handles=leg, frameon=False, fontsize=8.2, ncol=4,
+              loc="lower center", bbox_to_anchor=(0.5, 0.0),
+              columnspacing=1.6, handlelength=1.6)
     ax.text(6, 6.15, "Evidence chain: actors, medical cause, timeline, and a "
             "hypothesis with auditable supporting edges", ha="center",
             fontsize=9.6, weight="bold", color=C["ink"])
