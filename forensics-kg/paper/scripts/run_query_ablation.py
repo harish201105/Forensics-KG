@@ -108,7 +108,9 @@ async def main():
     driver = GraphDatabase.driver(S.neo4j_uri, auth=(S.neo4j_username, S.neo4j_password))
     labels, rels = schema_elements(driver)
     oc = OpenAIClient(S)
-    nl = NLToCypherEngine(oc, ForensicsOntologySchema(S.ontology_path))
+    onto = ForensicsOntologySchema(S.ontology_path)
+    onto.load()                      # REQUIRED: __init__ does not load; app does this too
+    nl = NLToCypherEngine(oc, onto)
 
     agg = {c: {"exec": 0, "correct": 0, "halluc": 0} for c in ("ungrounded", "grounded")}
     rows_out = []

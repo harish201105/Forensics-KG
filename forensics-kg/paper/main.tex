@@ -187,8 +187,10 @@ a labelled $9{,}973$-pair benchmark, attains precision $0.96$ at its deliberatel
 conservative default---with a \emph{calibrated, type-aware tiered} extension that
 makes recall a tunable choice against a quantified human-review budget
 (\cref{tab:frontier}, \cref{sec:resolution,sec:res_eval}).
-\item A graph-centred reasoning layer---semantic retrieval, grounded
-NL-to-graph querying, evidence-chain hypothesis support, and a
+\item A graph-centred reasoning layer---semantic retrieval, schema-grounded
+NL-to-graph querying (an ablation shows grounding lifts answer correctness
+$0.04\!\to\!0.67$ and cuts schema hallucination $0.96\!\to\!0.04$ vs.\ naive
+LLM-to-Cypher, \cref{tab:queryabl}), evidence-chain hypothesis support, and a
 temporal-reconstruction module over recovered dated events
 (\node{TimeEvent} $\mathrm{F1}=0.88$) (\cref{sec:retrieval,sec:temporal}).
 \item Honest negative results presented as scientific evidence: several image
@@ -784,11 +786,12 @@ with the paper.
 
 \subsection{Controlled comparisons}
 \label{sec:baselines}
-We run two controlled ablations: ontology-guided extraction vs.\ a naive,
+We run three controlled ablations: ontology-guided extraction vs.\ a naive,
 same-LLM JSON baseline (\cref{sec:ablation}), which isolates the schema guidance
-of \cref{eq:valid,eq:adm}; and a CV-only vs.\ LLM-only vs.\ CV$+$LLM ablation of
-the bloodstain image pipeline (\cref{sec:results}). The remaining single-component
-comparisons (removing the graph; ungrounded querying, \cref{eq:patterns}; and
+of \cref{eq:valid,eq:adm}; a CV-only vs.\ LLM-only vs.\ CV$+$LLM ablation of
+the bloodstain image pipeline (\cref{sec:results}); and a grounded vs.\ ungrounded
+NL-to-Cypher ablation of the reasoning layer (\cref{tab:queryabl}). The remaining
+single-component comparisons (removing the graph entirely and
 disabling resolution, \cref{eq:accept}) are left to future work
 (\cref{sec:future}); we report measured ablations, not the full matrix, rather
 than approximate the rest with unmeasured numbers.
@@ -1239,8 +1242,41 @@ design choice with a \emph{measured} effect reported above is the label-free
 evaluation fix that corrected a false fingerprint score from $100\%$ to
 $\approx0\%$ (\cref{sec:setup}). A second ablation isolates the bloodstain image
 pipeline (CV-only vs.\ LLM-only vs.\ CV$+$LLM), reported in \cref{sec:results}.
-Remaining comparisons---removing the graph, ungrounding the query generator, and
-disabling resolution---are left to future work (\cref{sec:future}).
+A \emph{third} ablation evaluates the NL-to-Cypher reasoning layer---the component
+previously described but not measured---over $24$ factual questions on the populated
+graph (\cref{tab:queryabl}). It compares the deployed \emph{grounded} generator
+(the ontology schema in the prompt, over a graph normalised so every entity is
+anchored to its case via the ontology-defined relationship, plus a Cypher
+self-correction loop) against a \emph{naive} ungrounded LLM-to-Cypher baseline.
+Grounding is decisive: answer correctness rises from $0.04$ to $\mathbf{0.67}$ and
+schema hallucination---queries naming a node label or relationship type absent from
+the graph---falls from $0.96$ to $\mathbf{0.04}$, while both produce executable
+Cypher. The residual errors are concentrated in weapon questions, for which the
+ontology defines no direct Case--Weapon edge (weapons attach via \rel{used\_weapon}
+from a person/event); victim, accused, crime-type, location, and aggregate
+questions are answered reliably. This fills the reasoning-layer evaluation gap and
+quantifies why schema grounding and a case-anchored graph matter. The remaining
+comparisons---removing the graph entirely and disabling resolution---are left to
+future work (\cref{sec:future}).
+
+\begin{table}[t]
+  \centering
+  \caption{Reasoning-layer ablation: graph-grounded vs.\ naive NL-to-Cypher over
+  $24$ factual questions on the populated 28-case graph. Grounding (ontology schema
+  $+$ case-anchored graph $+$ self-correction) nearly eliminates schema
+  hallucination and lifts answer correctness $17\times$.}
+  \label{tab:queryabl}
+  \footnotesize
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{@{}P{4.6cm}ccc@{}}
+    \toprule
+    \textbf{NL\,$\to$\,Cypher method} & \textbf{Exec.} & \textbf{Correct} & \textbf{Halluc.} \\
+    \midrule
+    Naive (ungrounded, no schema)        & 1.00 & 0.04 & 0.96 \\
+    Grounded (schema $+$ self-correction) & 1.00 & \textbf{0.67} & \textbf{0.04} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \begin{figure}[t]
   \centering
@@ -1367,8 +1403,8 @@ the reported numbers should be read as indicative rather than definitive.
 \label{sec:future}
 
 Several directions follow directly. \emph{Powered, baselined evaluation} is the
-immediate priority: completing the controlled component matrix beyond the two
-ablations reported here (removing the graph, ungrounding the query generator, and
+immediate priority: completing the controlled component matrix beyond the three
+ablations reported here (removing the graph entirely and
 disabling resolution); and expanding real-case validation beyond 28 cases with
 formal significance testing. \emph{Expert
 annotation}: extend the two-annotator gold (\cref{sec:iaa}) with
