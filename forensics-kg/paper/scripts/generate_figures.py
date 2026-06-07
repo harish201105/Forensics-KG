@@ -130,13 +130,16 @@ def fig_architecture():
         "Strategy-based\nimage analysis\n\nCV features +\nLLM vision",
         C["teal_l"], ec=C["teal"], fs=8.4)
 
-    # --- Column 3: ontology + KG ---
-    box(ax, 4.95, 4.25, 1.95, 1.05,
+    # --- Column 3: ontology gate (centred between the extractors) + KG ---
+    box(ax, 4.85, 3.35, 2.20, 0.95,
         "Ontology validation\n38 node / 48 rel types",
         C["amber_l"], ec=C["amber"], fs=8.6)
-    box(ax, 4.95, 1.55, 1.95, 2.25,
-        "Property graph\n(Neo4j)\n\nentities, relations,\nper-node embeddings",
-        C["grayfill"], ec=C["slate"], fs=8.8, weight="bold")
+    box(ax, 4.85, 0.95, 2.20, 2.00, "", C["grayfill"], ec=C["slate"])
+    ax.text(5.95, 2.18, "Property graph\n(Neo4j)", ha="center", va="center",
+            fontsize=9.2, weight="bold", color=C["ink"], linespacing=1.25)
+    ax.text(5.95, 1.40, "entities, relations,\nper-node embeddings",
+            ha="center", va="center", fontsize=7.8, color=C["ink"],
+            linespacing=1.3)
 
     # --- Column 4: reasoning modules ---
     rlabels = [
@@ -153,21 +156,21 @@ def fig_architecture():
     # Arrows: evidence -> extractors
     arrow(ax, (2.12, 4.5), (2.53, 4.5), color=C["blue"])
     arrow(ax, (2.12, 2.0), (2.53, 2.0), color=C["teal"])
-    # extractors -> ontology validation
-    arrow(ax, (4.52, 4.55), (4.93, 4.85), color=C["blue"], rad=-0.12)
-    arrow(ax, (4.52, 1.95), (4.90, 4.5), color=C["teal"], rad=0.34)
+    # extractors -> ontology validation (both converge cleanly into the gate)
+    arrow(ax, (4.52, 4.40), (4.83, 4.05), color=C["blue"], rad=-0.10)
+    arrow(ax, (4.52, 2.25), (4.83, 3.55), color=C["teal"], rad=0.20)
     # ontology validation -> KG
-    arrow(ax, (5.92, 4.23), (5.92, 3.83), color=C["amber"])
+    arrow(ax, (5.95, 3.33), (5.95, 2.97), color=C["amber"])
     # KG -> reasoning (distribution bus)
-    arrow(ax, (6.92, 2.675), (7.28, 2.675), color=C["slate"])
+    arrow(ax, (7.07, 2.20), (7.28, 2.20), color=C["slate"])
     ax.plot([7.3, 7.3], [1.77, 4.98], color=C["slate"], lw=1.4, zorder=0)
     for yy in (4.98, 3.91, 2.84, 1.77):
         arrow(ax, (7.3, yy), (7.48, yy), color=C["slate"], lw=1.3, mut=9)
 
-    # Feedback loop: reasoning writes hypotheses back to KG (dashed)
-    arrow(ax, (7.48, 1.62), (6.92, 1.9), color=C["violet"], ls=(0, (4, 3)),
-          lw=1.3, rad=0.28)
-    ax.text(7.0, 1.08, "hypotheses written back\n& embedded", ha="center",
+    # Feedback loop: reasoning writes hypotheses back to KG (dashed, routed low)
+    arrow(ax, (7.52, 1.40), (7.07, 1.20), color=C["violet"], ls=(0, (4, 3)),
+          lw=1.3, rad=0.35)
+    ax.text(7.05, 0.70, "hypotheses written back\n& embedded", ha="center",
             va="center", fontsize=7.0, color=C["violet"], style="italic")
 
     _save(fig, "architecture")
@@ -376,16 +379,16 @@ def fig_image_eval_summary():
             "hard task": C["red"], "misaligned": C["red"]}
     colors = [cmap[a] for a in align]
 
-    fig, ax = plt.subplots(figsize=(10.6, 3.6))
+    fig, ax = plt.subplots(figsize=(10.6, 3.8))
     y = np.arange(len(names))[::-1]
     ax.barh(y, scores, color=colors, edgecolor="white", height=0.64, linewidth=0.6)
     for yi, s, m in zip(y, scores, metric):
         ax.text(s + 0.02, yi, f"{s:.2f} {m}", va="center",
-                ha="left", fontsize=14.0, color=C["ink"])
-    ax.set_yticks(y); ax.set_yticklabels(names, fontsize=15.5)
-    ax.set_xlim(0, 1.34); ax.set_xlabel("Evaluation score", fontsize=15.0)
+                ha="left", fontsize=15.5, color=C["ink"])
+    ax.set_yticks(y); ax.set_yticklabels(names, fontsize=17.0)
+    ax.set_xlim(0, 1.40); ax.set_xlabel("Evaluation score", fontsize=16.5)
     ax.set_xticks(np.arange(0, 1.01, 0.2))
-    ax.tick_params(axis="x", labelsize=14.0)
+    ax.tick_params(axis="x", labelsize=15.5)
     ax.set_axisbelow(True)
     ax.xaxis.grid(True, color=C["gridgray"], lw=0.6)
     for s in ("top", "right"):
@@ -399,11 +402,11 @@ def fig_image_eval_summary():
         mpatches.Patch(color=C["amber"], label="partial / proxy GT"),
         mpatches.Patch(color=C["red"],   label="misaligned / hard"),
     ]
-    ax.legend(handles=legend, frameon=False, fontsize=12.5,
+    ax.legend(handles=legend, frameon=False, fontsize=14.0,
               loc="lower right", bbox_to_anchor=(1.0, 0.05),
               handlelength=1.3, handletextpad=0.5, labelspacing=0.35)
     ax.set_title("Image analysis is reliable only where ground truth is "
-                 "task-aligned", fontsize=14.0, color=C["ink"], pad=8)
+                 "task-aligned", fontsize=15.5, color=C["ink"], pad=8)
     _save(fig, "image_eval_summary")
 
 
@@ -476,7 +479,7 @@ def fig_evidence_chain():
     # nodes (left-to-right reading order)
     node(1.5, 3.3, "Case", C["grayfill"], C["slate"])
     node(4.0, 5.0, "Person\n(victim)", C["blue_l"], C["blue"])
-    node(4.0, 1.7, "Person\n(accused)", C["blue_l"], C["blue"])
+    node(4.0, 2.0, "Person\n(accused)", C["blue_l"], C["blue"])
     node(6.7, 5.0, "CauseOfDeath", C["red_l"], C["red"])
     node(6.7, 3.3, "Evidence\n(toxicology)", C["amber_l"], C["amber"])
     node(6.7, 0.75, "TimeEvent\n(meal served)", C["teal_l"], C["teal"])
@@ -493,19 +496,19 @@ def fig_evidence_chain():
     # case -> actors (labels kept to the left, clear of the arrows)
     edge((2.45, 3.55), (3.05, 4.7), "INVOLVED_IN", C["blue"], rad=-0.1,
          lpos=(1.95, 4.55))
-    edge((2.45, 3.05), (3.05, 1.95), "INVOLVED_IN", C["blue"], rad=0.1,
-         lpos=(1.95, 2.05))
+    edge((2.45, 3.05), (3.05, 2.2), "INVOLVED_IN", C["blue"], rad=0.1,
+         lpos=(2.0, 2.62))
     # medical cause attaches to the victim
     edge((5.7, 5.0), (5.0, 5.0), "CAUSE_OF_DEATH_OF", C["red"],
          lpos=(5.35, 5.62), fs=6.7)
     # case evidence -> cause of death
     edge((2.5, 3.3), (5.7, 3.3), "HAS_EVIDENCE", C["amber"], lpos=(4.05, 3.52))
     edge((6.7, 3.69), (6.7, 4.61), "LED_TO_DEATH", C["red"],
-         lpos=(7.35, 4.15), fs=6.7)
-    # timeline
-    edge((1.75, 2.9), (5.75, 0.78), "HAPPENED_ON", C["teal"], rad=-0.33,
-         lpos=(4.35, 0.5))
-    edge((7.7, 0.75), (8.3, 0.75), "PRECEDES", C["teal"], lpos=(8.0, 1.08))
+         lpos=(7.45, 4.15), fs=6.7)
+    # timeline (HAPPENED_ON routed well below the accused box)
+    edge((1.75, 2.9), (5.72, 0.82), "HAPPENED_ON", C["teal"], rad=-0.45,
+         lpos=(3.55, 0.42))
+    edge((7.7, 0.75), (8.3, 0.75), "PRECEDES", C["teal"], lpos=(8.0, 1.48))
     # supporting evidence -> hypothesis (auditable edges)
     edge((7.7, 3.45), (9.35, 4.0), "SUPPORTS", C["green"], rad=-0.12,
          lpos=(8.55, 3.5))
