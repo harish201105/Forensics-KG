@@ -1,0 +1,438 @@
+{
+  "model": "gpt-4.1",
+  "n_trials": 3,
+  "full": {
+    "n_trials": 3,
+    "per_type": {
+      "CrimeType": {
+        "P": {
+          "mean": 0.89,
+          "sd": 0.017
+        },
+        "R": {
+          "mean": 0.938,
+          "sd": 0.011
+        },
+        "F1": {
+          "mean": 0.913,
+          "sd": 0.014
+        }
+      },
+      "Location": {
+        "P": {
+          "mean": 0.193,
+          "sd": 0.02
+        },
+        "R": {
+          "mean": 0.441,
+          "sd": 0.045
+        },
+        "F1": {
+          "mean": 0.268,
+          "sd": 0.027
+        }
+      },
+      "Person": {
+        "P": {
+          "mean": 0.82,
+          "sd": 0.003
+        },
+        "R": {
+          "mean": 0.954,
+          "sd": 0.0
+        },
+        "F1": {
+          "mean": 0.882,
+          "sd": 0.002
+        }
+      },
+      "TimeEvent": {
+        "P": {
+          "mean": 0.849,
+          "sd": 0.01
+        },
+        "R": {
+          "mean": 0.908,
+          "sd": 0.0
+        },
+        "F1": {
+          "mean": 0.877,
+          "sd": 0.005
+        }
+      },
+      "Weapon": {
+        "P": {
+          "mean": 0.793,
+          "sd": 0.027
+        },
+        "R": {
+          "mean": 0.655,
+          "sd": 0.0
+        },
+        "F1": {
+          "mean": 0.717,
+          "sd": 0.011
+        }
+      }
+    },
+    "micro": {
+      "P": {
+        "mean": 0.716,
+        "sd": 0.009
+      },
+      "R": {
+        "mean": 0.858,
+        "sd": 0.004
+      },
+      "F1": {
+        "mean": 0.781,
+        "sd": 0.007
+      }
+    },
+    "macro": {
+      "P": {
+        "mean": 0.709,
+        "sd": 0.009
+      },
+      "R": {
+        "mean": 0.779,
+        "sd": 0.009
+      },
+      "F1": {
+        "mean": 0.731,
+        "sd": 0.008
+      }
+    },
+    "per_case": {
+      "RC-aarushi": {
+        "mean": 0.769,
+        "sd": 0.0
+      },
+      "RC-abhaya": {
+        "mean": 0.799,
+        "sd": 0.03
+      },
+      "RC-bilkisbano": {
+        "mean": 0.65,
+        "sd": 0.024
+      },
+      "RC-bmwhitrun": {
+        "mean": 0.783,
+        "sd": 0.0
+      },
+      "RC-dabholkar": {
+        "mean": 0.941,
+        "sd": 0.0
+      },
+      "RC-gaurilankesh": {
+        "mean": 0.824,
+        "sd": 0.0
+      },
+      "RC-hathras": {
+        "mean": 0.741,
+        "sd": 0.03
+      },
+      "RC-jessicalal": {
+        "mean": 0.781,
+        "sd": 0.027
+      },
+      "RC-jigisha": {
+        "mean": 0.957,
+        "sd": 0.061
+      },
+      "RC-kathua": {
+        "mean": 0.796,
+        "sd": 0.026
+      },
+      "RC-koodathayi": {
+        "mean": 0.884,
+        "sd": 0.0
+      },
+      "RC-mattoo": {
+        "mean": 0.87,
+        "sd": 0.0
+      },
+      "RC-neerajgrover": {
+        "mean": 0.808,
+        "sd": 0.022
+      },
+      "RC-nirbhaya": {
+        "mean": 0.904,
+        "sd": 0.024
+      },
+      "RC-nithari": {
+        "mean": 0.739,
+        "sd": 0.016
+      },
+      "RC-nitishkatara": {
+        "mean": 0.619,
+        "sd": 0.009
+      },
+      "RC-phoolandevi": {
+        "mean": 0.838,
+        "sd": 0.027
+      },
+      "RC-pradyuman": {
+        "mean": 0.75,
+        "sd": 0.0
+      },
+      "RC-pramodmahajan": {
+        "mean": 0.799,
+        "sd": 0.035
+      },
+      "RC-rajagopal": {
+        "mean": 0.712,
+        "sd": 0.017
+      },
+      "RC-rgkar": {
+        "mean": 0.657,
+        "sd": 0.014
+      },
+      "RC-sheenabora": {
+        "mean": 0.832,
+        "sd": 0.035
+      },
+      "RC-shraddha": {
+        "mean": 0.634,
+        "sd": 0.092
+      },
+      "RC-soumya": {
+        "mean": 0.622,
+        "sd": 0.031
+      },
+      "RC-soumyavishwanathan": {
+        "mean": 0.812,
+        "sd": 0.041
+      },
+      "RC-staines": {
+        "mean": 0.696,
+        "sd": 0.0
+      },
+      "RC-swathi": {
+        "mean": 0.764,
+        "sd": 0.019
+      },
+      "RC-tandoor": {
+        "mean": 0.833,
+        "sd": 0.0
+      }
+    }
+  },
+  "baseline": {
+    "n_trials": 3,
+    "per_type": {
+      "CrimeType": {
+        "P": {
+          "mean": 0.902,
+          "sd": 0.006
+        },
+        "R": {
+          "mean": 0.643,
+          "sd": 0.044
+        },
+        "F1": {
+          "mean": 0.75,
+          "sd": 0.033
+        }
+      },
+      "Location": {
+        "P": {
+          "mean": 0.087,
+          "sd": 0.005
+        },
+        "R": {
+          "mean": 0.274,
+          "sd": 0.017
+        },
+        "F1": {
+          "mean": 0.132,
+          "sd": 0.008
+        }
+      },
+      "Person": {
+        "P": {
+          "mean": 0.828,
+          "sd": 0.023
+        },
+        "R": {
+          "mean": 0.932,
+          "sd": 0.017
+        },
+        "F1": {
+          "mean": 0.877,
+          "sd": 0.02
+        }
+      },
+      "TimeEvent": {
+        "P": {
+          "mean": 0.912,
+          "sd": 0.006
+        },
+        "R": {
+          "mean": 0.908,
+          "sd": 0.0
+        },
+        "F1": {
+          "mean": 0.91,
+          "sd": 0.003
+        }
+      },
+      "Weapon": {
+        "P": {
+          "mean": 0.0,
+          "sd": 0.0
+        },
+        "R": {
+          "mean": 0.0,
+          "sd": 0.0
+        },
+        "F1": {
+          "mean": 0.0,
+          "sd": 0.0
+        }
+      }
+    },
+    "micro": {
+      "P": {
+        "mean": 0.649,
+        "sd": 0.01
+      },
+      "R": {
+        "mean": 0.722,
+        "sd": 0.013
+      },
+      "F1": {
+        "mean": 0.683,
+        "sd": 0.011
+      }
+    },
+    "macro": {
+      "P": {
+        "mean": 0.546,
+        "sd": 0.006
+      },
+      "R": {
+        "mean": 0.551,
+        "sd": 0.011
+      },
+      "F1": {
+        "mean": 0.534,
+        "sd": 0.01
+      }
+    },
+    "per_case": {
+      "RC-aarushi": {
+        "mean": 0.684,
+        "sd": 0.012
+      },
+      "RC-abhaya": {
+        "mean": 0.706,
+        "sd": 0.0
+      },
+      "RC-bilkisbano": {
+        "mean": 0.576,
+        "sd": 0.023
+      },
+      "RC-bmwhitrun": {
+        "mean": 0.58,
+        "sd": 0.164
+      },
+      "RC-dabholkar": {
+        "mean": 0.754,
+        "sd": 0.034
+      },
+      "RC-gaurilankesh": {
+        "mean": 0.8,
+        "sd": 0.0
+      },
+      "RC-hathras": {
+        "mean": 0.717,
+        "sd": 0.015
+      },
+      "RC-jessicalal": {
+        "mean": 0.62,
+        "sd": 0.026
+      },
+      "RC-jigisha": {
+        "mean": 0.762,
+        "sd": 0.0
+      },
+      "RC-kathua": {
+        "mean": 0.692,
+        "sd": 0.0
+      },
+      "RC-koodathayi": {
+        "mean": 0.809,
+        "sd": 0.0
+      },
+      "RC-mattoo": {
+        "mean": 0.647,
+        "sd": 0.027
+      },
+      "RC-neerajgrover": {
+        "mean": 0.721,
+        "sd": 0.021
+      },
+      "RC-nirbhaya": {
+        "mean": 0.897,
+        "sd": 0.0
+      },
+      "RC-nithari": {
+        "mean": 0.581,
+        "sd": 0.013
+      },
+      "RC-nitishkatara": {
+        "mean": 0.614,
+        "sd": 0.02
+      },
+      "RC-phoolandevi": {
+        "mean": 0.703,
+        "sd": 0.093
+      },
+      "RC-pradyuman": {
+        "mean": 0.667,
+        "sd": 0.0
+      },
+      "RC-pramodmahajan": {
+        "mean": 0.75,
+        "sd": 0.0
+      },
+      "RC-rajagopal": {
+        "mean": 0.667,
+        "sd": 0.0
+      },
+      "RC-rgkar": {
+        "mean": 0.569,
+        "sd": 0.088
+      },
+      "RC-sheenabora": {
+        "mean": 0.733,
+        "sd": 0.025
+      },
+      "RC-shraddha": {
+        "mean": 0.614,
+        "sd": 0.037
+      },
+      "RC-soumya": {
+        "mean": 0.556,
+        "sd": 0.0
+      },
+      "RC-soumyavishwanathan": {
+        "mean": 0.636,
+        "sd": 0.0
+      },
+      "RC-staines": {
+        "mean": 0.545,
+        "sd": 0.0
+      },
+      "RC-swathi": {
+        "mean": 0.632,
+        "sd": 0.0
+      },
+      "RC-tandoor": {
+        "mean": 0.783,
+        "sd": 0.0
+      }
+    }
+  }
+}

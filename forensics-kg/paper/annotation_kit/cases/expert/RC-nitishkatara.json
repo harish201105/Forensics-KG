@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-nitishkatara",
+  "title": "Nitish Katara murder case",
+  "source": "https://en.wikipedia.org/wiki/Nitish_Katara_murder_case",
+  "narrative": "FIR — 17 February 2002, near Khurja in the Ghaziabad region, Delhi NCR. Nitish Katara, a 23-year-old business executive, was abducted from a wedding, battered to death with a hammer, and his body doused in diesel and set on fire; it was found beside the highway three days later. The motive was an honour killing over his relationship with Bharti Yadav. The accused were Vikas Yadav (Bharti's brother, son of politician D. P. Yadav), Vishal Yadav (his cousin) and the contract killer Sukhdev Pehalwan. Inspector Ashok Bhadoria arrested the accused and forensic pathologist T. D. Dogra conducted DNA profiling at AIIMS New Delhi. Witness Ajay Kumar saw the victim in the vehicle. Vikas and Vishal Yadav were sentenced to 25 years' imprisonment and Sukhdev Pehalwan to 20 years.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "case_id": "RC-staines",
+  "title": "Murder of Graham Staines",
+  "source": "https://en.wikipedia.org/wiki/Graham_Staines",
+  "narrative": "FIR — Murder of Graham Staines, Manoharpur, Keonjhar district, Odisha. On the night of 22-23 January 1999, the Australian Christian missionary Graham Staines and his two sons, Philip (aged 9) and Timothy (aged 6), were burnt to death while sleeping in their station wagon. A mob led by Dara Singh, an activist of the Bajrang Dal, surrounded the vehicle, poured petrol on it and set it ablaze, preventing the family from escaping. The motive was opposition to the missionaries' religious conversions of tribals. Dara Singh and his accomplice Mahendra Hembram were convicted of murder; the Supreme Court upheld their life sentences on 21 January 2011.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Graham Staines",
+        "victim"
+      ],
+      [
+        "Philip",
+        "victim"
+      ],
+      [
+        "Timothy",
+        "victim"
+      ],
+      [
+        "Dara Singh",
+        "accused"
+      ],
+      [
+        "Mahendra Hembram",
+        "accused"
+      ]
+    ],
+    "locations": [
+      "Manoharpur, Keonjhar district, Odisha"
+    ],
+    "weapons": [
+      "petrol",
+      "fire"
+    ],
+    "crime_types": [
+      "murder",
+      "arson"
+    ],
+    "time_events": [
+      "22-23 January 1999",
+      "21 January 2011"
+    ]
+  }
+}

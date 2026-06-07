@@ -1,0 +1,24 @@
+{
+  "samples": 61,
+  "CV_only": {
+    "n": 61,
+    "detected": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "LLM_only": {
+    "n": 61,
+    "detected": 61,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "CV_LLM_hybrid": {
+    "n": 61,
+    "detected": 61,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  }
+}

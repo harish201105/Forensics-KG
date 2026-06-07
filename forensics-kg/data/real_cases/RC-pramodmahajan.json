@@ -1,0 +1,17 @@
+{
+  "case_id": "RC-pramodmahajan",
+  "title": "Murder of Pramod Mahajan",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Pramod_Mahajan",
+  "narrative": "FIR — Murder of Pramod Mahajan, Mumbai, Maharashtra. On the morning of 22 April 2006, the senior BJP leader Pramod Mahajan was shot by his estranged younger brother Pravin Mahajan at his apartment in Mumbai following a family dispute. Pravin fired four bullets from his licensed .32 Browning pistol. Pramod Mahajan succumbed to his injuries on 3 May 2006. Pravin Mahajan was convicted of murder and sentenced to life imprisonment in 2007.",
+  "gold": {
+    "persons": [
+      ["Pramod Mahajan", "victim"],
+      ["Pravin Mahajan", "accused"]
+    ],
+    "locations": ["Mumbai, Maharashtra"],
+    "weapons": ["pistol"],
+    "crime_types": ["murder"],
+    "time_events": ["22 April 2006", "3 May 2006", "2007"]
+  }
+}

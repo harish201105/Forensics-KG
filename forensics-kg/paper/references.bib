@@ -1,0 +1,325 @@
+% =====================================================================
+% references.bib  --  Multimodal Forensic Knowledge Graph paper
+%
+% All references have been verified (titles, authors, venues; forensic-guideline
+% sources [SWGSTAIN, AFTE] confirmed via their issuing bodies). Two remaining
+% "% TODO" notes flag only exact page ranges to double-check at camera-ready;
+% they are placed BETWEEN entries because BibTeX does not treat '%' as a comment
+% inside an entry.
+% =====================================================================
+
+% ---------------------------------------------------------------------
+% Foundational LLM / NLP
+% ---------------------------------------------------------------------
+@article{vaswani2017attention,
+  title   = {Attention is All You Need},
+  author  = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume  = {30},
+  year    = {2017}
+}
+
+@inproceedings{devlin2019bert,
+  title     = {{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding},
+  author    = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  booktitle = {Proceedings of NAACL-HLT},
+  pages     = {4171--4186},
+  year      = {2019}
+}
+
+@article{brown2020gpt3,
+  title   = {Language Models are Few-Shot Learners},
+  author  = {Brown, Tom B. and others},
+  journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume  = {33},
+  pages   = {1877--1901},
+  year    = {2020}
+}
+
+@article{openai2023gpt4,
+  title   = {{GPT-4} Technical Report},
+  author  = {{OpenAI}},
+  journal = {arXiv preprint arXiv:2303.08774},
+  year    = {2023}
+}
+
+@misc{openai2024gpt4o,
+  title        = {{GPT-4o} System Card},
+  author       = {{OpenAI}},
+  year         = {2024},
+  howpublished = {\url{https://openai.com/index/gpt-4o-system-card/}}
+}
+
+@article{wei2022cot,
+  title   = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},
+  author  = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc and Zhou, Denny},
+  journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume  = {35},
+  year    = {2022}
+}
+
+@inproceedings{radford2021clip,
+  title     = {Learning Transferable Visual Models from Natural Language Supervision},
+  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and Krueger, Gretchen and Sutskever, Ilya},
+  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},
+  year      = {2021}
+}
+
+% ---------------------------------------------------------------------
+% Retrieval-augmented generation / structured extraction
+% ---------------------------------------------------------------------
+@article{lewis2020rag,
+  title   = {Retrieval-Augmented Generation for Knowledge-Intensive {NLP} Tasks},
+  author  = {Lewis, Patrick and Perez, Ethan and Piktus, Aleksandra and Petroni, Fabio and Karpukhin, Vladimir and Goyal, Naman and K{\"u}ttler, Heinrich and Lewis, Mike and Yih, Wen-tau and Rockt{\"a}schel, Tim and Riedel, Sebastian and Kiela, Douwe},
+  journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume  = {33},
+  pages   = {9459--9474},
+  year    = {2020}
+}
+
+@article{edge2024graphrag,
+  title   = {From Local to Global: A Graph {RAG} Approach to Query-Focused Summarization},
+  author  = {Edge, Darren and Trinh, Ha and Cheng, Newman and Bradley, Joshua and Chao, Alex and Mody, Apurva and Truitt, Steven and Larson, Jonathan},
+  journal = {arXiv preprint arXiv:2404.16130},
+  year    = {2024}
+}
+
+@inproceedings{banko2007openie,
+  title     = {Open Information Extraction from the Web},
+  author    = {Banko, Michele and Cafarella, Michael J. and Soderland, Stephen and Broadhead, Matthew and Etzioni, Oren},
+  booktitle = {Proceedings of the International Joint Conference on Artificial Intelligence (IJCAI)},
+  year      = {2007}
+}
+
+% ---------------------------------------------------------------------
+% Knowledge graphs / graph databases
+% ---------------------------------------------------------------------
+@article{hogan2021kg,
+  title   = {Knowledge Graphs},
+  author  = {Hogan, Aidan and Blomqvist, Eva and Cochez, Michael and d'Amato, Claudia and de Melo, Gerard and Gutierrez, Claudio and Kirrane, Sabrina and Labra Gayo, Jos{\'e} Emilio and Navigli, Roberto and Neumaier, Sebastian and Ngonga Ngomo, Axel-Cyrille and Polleres, Axel and Rashid, Sabbir M. and Rula, Anisa and Schmelzeisen, Lukas and Sequeda, Juan and Staab, Steffen and Zimmermann, Antoine},
+  journal = {ACM Computing Surveys},
+  volume  = {54},
+  number  = {4},
+  pages   = {1--37},
+  year    = {2021}
+}
+
+@article{ji2021kgsurvey,
+  title   = {A Survey on Knowledge Graphs: Representation, Acquisition, and Applications},
+  author  = {Ji, Shaoxiong and Pan, Shirui and Cambria, Erik and Marttinen, Pekka and Yu, Philip S.},
+  journal = {IEEE Transactions on Neural Networks and Learning Systems},
+  volume  = {33},
+  number  = {2},
+  pages   = {494--514},
+  year    = {2022}
+}
+
+@article{pan2024unifying,
+  title   = {Unifying Large Language Models and Knowledge Graphs: A Roadmap},
+  author  = {Pan, Shirui and Luo, Linhao and Wang, Yufei and Chen, Chen and Wang, Jiapu and Wu, Xindong},
+  journal = {IEEE Transactions on Knowledge and Data Engineering},
+  year    = {2024}
+}
+
+@misc{neo4j,
+  title        = {{Neo4j} Graph Database},
+  author       = {{Neo4j, Inc.}},
+  year         = {2024},
+  howpublished = {\url{https://neo4j.com/}},
+  note         = {Accessed: June 2026}
+}
+
+@article{angles2017foundations,
+  title   = {Foundations of Modern Query Languages for Graph Databases},
+  author  = {Angles, Renzo and Arenas, Marcelo and Barcel{\'o}, Pablo and Hogan, Aidan and Reutter, Juan and Vrgo{\v{c}}, Domagoj},
+  journal = {ACM Computing Surveys},
+  volume  = {50},
+  number  = {5},
+  pages   = {1--40},
+  year    = {2017}
+}
+
+% NOTE: the SpCQL text-to-Cypher reference previously here could not be
+% independently verified, so it was removed. If you want a dedicated NL-to-Cypher
+% citation, add one you can confirm on DBLP/ACM and cite it where GraphRAG /
+% Pan et al. are currently cited in Related Work.
+
+% ---------------------------------------------------------------------
+% Entity resolution / record linkage
+% ---------------------------------------------------------------------
+@article{fellegi1969record,
+  title   = {A Theory for Record Linkage},
+  author  = {Fellegi, Ivan P. and Sunter, Alan B.},
+  journal = {Journal of the American Statistical Association},
+  volume  = {64},
+  number  = {328},
+  pages   = {1183--1210},
+  year    = {1969}
+}
+
+@article{christophides2020er,
+  title   = {An Overview of End-to-End Entity Resolution for Big Data},
+  author  = {Christophides, Vassilis and Efthymiou, Vasilis and Palpanas, Themis and Papadakis, George and Stefanidis, Kostas},
+  journal = {ACM Computing Surveys},
+  volume  = {53},
+  number  = {6},
+  pages   = {1--42},
+  year    = {2020}
+}
+
+@article{getoor2012er,
+  title   = {Entity Resolution: Theory, Practice and Open Challenges},
+  author  = {Getoor, Lise and Machanavajjhala, Ashwin},
+  journal = {Proceedings of the VLDB Endowment},
+  volume  = {5},
+  number  = {12},
+  pages   = {2018--2019},
+  year    = {2012}
+}
+
+% ---------------------------------------------------------------------
+% Forensic science foundations / reliability
+% ---------------------------------------------------------------------
+@techreport{nas2009forensic,
+  title       = {Strengthening Forensic Science in the United States: A Path Forward},
+  author      = {{National Research Council}},
+  institution = {National Academies Press},
+  year        = {2009}
+}
+
+@techreport{pcast2016forensic,
+  title       = {Forensic Science in Criminal Courts: Ensuring Scientific Validity of Feature-Comparison Methods},
+  author      = {{President's Council of Advisors on Science and Technology (PCAST)}},
+  institution = {Executive Office of the President},
+  year        = {2016}
+}
+
+@article{saks2005paradigm,
+  title   = {The Coming Paradigm Shift in Forensic Identification Science},
+  author  = {Saks, Michael J. and Koehler, Jonathan J.},
+  journal = {Science},
+  volume  = {309},
+  number  = {5736},
+  pages   = {892--895},
+  year    = {2005}
+}
+
+@article{dror2006bias,
+  title   = {Contextual Information Renders Experts Vulnerable to Making Erroneous Identifications},
+  author  = {Dror, Itiel E. and Charlton, David and P{\'e}ron, Ailsa E.},
+  journal = {Forensic Science International},
+  volume  = {156},
+  number  = {1},
+  pages   = {74--78},
+  year    = {2006}
+}
+
+% TODO: verify page range (Findings of EMNLP 2020).
+@inproceedings{chalkidis2020legalbert,
+  title     = {{LEGAL-BERT}: The Muppets Straight Out of Law School},
+  author    = {Chalkidis, Ilias and Fergadiotis, Manos and Malakasiotis, Prodromos and Aletras, Nikolaos and Androutsopoulos, Ion},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2020},
+  pages     = {2898--2904},
+  year      = {2020}
+}
+
+@article{swgstain,
+  title   = {Scientific Working Group on Bloodstain Pattern Analysis: Recommended Terminology},
+  author  = {{Scientific Working Group on Bloodstain Pattern Analysis (SWGSTAIN)}},
+  journal = {Forensic Science Communications (FBI)},
+  volume  = {11},
+  number  = {2},
+  year    = {2009},
+  month   = {Apr.},
+  note    = {[Online]. Available: \url{https://archives.fbi.gov/archives/about-us/lab/forensic-science-communications/fsc/april2009/standards/2009_04_standards01.htm}}
+}
+
+@article{afte,
+  title   = {Theory of Identification as it Relates to Toolmarks: Revised},
+  author  = {{Association of Firearm and Tool Mark Examiners (AFTE)}},
+  journal = {AFTE Journal},
+  volume  = {43},
+  number  = {4},
+  pages   = {287},
+  year    = {2011},
+  note    = {\url{https://afte.org/about-us/what-is-afte/afte-theory-of-identification}}
+}
+
+% ---------------------------------------------------------------------
+% Datasets used in evaluation
+% ---------------------------------------------------------------------
+@article{attinger2018bloodstain,
+  title   = {A Data Set of Bloodstain Patterns for Teaching and Research in Bloodstain Pattern Analysis: Impact Beating Spatters},
+  author  = {Attinger, Daniel and Liu, Yu and Bybee, Taylor and De Brabanter, Kris},
+  journal = {Data in Brief},
+  volume  = {18},
+  pages   = {648--654},
+  year    = {2018},
+  doi     = {10.1016/j.dib.2018.02.070}
+}
+
+@article{socofing,
+  title   = {Sokoto Coventry Fingerprint Dataset},
+  author  = {Shehu, Yahaya Isah and Ruiz-Garcia, Ariel and Palade, Vasile and James, Anne},
+  journal = {arXiv preprint arXiv:1807.10609},
+  year    = {2018},
+  note    = {Dataset available on Kaggle: \url{https://www.kaggle.com/datasets/ruizgara/socofing}}
+}
+
+% TODO: verify exact page range before camera-ready
+@article{cedar2004signature,
+  title   = {Offline Signature Verification and Identification Using Distance Statistics},
+  author  = {Kalera, Meenakshi K. and Srihari, Sargur N. and Xu, Aihua},
+  journal = {International Journal of Pattern Recognition and Artificial Intelligence},
+  volume  = {18},
+  number  = {7},
+  pages   = {1339--1360},
+  year    = {2004}
+}
+
+@article{azhwound,
+  title   = {Multi-modal Wound Classification Using Wound Image and Location by Deep Neural Network},
+  author  = {Anisuzzaman, D. M. and Patel, Yash and Rostami, Behrouz and Niezgoda, Jeffrey and Gopalakrishnan, Sandeep and Yu, Zeyun},
+  journal = {Scientific Reports},
+  volume  = {12},
+  number  = {1},
+  pages   = {20057},
+  year    = {2022}
+}
+
+@misc{indiancourt,
+  title        = {Indian Court Judgements and Summaries Dataset},
+  author       = {{rishiai}},
+  howpublished = {Hugging Face},
+  year         = {2024},
+  note         = {[Online]. Available: \url{https://huggingface.co/datasets/rishiai/indian-court-judgements-and-its-summaries}}
+}
+
+% ---------------------------------------------------------------------
+% Computer vision substrate
+% ---------------------------------------------------------------------
+@article{bradski2000opencv,
+  title   = {The {OpenCV} Library},
+  author  = {Bradski, Gary},
+  journal = {Dr. Dobb's Journal of Software Tools},
+  year    = {2000}
+}
+
+% ---------------------------------------------------------------------
+% Legal / forensic AI applications (context)
+% ---------------------------------------------------------------------
+@inproceedings{legalkg2023,
+  title     = {How Does {NLP} Benefit Legal System: A Summary of Legal Artificial Intelligence},
+  author    = {Zhong, Haoxi and Xiao, Chaojun and Tu, Cunchao and Zhang, Tianyang and Liu, Zhiyuan and Sun, Maosong},
+  booktitle = {Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL)},
+  pages     = {5218--5230},
+  year      = {2020}
+}
+
+@inproceedings{ner2003conll,
+  title     = {Introduction to the {CoNLL-2003} Shared Task: Language-Independent Named Entity Recognition},
+  author    = {Tjong Kim Sang, Erik F. and De Meulder, Fien},
+  booktitle = {Proceedings of CoNLL},
+  pages     = {142--147},
+  year      = {2003}
+}

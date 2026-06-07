@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-swathi",
+  "title": "Swathi murder case",
+  "source": "https://en.wikipedia.org/wiki/Swathi_murder_case",
+  "narrative": "FIR — Swathi murder case, Nungambakkam railway station, Chennai, Tamil Nadu. On 24 June 2016, S. Swathi, a 24-year-old Infosys software engineer, was stabbed to death with a sickle at the Nungambakkam railway station while waiting for a train to her office. The attacker, P. Ramkumar, who had stalked her, fled the scene. Ramkumar was arrested at Tirunelveli on 1 July 2016. He died in custody at Puzhal central prison on 18 September 2016 in circumstances the police described as suicide by electrocution.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

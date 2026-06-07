@@ -1,0 +1,41 @@
+{
+  "case_id": "RC-jigisha",
+  "title": "Murder of Jigisha Ghosh",
+  "source": "https://en.wikipedia.org/wiki/Murder_of_Jigisha_Ghosh",
+  "narrative": "FIR — Murder of Jigisha Ghosh, Vasant Vihar, South Delhi. On 18 March 2009, Jigisha Ghosh, a 28-year-old operations manager, was abducted and killed after her office cab dropped her near her home in Vasant Vihar in the early hours. Three men, Ravi Kapoor, Amit Shukla and Baljeet Malik, robbed and murdered her. The trial court convicted the three on 14 July 2016, sentencing two to death and one to life; the Delhi High Court commuted the death sentences to life imprisonment in January 2018.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [
+      [
+        "Jigisha Ghosh",
+        "victim"
+      ],
+      [
+        "Ravi Kapoor",
+        "accused"
+      ],
+      [
+        "Amit Shukla",
+        "accused"
+      ],
+      [
+        "Baljeet Malik",
+        "accused"
+      ]
+    ],
+    "locations": [
+      "Vasant Vihar, South Delhi"
+    ],
+    "weapons": [],
+    "crime_types": [
+      "kidnapping",
+      "robbery",
+      "murder"
+    ],
+    "time_events": [
+      "18 March 2009",
+      "14 July 2016",
+      "January 2018"
+    ]
+  }
+}

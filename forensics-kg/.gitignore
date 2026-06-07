@@ -100,3 +100,9 @@ logs/
 
 # TS incremental build cache
 *.tsbuildinfo
+
+# Paper: only the dated, version-stamped PDF (Evidence_Centric_Forensic_KG_vNN_YYYY-MM-DD.pdf)
+# is the tracked, shareable artifact. main.pdf is the transient tectonic build output;
+# the generic-named copy is non-canonical.
+paper/main.pdf
+paper/Evidence_Centric_Forensic_KG.pdf

@@ -1,0 +1,17 @@
+{
+  "case_id": "RC-phoolandevi",
+  "title": "Assassination of Phoolan Devi",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Phoolan_Devi",
+  "narrative": "FIR — Assassination of Phoolan Devi, Ashoka Road, New Delhi. On 25 July 2001, Phoolan Devi, a former bandit and sitting Samajwadi Party Member of Parliament from Mirzapur, was shot dead by three assailants outside her residence at 44 Ashoka Road. She was shot multiple times and her bodyguard was injured. Sher Singh Rana later surrendered and claimed the killing was revenge for the 1981 Behmai massacre. After a long trial, Sher Singh Rana was convicted and sentenced to life imprisonment in August 2014.",
+  "gold": {
+    "persons": [
+      ["Phoolan Devi", "victim"],
+      ["Sher Singh Rana", "accused"]
+    ],
+    "locations": ["Ashoka Road, New Delhi"],
+    "weapons": ["firearm"],
+    "crime_types": ["murder"],
+    "time_events": ["25 July 2001", "2014"]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "case_id": "RC-soumyavishwanathan",
+  "title": "Murder of Soumya Vishwanathan",
+  "crime_type": "murder",
+  "source": "https://en.wikipedia.org/wiki/Murder_of_Soumya_Vishwanathan",
+  "narrative": "FIR — Murder of Soumya Vishwanathan, Nelson Mandela Marg, Vasant Kunj, New Delhi. On 30 September 2008, Soumya Vishwanathan, a television journalist, was shot dead in her car while returning home from work in the early hours. The murder was committed during an attempted robbery. The same gang, Ravi Kapoor, Amit Shukla, Baljeet Malik and Ajay Kumar, was later linked to the killing through the weapon recovered in the Jigisha Ghosh case. A Delhi court convicted them under murder and MCOCA provisions on 18 October 2023.",
+  "gold": {
+    "persons": [
+      ["Soumya Vishwanathan", "victim"],
+      ["Ravi Kapoor", "accused"],
+      ["Amit Shukla", "accused"],
+      ["Baljeet Malik", "accused"],
+      ["Ajay Kumar", "accused"],
+      ["Ajay Sethi", "accused"]
+    ],
+    "locations": ["Vasant Kunj, New Delhi"],
+    "weapons": ["firearm"],
+    "crime_types": ["murder", "robbery"],
+    "time_events": ["30 September 2008", "2023"]
+  }
+}

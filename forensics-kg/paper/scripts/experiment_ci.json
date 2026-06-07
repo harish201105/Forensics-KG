@@ -1,0 +1,114 @@
+{
+  "n_runs": 3,
+  "n_cases": 28,
+  "bootstrap_B": 2000,
+  "micro_F1": 0.78,
+  "micro_F1_CI95": [
+    0.742,
+    0.819
+  ],
+  "macro_F1": 0.729,
+  "macro_F1_CI95": [
+    0.684,
+    0.775
+  ],
+  "principal_location_recall": 0.393,
+  "principal_location_hits": "11/28",
+  "date_coverage_mean": 0.946,
+  "date_coverage_by_case": {
+    "RC-aarushi": 1.0,
+    "RC-abhaya": 1.0,
+    "RC-bilkisbano": 1.0,
+    "RC-bmwhitrun": 1.0,
+    "RC-dabholkar": 1.0,
+    "RC-gaurilankesh": 1.0,
+    "RC-hathras": 1.0,
+    "RC-jessicalal": 1.0,
+    "RC-jigisha": 1.0,
+    "RC-kathua": 1.0,
+    "RC-koodathayi": 1.0,
+    "RC-mattoo": 1.0,
+    "RC-neerajgrover": 1.0,
+    "RC-nirbhaya": 0.67,
+    "RC-nithari": 1.0,
+    "RC-nitishkatara": 0.33,
+    "RC-phoolandevi": 1.0,
+    "RC-pradyuman": 1.0,
+    "RC-pramodmahajan": 1.0,
+    "RC-rajagopal": 1.0,
+    "RC-rgkar": 1.0,
+    "RC-sheenabora": 0.5,
+    "RC-shraddha": 1.0,
+    "RC-soumya": 1.0,
+    "RC-soumyavishwanathan": 1.0,
+    "RC-staines": 1.0,
+    "RC-swathi": 1.0,
+    "RC-tandoor": 1.0
+  },
+  "examples": [
+    {
+      "case": "RC-abhaya",
+      "type": "Location FP",
+      "gold": [
+        "Kottayam, Kerala"
+      ],
+      "spurious": [
+        "St Pius X Convent",
+        "water well",
+        "kitchen"
+      ]
+    },
+    {
+      "case": "RC-bilkisbano",
+      "type": "Location FP",
+      "gold": [
+        "Chhaparvad, Dahod, Gujarat"
+      ],
+      "spurious": [
+        "Randhikpur, Dahod district, Gujarat",
+        "Maharashtra"
+      ]
+    },
+    {
+      "case": "RC-bmwhitrun",
+      "type": "Location FP",
+      "gold": [
+        "Lodhi Road, New Delhi"
+      ],
+      "spurious": [
+        "Golf Links"
+      ]
+    },
+    {
+      "case": "RC-dabholkar",
+      "type": "Location FP",
+      "gold": [
+        "Pune, Maharashtra"
+      ],
+      "spurious": [
+        "Vitthal Ramji Shinde (Omkareshwar) bridge"
+      ]
+    },
+    {
+      "case": "RC-hathras",
+      "type": "Location FP",
+      "gold": [
+        "Hathras, Uttar Pradesh"
+      ],
+      "spurious": [
+        "field",
+        "Delhi hospital"
+      ]
+    },
+    {
+      "case": "RC-jessicalal",
+      "type": "Location FP",
+      "gold": [
+        "Mehrauli, New Delhi"
+      ],
+      "spurious": [
+        "Qutab Colonnade restaurant"
+      ]
+    }
+  ]
+}

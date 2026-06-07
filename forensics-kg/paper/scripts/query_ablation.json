@@ -1,0 +1,363 @@
+{
+  "n_questions": 24,
+  "graph_labels": 36,
+  "graph_rel_types": 35,
+  "ungrounded": {
+    "exec": 1.0,
+    "correct": 0.04,
+    "halluc": 0.96,
+    "counts": {
+      "exec": 24,
+      "correct": 1,
+      "halluc": 23
+    }
+  },
+  "grounded": {
+    "exec": 1.0,
+    "correct": 0.67,
+    "halluc": 0.04,
+    "counts": {
+      "exec": 24,
+      "correct": 16,
+      "halluc": 1
+    }
+  },
+  "per_question": [
+    {
+      "q": "Who was the victim in the Tandoor murder case?",
+      "expected": "naina sahni",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "What weapon was used in the Tandoor murder case?",
+      "expected": "revolver",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Which substance was used to kill the victims in the Koodathayi cyanide case?",
+      "expected": "cyanide",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Who is the main accused in the murder of Shraddha Walkar?",
+      "expected": "poonawalla",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Who was the victim in the Gauri Lankesh case?",
+      "expected": "gauri lankesh",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "What crime type is recorded for the Bilkis Bano case?",
+      "expected": "rape",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Who was the victim in the Soumya murder case?",
+      "expected": "soumya",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Which weapon is associated with the Murder of Jessica Lal?",
+      "expected": "firearm",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      }
+    },
+    {
+      "q": "Who was the victim in the Nirbhaya 2012 Delhi gang rape case?",
+      "expected": "jyoti",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": false
+      }
+    },
+    {
+      "q": "What crime type is recorded for the Murder of Narendra Dabholkar?",
+      "expected": "murder",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Name an accused person in the Aarushi Talwar murder case.",
+      "expected": "talwar",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Who is the accused in the murder of Pramod Mahajan?",
+      "expected": "pravin",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Which person was the victim in the Sheena Bora case?",
+      "expected": "sheena",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "What weapon was used in the assassination of Phoolan Devi?",
+      "expected": "firearm",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Who was the victim in the Priyadarshini Mattoo case?",
+      "expected": "mattoo",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "How many Case nodes are in the knowledge graph?",
+      "expected": null,
+      "ungrounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "List the crime types recorded across all cases.",
+      "expected": "murder",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Which cases have a crime type of murder?",
+      "expected": "murder",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Find persons whose role is victim across the cases.",
+      "expected": "victim",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Which cases involve rape as a crime type?",
+      "expected": "rape",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "List people involved in the Kathua case.",
+      "expected": null,
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "What is the crime type of the R. G. Kar case?",
+      "expected": "rape",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Who was the victim in the Jigisha Ghosh murder case?",
+      "expected": "jigisha",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": true,
+        "halluc": false
+      }
+    },
+    {
+      "q": "Which weapon type appears in the Pramod Mahajan case?",
+      "expected": "firearm",
+      "ungrounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": true
+      },
+      "grounded": {
+        "exec": true,
+        "correct": false,
+        "halluc": false
+      }
+    }
+  ]
+}

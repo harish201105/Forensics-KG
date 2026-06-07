@@ -1,0 +1,385 @@
+{
+  "n_cases": 28,
+  "strict_principal_recall": 0.464,
+  "containment_principal_recall": 0.857,
+  "strict_hits": "13/28",
+  "place_hits": "24/28",
+  "flipped_miss_to_hit": [
+    {
+      "case": "RC-aarushi",
+      "gold": "Jalvayu Vihar, Noida",
+      "extracted": [
+        "L-32 Jalvayu Vihar, Sector 25, Noida"
+      ]
+    },
+    {
+      "case": "RC-bmwhitrun",
+      "gold": "Lodhi Road, New Delhi",
+      "extracted": [
+        "Lodhi Road",
+        "Golf Links"
+      ]
+    },
+    {
+      "case": "RC-jigisha",
+      "gold": "Vasant Vihar, New Delhi",
+      "extracted": [
+        "Vasant Vihar",
+        "South Delhi"
+      ]
+    },
+    {
+      "case": "RC-koodathayi",
+      "gold": "Koodathayi, Kozhikode, Kerala",
+      "extracted": [
+        "Koodathayi",
+        "Kozhikode district"
+      ]
+    },
+    {
+      "case": "RC-nithari",
+      "gold": "Nithari, Noida",
+      "extracted": [
+        "house D-5, Sector 31, near Nithari village, Noida, Uttar Pradesh"
+      ]
+    },
+    {
+      "case": "RC-nitishkatara",
+      "gold": "Khurja, Ghaziabad",
+      "extracted": [
+        "Khurja",
+        "Ghaziabad region, Delhi NCR",
+        "AIIMS New Delhi",
+        "Beside the highway"
+      ]
+    },
+    {
+      "case": "RC-pramodmahajan",
+      "gold": "Mumbai, Maharashtra",
+      "extracted": [
+        "Pramod Mahajan's apartment, Mumbai, Maharashtra"
+      ]
+    },
+    {
+      "case": "RC-rajagopal",
+      "gold": "Chennai, Tamil Nadu",
+      "extracted": [
+        "Chennai",
+        "Kodaikanal",
+        "Tamil Nadu"
+      ]
+    },
+    {
+      "case": "RC-soumya",
+      "gold": "near Vallathol Nagar, Kerala",
+      "extracted": [
+        "Ernakulam",
+        "Shoranur",
+        "Vallathol Nagar",
+        "hospital"
+      ]
+    },
+    {
+      "case": "RC-soumyavishwanathan",
+      "gold": "Vasant Kunj, New Delhi",
+      "extracted": [
+        "Nelson Mandela Marg, Vasant Kunj, New Delhi"
+      ]
+    },
+    {
+      "case": "RC-tandoor",
+      "gold": "Bagiya restaurant, New Delhi",
+      "extracted": [
+        "New Delhi",
+        "Bagiya barbecue restaurant",
+        "Ashok Yatri Niwas hotel"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "case": "RC-aarushi",
+      "gold": "Jalvayu Vihar, Noida",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "L-32 Jalvayu Vihar, Sector 25, Noida"
+      ]
+    },
+    {
+      "case": "RC-abhaya",
+      "gold": "Kottayam, Kerala",
+      "strict": false,
+      "place": false,
+      "extracted": [
+        "St Pius X Convent",
+        "water well at the convent",
+        "kitchen"
+      ]
+    },
+    {
+      "case": "RC-bilkisbano",
+      "gold": "Chhaparvad, Dahod, Gujarat",
+      "strict": false,
+      "place": false,
+      "extracted": [
+        "Randhikpur, Dahod district, Gujarat",
+        "Maharashtra"
+      ]
+    },
+    {
+      "case": "RC-bmwhitrun",
+      "gold": "Lodhi Road, New Delhi",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "Lodhi Road",
+        "Golf Links"
+      ]
+    },
+    {
+      "case": "RC-dabholkar",
+      "gold": "Pune, Maharashtra",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Vitthal Ramji Shinde (Omkareshwar) bridge",
+        "Pune, Maharashtra"
+      ]
+    },
+    {
+      "case": "RC-gaurilankesh",
+      "gold": "Rajarajeshwari Nagar, Bengaluru",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Rajarajeshwari Nagar, Bengaluru, Karnataka",
+        "Driveway of Gauri Lankesh's home"
+      ]
+    },
+    {
+      "case": "RC-hathras",
+      "gold": "Hathras, Uttar Pradesh",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Hathras district, Uttar Pradesh",
+        "Delhi hospital"
+      ]
+    },
+    {
+      "case": "RC-jessicalal",
+      "gold": "Mehrauli, New Delhi",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Qutab Colonnade restaurant",
+        "Mehrauli, New Delhi"
+      ]
+    },
+    {
+      "case": "RC-jigisha",
+      "gold": "Vasant Vihar, New Delhi",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "Vasant Vihar",
+        "South Delhi"
+      ]
+    },
+    {
+      "case": "RC-kathua",
+      "gold": "Rasana, Kathua, Jammu and Kashmir",
+      "strict": false,
+      "place": false,
+      "extracted": [
+        "Rasana village",
+        "Temple"
+      ]
+    },
+    {
+      "case": "RC-koodathayi",
+      "gold": "Koodathayi, Kozhikode, Kerala",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "Koodathayi",
+        "Kozhikode district"
+      ]
+    },
+    {
+      "case": "RC-mattoo",
+      "gold": "Vasant Kunj, New Delhi",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Vasant Kunj, New Delhi",
+        "Uncle's residence"
+      ]
+    },
+    {
+      "case": "RC-neerajgrover",
+      "gold": "Mumbai",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Mumbai",
+        "forest near Manor in Maharashtra"
+      ]
+    },
+    {
+      "case": "RC-nirbhaya",
+      "gold": "Munirka, Delhi",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Munirka, Delhi"
+      ]
+    },
+    {
+      "case": "RC-nithari",
+      "gold": "Nithari, Noida",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "house D-5, Sector 31, near Nithari village, Noida, Uttar Pradesh"
+      ]
+    },
+    {
+      "case": "RC-nitishkatara",
+      "gold": "Khurja, Ghaziabad",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "Khurja",
+        "Ghaziabad region, Delhi NCR",
+        "AIIMS New Delhi",
+        "Beside the highway"
+      ]
+    },
+    {
+      "case": "RC-phoolandevi",
+      "gold": "Ashoka Road, New Delhi",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "44 Ashoka Road, New Delhi"
+      ]
+    },
+    {
+      "case": "RC-pradyuman",
+      "gold": "Ryan International School, Gurugram",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Ryan International School",
+        "Washroom at Ryan International School",
+        "Gurugram, Haryana"
+      ]
+    },
+    {
+      "case": "RC-pramodmahajan",
+      "gold": "Mumbai, Maharashtra",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "Pramod Mahajan's apartment, Mumbai, Maharashtra"
+      ]
+    },
+    {
+      "case": "RC-rajagopal",
+      "gold": "Chennai, Tamil Nadu",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "Chennai",
+        "Kodaikanal",
+        "Tamil Nadu"
+      ]
+    },
+    {
+      "case": "RC-rgkar",
+      "gold": "R. G. Kar Medical College and Hospital, Kolkata",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "R. G. Kar Medical College and Hospital",
+        "Kolkata, West Bengal"
+      ]
+    },
+    {
+      "case": "RC-sheenabora",
+      "gold": "Bandra, Mumbai",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Bandra, Mumbai",
+        "Gagode village, Raigad district"
+      ]
+    },
+    {
+      "case": "RC-shraddha",
+      "gold": "Mehrauli, New Delhi",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Mehrauli, New Delhi",
+        "Chhatarpur forest area"
+      ]
+    },
+    {
+      "case": "RC-soumya",
+      "gold": "near Vallathol Nagar, Kerala",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "Ernakulam",
+        "Shoranur",
+        "Vallathol Nagar",
+        "hospital"
+      ]
+    },
+    {
+      "case": "RC-soumyavishwanathan",
+      "gold": "Vasant Kunj, New Delhi",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "Nelson Mandela Marg, Vasant Kunj, New Delhi"
+      ]
+    },
+    {
+      "case": "RC-staines",
+      "gold": "Manoharpur, Keonjhar, Odisha",
+      "strict": true,
+      "place": true,
+      "extracted": [
+        "Manoharpur, Keonjhar district, Odisha"
+      ]
+    },
+    {
+      "case": "RC-swathi",
+      "gold": "Nungambakkam, Chennai",
+      "strict": false,
+      "place": false,
+      "extracted": [
+        "Nungambakkam railway station",
+        "Tirunelveli",
+        "Puzhal central prison"
+      ]
+    },
+    {
+      "case": "RC-tandoor",
+      "gold": "Bagiya restaurant, New Delhi",
+      "strict": false,
+      "place": true,
+      "extracted": [
+        "New Delhi",
+        "Bagiya barbecue restaurant",
+        "Ashok Yatri Niwas hotel"
+      ]
+    }
+  ],
+  "principal_selection_first_mention": 0.75,
+  "principal_selection_hits": "21/28"
+}

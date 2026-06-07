@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-phoolandevi",
+  "title": "Assassination of Phoolan Devi",
+  "source": "https://en.wikipedia.org/wiki/Phoolan_Devi",
+  "narrative": "FIR — Assassination of Phoolan Devi, Ashoka Road, New Delhi. On 25 July 2001, Phoolan Devi, a former bandit and sitting Samajwadi Party Member of Parliament from Mirzapur, was shot dead by three assailants outside her residence at 44 Ashoka Road. She was shot multiple times and her bodyguard was injured. Sher Singh Rana later surrendered and claimed the killing was revenge for the 1981 Behmai massacre. After a long trial, Sher Singh Rana was convicted and sentenced to life imprisonment in August 2014.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

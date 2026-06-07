@@ -1,0 +1,17 @@
+{
+  "case_id": "RC-bilkisbano",
+  "title": "Bilkis Bano case",
+  "crime_type": "rape",
+  "source": "https://en.wikipedia.org/wiki/Bilkis_Bano_case",
+  "narrative": "FIR — Bilkis Bano case, Randhikpur, Dahod district, Gujarat. On 3 March 2002, during the Gujarat riots, Bilkis Bano, then 21 years old and five months pregnant, was gang-raped by a mob armed with swords and sticks, which also killed 14 members of her family, including her three-year-old daughter Saleha. Eleven men were convicted of the gang rape and murders and sentenced to life imprisonment in January 2008 by a special court; the trial had been transferred to Maharashtra. The convicts were controversially released in 2022 and ordered back to prison by the Supreme Court in January 2024.",
+  "gold": {
+    "persons": [
+      ["Bilkis Bano", "victim"],
+      ["Saleha", "victim"]
+    ],
+    "locations": ["Chhaparvad, Dahod, Gujarat"],
+    "weapons": ["sickle", "sword", "stone"],
+    "crime_types": ["rape", "gang rape", "murder"],
+    "time_events": ["3 March 2002", "2008", "2024"]
+  }
+}

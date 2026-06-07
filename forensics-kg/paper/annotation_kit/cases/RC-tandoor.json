@@ -1,0 +1,14 @@
+{
+  "case_id": "RC-tandoor",
+  "title": "Tandoor murder case (Naina Sahni)",
+  "source": "https://en.wikipedia.org/wiki/Murder_of_Naina_Sahni",
+  "narrative": "FIR — Tandoor murder case, New Delhi. On 2 July 1995, Naina Sahni, aged 29, was shot dead with a revolver by her husband Sushil Sharma, a Delhi Youth Congress leader, after he suspected her of a relationship with a fellow party worker, Matloob Karim. Sharma took the body to the Bagiya barbecue restaurant at the Ashok Yatri Niwas hotel, where, with the help of restaurant manager Keshav Kumar, he attempted to burn it in a tandoor (clay oven). A police patrol noticed the fire and recovered the partially burnt body. Sharma absconded and surrendered on 10 July 1995. He was convicted of murder and sentenced to death in 2003; the Supreme Court commuted the sentence to life imprisonment in 2013.",
+  "_fill_below": "Label INDEPENDENTLY from the narrative (consult `source` only to disambiguate). Do NOT view any existing gold. persons = [[\"Full Name\",\"role\"], ...] with role in {victim, accused, witness, officer, forensic_analyst}; locations = [\"single principal scene\"]; weapons = [\"weapon or method as a noun\"]; crime_types = [\"canonical type\", ...] (e.g. murder, rape, gang rape, kidnapping, robbery, hit-and-run); time_events = [\"documented date(s)\"] as stated (full date or year). Record only facts the case asserts, not inferences.",
+  "annotation": {
+    "persons": [],
+    "locations": [],
+    "weapons": [],
+    "crime_types": [],
+    "time_events": []
+  }
+}

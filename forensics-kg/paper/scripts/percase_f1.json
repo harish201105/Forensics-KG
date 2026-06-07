@@ -1,0 +1,146 @@
+{
+  "n_cases": 28,
+  "mean_f1": 0.78,
+  "rows": [
+    {
+      "case_id": "RC-dabholkar",
+      "title": "Murder of Narendra Dabholkar",
+      "f1": 0.94
+    },
+    {
+      "case_id": "RC-gaurilankesh",
+      "title": "Murder of Gauri Lankesh",
+      "f1": 0.88
+    },
+    {
+      "case_id": "RC-koodathayi",
+      "title": "Koodathayi cyanide killings",
+      "f1": 0.88
+    },
+    {
+      "case_id": "RC-phoolandevi",
+      "title": "Assassination of Phoolan Devi",
+      "f1": 0.88
+    },
+    {
+      "case_id": "RC-jigisha",
+      "title": "Murder of Jigisha Ghosh",
+      "f1": 0.87
+    },
+    {
+      "case_id": "RC-mattoo",
+      "title": "Murder of Priyadarshini Mattoo",
+      "f1": 0.87
+    },
+    {
+      "case_id": "RC-nirbhaya",
+      "title": "2012 Delhi gang rape and murder",
+      "f1": 0.87
+    },
+    {
+      "case_id": "RC-tandoor",
+      "title": "Tandoor murder case (Naina Sahni)",
+      "f1": 0.83
+    },
+    {
+      "case_id": "RC-jessicalal",
+      "title": "Murder of Jessica Lal",
+      "f1": 0.82
+    },
+    {
+      "case_id": "RC-neerajgrover",
+      "title": "Murder of Neeraj Grover",
+      "f1": 0.82
+    },
+    {
+      "case_id": "RC-pramodmahajan",
+      "title": "Murder of Pramod Mahajan",
+      "f1": 0.82
+    },
+    {
+      "case_id": "RC-abhaya",
+      "title": "Sister Abhaya murder case",
+      "f1": 0.78
+    },
+    {
+      "case_id": "RC-bmwhitrun",
+      "title": "1999 Delhi BMW hit-and-run case",
+      "f1": 0.78
+    },
+    {
+      "case_id": "RC-sheenabora",
+      "title": "Murder of Sheena Bora",
+      "f1": 0.78
+    },
+    {
+      "case_id": "RC-soumyavishwanathan",
+      "title": "Murder of Soumya Vishwanathan",
+      "f1": 0.78
+    },
+    {
+      "case_id": "RC-swathi",
+      "title": "Swathi murder case",
+      "f1": 0.78
+    },
+    {
+      "case_id": "RC-aarushi",
+      "title": "2008 Noida double murder (Aarushi-Hemraj)",
+      "f1": 0.77
+    },
+    {
+      "case_id": "RC-kathua",
+      "title": "Kathua rape and murder case",
+      "f1": 0.77
+    },
+    {
+      "case_id": "RC-pradyuman",
+      "title": "Murder of Pradyuman Thakur",
+      "f1": 0.75
+    },
+    {
+      "case_id": "RC-nithari",
+      "title": "2006 Noida (Nithari) serial murders",
+      "f1": 0.73
+    },
+    {
+      "case_id": "RC-rajagopal",
+      "title": "Murder of Prince Santhakumar (Saravana Bhavan case)",
+      "f1": 0.73
+    },
+    {
+      "case_id": "RC-hathras",
+      "title": "2020 Hathras gang rape and murder",
+      "f1": 0.72
+    },
+    {
+      "case_id": "RC-staines",
+      "title": "Murder of Graham Staines",
+      "f1": 0.7
+    },
+    {
+      "case_id": "RC-bilkisbano",
+      "title": "Bilkis Bano case",
+      "f1": 0.67
+    },
+    {
+      "case_id": "RC-rgkar",
+      "title": "2024 Kolkata R. G. Kar rape and murder",
+      "f1": 0.67
+    },
+    {
+      "case_id": "RC-shraddha",
+      "title": "Murder of Shraddha Walkar",
+      "f1": 0.67
+    },
+    {
+      "case_id": "RC-nitishkatara",
+      "title": "Nitish Katara murder case",
+      "f1": 0.61
+    },
+    {
+      "case_id": "RC-soumya",
+      "title": "Soumya murder case",
+      "f1": 0.6
+    }
+  ]
+}

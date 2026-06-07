@@ -1,0 +1,2830 @@
+{
+  "n_entities": 239,
+  "all_cross_case_pairs": 9973,
+  "candidate_pairs": 243,
+  "accepted_links": 28,
+  "by_label": {
+    "Person": {
+      "nodes": 124,
+      "accepted": 8
+    },
+    "Location": {
+      "nodes": 63,
+      "accepted": 1
+    },
+    "Weapon": {
+      "nodes": 12,
+      "accepted": 3
+    },
+    "Vehicle": {
+      "nodes": 3,
+      "accepted": 0
+    },
+    "CrimeType": {
+      "nodes": 37,
+      "accepted": 16
+    }
+  },
+  "accepted": [
+    {
+      "label": "Person",
+      "a": "Central Bureau of Investigation [RC-aarushi]",
+      "b": "Central Bureau of Investigation [RC-mattoo]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.75,
+      "basis": "name+role"
+    },
+    {
+      "label": "Person",
+      "a": "Central Bureau of Investigation [RC-aarushi]",
+      "b": "Central Bureau of Investigation [RC-nithari]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.75,
+      "basis": "name+role"
+    },
+    {
+      "label": "Person",
+      "a": "Delhi Police [RC-jessicalal]",
+      "b": "Delhi Police [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.77,
+      "basis": "name+context+role"
+    },
+    {
+      "label": "Person",
+      "a": "Ravi Kapoor [RC-jigisha]",
+      "b": "Ravi Kapoor [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.8,
+      "basis": "name+context"
+    },
+    {
+      "label": "Person",
+      "a": "Amit Shukla [RC-jigisha]",
+      "b": "Amit Shukla [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.8,
+      "basis": "name+context"
+    },
+    {
+      "label": "Person",
+      "a": "Baljeet Malik [RC-jigisha]",
+      "b": "Baljeet Malik [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.8,
+      "basis": "name+context"
+    },
+    {
+      "label": "Person",
+      "a": "Central Bureau of Investigation [RC-mattoo]",
+      "b": "Central Bureau of Investigation [RC-nithari]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.75,
+      "basis": "name+role"
+    },
+    {
+      "label": "Person",
+      "a": "Ajay Kumar [RC-nitishkatara]",
+      "b": "Ajay Kumar [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.6,
+      "basis": "name"
+    },
+    {
+      "label": "Location",
+      "a": "Vasant Kunj, New Delhi [RC-mattoo]",
+      "b": "Nelson Mandela Marg, Vasant Kunj, New Delhi [RC-soumyavishwanathan]",
+      "cos": 0.83,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "Weapon",
+      "a": "firearm [RC-jessicalal]",
+      "b": "firearm [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "Weapon",
+      "a": "firearm [RC-jessicalal]",
+      "b": "firearm [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "Weapon",
+      "a": "firearm [RC-pramodmahajan]",
+      "b": "firearm [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape [RC-bilkisbano]",
+      "b": "Gang rape and murder [RC-hathras]",
+      "cos": 0.93,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape [RC-bilkisbano]",
+      "b": "Gang rape and murder [RC-nirbhaya]",
+      "cos": 0.93,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Culpable homicide not amounting to murder [RC-bmwhitrun]",
+      "b": "culpable homicide [RC-neerajgrover]",
+      "cos": 0.86,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-hathras]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.86,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-hathras]",
+      "b": "Gang rape and murder [RC-nirbhaya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.6,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape [RC-kathua]",
+      "b": "Rape [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape [RC-kathua]",
+      "b": "Rape [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Gang rape and murder [RC-nirbhaya]",
+      "cos": 0.86,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape [RC-rgkar]",
+      "b": "Rape [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rgkar]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    }
+  ],
+  "all_candidates": [
+    {
+      "label": "Person",
+      "a": "Central Bureau of Investigation [RC-aarushi]",
+      "b": "Central Bureau of Investigation [RC-mattoo]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.75,
+      "basis": "name+role"
+    },
+    {
+      "label": "Person",
+      "a": "Central Bureau of Investigation [RC-aarushi]",
+      "b": "Central Bureau of Investigation [RC-nithari]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.75,
+      "basis": "name+role"
+    },
+    {
+      "label": "Person",
+      "a": "Ram Raj [RC-bmwhitrun]",
+      "b": "Ramu [RC-hathras]",
+      "cos": 0.83,
+      "name_score": 0.55,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Person",
+      "a": "Ram Raj [RC-bmwhitrun]",
+      "b": "Ram Singh [RC-nirbhaya]",
+      "cos": 0.83,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Person",
+      "a": "Ram Raj [RC-bmwhitrun]",
+      "b": "P. Ramkumar [RC-swathi]",
+      "cos": 0.79,
+      "name_score": 0.47,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Person",
+      "a": "Ravi [RC-hathras]",
+      "b": "Ravi Kapoor [RC-jigisha]",
+      "cos": 0.86,
+      "name_score": 0.53,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Person",
+      "a": "Ravi [RC-hathras]",
+      "b": "Ravi Kapoor [RC-soumyavishwanathan]",
+      "cos": 0.86,
+      "name_score": 0.53,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Person",
+      "a": "Ramu [RC-hathras]",
+      "b": "P. Ramkumar [RC-swathi]",
+      "cos": 0.79,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Person",
+      "a": "Delhi Police [RC-jessicalal]",
+      "b": "Delhi Police [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.77,
+      "basis": "name+context+role"
+    },
+    {
+      "label": "Person",
+      "a": "Ravi Kapoor [RC-jigisha]",
+      "b": "Ravi Kapoor [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.8,
+      "basis": "name+context"
+    },
+    {
+      "label": "Person",
+      "a": "Amit Shukla [RC-jigisha]",
+      "b": "Amit Shukla [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.8,
+      "basis": "name+context"
+    },
+    {
+      "label": "Person",
+      "a": "Baljeet Malik [RC-jigisha]",
+      "b": "Baljeet Malik [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.8,
+      "basis": "name+context"
+    },
+    {
+      "label": "Person",
+      "a": "Central Bureau of Investigation [RC-mattoo]",
+      "b": "Central Bureau of Investigation [RC-nithari]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.75,
+      "basis": "name+role"
+    },
+    {
+      "label": "Person",
+      "a": "Mumbai Crime Branch [RC-neerajgrover]",
+      "b": "Mumbai Police [RC-sheenabora]",
+      "cos": 0.84,
+      "name_score": 0.56,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Person",
+      "a": "Ajay Kumar [RC-nitishkatara]",
+      "b": "Ajay Kumar [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.6,
+      "basis": "name"
+    },
+    {
+      "label": "Person",
+      "a": "P. Rajagopal [RC-rajagopal]",
+      "b": "P. Ramkumar [RC-swathi]",
+      "cos": 0.81,
+      "name_score": 0.48,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Person",
+      "a": "Soumya [RC-soumya]",
+      "b": "Soumya Vishwanathan [RC-soumyavishwanathan]",
+      "cos": 0.87,
+      "name_score": 0.48,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Location",
+      "a": "Maharashtra [RC-bilkisbano]",
+      "b": "Pune, Maharashtra [RC-dabholkar]",
+      "cos": 0.82,
+      "name_score": 0.81,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Location",
+      "a": "Maharashtra [RC-bilkisbano]",
+      "b": "Mumbai [RC-neerajgrover]",
+      "cos": 0.82,
+      "name_score": 0.24,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Location",
+      "a": "Mehrauli, New Delhi [RC-jessicalal]",
+      "b": "Mehrauli [RC-shraddha]",
+      "cos": 0.93,
+      "name_score": 0.62,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Location",
+      "a": "Vasant Vihar, South Delhi [RC-jigisha]",
+      "b": "Vasant Kunj, New Delhi [RC-mattoo]",
+      "cos": 0.82,
+      "name_score": 0.62,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Location",
+      "a": "Vasant Kunj, New Delhi [RC-mattoo]",
+      "b": "Nelson Mandela Marg, Vasant Kunj, New Delhi [RC-soumyavishwanathan]",
+      "cos": 0.83,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "Location",
+      "a": "Mumbai [RC-neerajgrover]",
+      "b": "Bandra, Mumbai [RC-sheenabora]",
+      "cos": 0.83,
+      "name_score": 0.63,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Weapon",
+      "a": "firearm [RC-jessicalal]",
+      "b": "Firearm [RC-phoolandevi]",
+      "cos": 0.94,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "Weapon",
+      "a": "firearm [RC-jessicalal]",
+      "b": "firearm [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "Weapon",
+      "a": "firearm [RC-jessicalal]",
+      "b": "firearm [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "Weapon",
+      "a": "blunt object [RC-mattoo]",
+      "b": "bladed weapon [RC-swathi]",
+      "cos": 0.83,
+      "name_score": 0.24,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "Weapon",
+      "a": "Firearm [RC-phoolandevi]",
+      "b": "firearm [RC-pramodmahajan]",
+      "cos": 0.94,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "Weapon",
+      "a": "Firearm [RC-phoolandevi]",
+      "b": "firearm [RC-tandoor]",
+      "cos": 0.94,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "Weapon",
+      "a": "firearm [RC-pramodmahajan]",
+      "b": "firearm [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-abhaya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-bilkisbano]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-dabholkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-gaurilankesh]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-jessicalal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder and Robbery [RC-jigisha]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-kathua]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-aarushi]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-bilkisbano]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-dabholkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-gaurilankesh]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-jessicalal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder and Robbery [RC-jigisha]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-kathua]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-abhaya]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape [RC-bilkisbano]",
+      "b": "Gang rape and murder [RC-hathras]",
+      "cos": 0.93,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape [RC-bilkisbano]",
+      "b": "Rape [RC-kathua]",
+      "cos": 0.84,
+      "name_score": 0.62,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape [RC-bilkisbano]",
+      "b": "Gang rape and murder [RC-nirbhaya]",
+      "cos": 0.93,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape [RC-bilkisbano]",
+      "b": "Rape [RC-rgkar]",
+      "cos": 0.84,
+      "name_score": 0.62,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape [RC-bilkisbano]",
+      "b": "Rape [RC-soumya]",
+      "cos": 0.84,
+      "name_score": 0.62,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-dabholkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-gaurilankesh]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-jessicalal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder and Robbery [RC-jigisha]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-kathua]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-bilkisbano]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Culpable homicide not amounting to murder [RC-bmwhitrun]",
+      "b": "culpable homicide [RC-neerajgrover]",
+      "cos": 0.86,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-gaurilankesh]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-jessicalal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder and Robbery [RC-jigisha]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-kathua]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-dabholkar]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-jessicalal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder and Robbery [RC-jigisha]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-kathua]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-gaurilankesh]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-hathras]",
+      "b": "Rape [RC-kathua]",
+      "cos": 0.8,
+      "name_score": 0.33,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-hathras]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.86,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-hathras]",
+      "b": "Gang rape and murder [RC-nirbhaya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.6,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-hathras]",
+      "b": "Rape [RC-rgkar]",
+      "cos": 0.8,
+      "name_score": 0.33,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-hathras]",
+      "b": "Rape [RC-soumya]",
+      "cos": 0.8,
+      "name_score": 0.33,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder and Robbery [RC-jigisha]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-kathua]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-jessicalal]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-kathua]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.78,
+      "name_score": 0.36,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-soumya]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Attempted Robbery [RC-soumyavishwanathan]",
+      "cos": 0.79,
+      "name_score": 0.63,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-staines]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-swathi]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder and Robbery [RC-jigisha]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 0.89,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape [RC-kathua]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.91,
+      "name_score": 0.42,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape [RC-kathua]",
+      "b": "Gang rape and murder [RC-nirbhaya]",
+      "cos": 0.8,
+      "name_score": 0.33,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape [RC-kathua]",
+      "b": "Rape [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape [RC-kathua]",
+      "b": "Rape [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Rape and Murder [RC-mattoo]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-kathua]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Gang rape and murder [RC-nirbhaya]",
+      "cos": 0.86,
+      "name_score": 0.95,
+      "accepted": true,
+      "conf": 0.57,
+      "basis": "name"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-pradyuman]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Rape [RC-rgkar]",
+      "cos": 0.91,
+      "name_score": 0.42,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-soumya]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Rape [RC-soumya]",
+      "cos": 0.91,
+      "name_score": 0.42,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-staines]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-swathi]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape and Murder [RC-mattoo]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 0.82,
+      "name_score": 0.57,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "destroying evidence [RC-neerajgrover]",
+      "b": "Causing disappearance of evidence [RC-sheenabora]",
+      "cos": 0.87,
+      "name_score": 0.5,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-nirbhaya]",
+      "b": "Rape [RC-rgkar]",
+      "cos": 0.8,
+      "name_score": 0.33,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Gang rape and murder [RC-nirbhaya]",
+      "b": "Rape [RC-soumya]",
+      "cos": 0.8,
+      "name_score": 0.33,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": ""
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-pramodmahajan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pradyuman]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-rajagopal]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-pramodmahajan]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rajagopal]",
+      "b": "Murder [RC-rgkar]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rajagopal]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rajagopal]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rajagopal]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rajagopal]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rajagopal]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rajagopal]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rajagopal]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Rape [RC-rgkar]",
+      "b": "Rape [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rgkar]",
+      "b": "Murder [RC-sheenabora]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rgkar]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rgkar]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": true,
+      "conf": 0.62,
+      "basis": "name+context"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rgkar]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rgkar]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rgkar]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-rgkar]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-sheenabora]",
+      "b": "Murder [RC-shraddha]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-sheenabora]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-sheenabora]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-sheenabora]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-sheenabora]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-sheenabora]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-shraddha]",
+      "b": "Murder [RC-soumya]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-shraddha]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-shraddha]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-shraddha]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-shraddha]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-soumya]",
+      "b": "Murder [RC-soumyavishwanathan]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-soumya]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-soumya]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-soumya]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-soumyavishwanathan]",
+      "b": "Murder [RC-staines]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-soumyavishwanathan]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-soumyavishwanathan]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-staines]",
+      "b": "Murder [RC-swathi]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-staines]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    },
+    {
+      "label": "CrimeType",
+      "a": "Murder [RC-swathi]",
+      "b": "Murder [RC-tandoor]",
+      "cos": 1.0,
+      "name_score": 1.0,
+      "accepted": false,
+      "conf": 0.0,
+      "basis": "ambiguous-name-no-corroboration"
+    }
+  ],
+  "objective_gold": {
+    "crimetype_pairs": 376,
+    "city_location_pairs": 40,
+    "crime_examples": [
+      [
+        "gang rape",
+        "RC-bilkisbano",
+        "RC-hathras"
+      ],
+      [
+        "gang rape",
+        "RC-bilkisbano",
+        "RC-kathua"
+      ],
+      [
+        "gang rape",
+        "RC-bilkisbano",
+        "RC-nirbhaya"
+      ],
+      [
+        "gang rape",
+        "RC-hathras",
+        "RC-kathua"
+      ],
+      [
+        "gang rape",
+        "RC-hathras",
+        "RC-nirbhaya"
+      ],
+      [
+        "gang rape",
+        "RC-kathua",
+        "RC-nirbhaya"
+      ],
+      [
+        "kidnapping",
+        "RC-jigisha",
+        "RC-kathua"
+      ],
+      [
+        "kidnapping",
+        "RC-jigisha",
+        "RC-rajagopal"
+      ]
+    ],
+    "city_examples": [
+      [
+        "delhi",
+        "RC-bmwhitrun",
+        "RC-jessicalal"
+      ],
+      [
+        "delhi",
+        "RC-bmwhitrun",
+        "RC-jigisha"
+      ],
+      [
+        "delhi",
+        "RC-bmwhitrun",
+        "RC-mattoo"
+      ],
+      [
+        "delhi",
+        "RC-bmwhitrun",
+        "RC-nirbhaya"
+      ],
+      [
+        "delhi",
+        "RC-bmwhitrun",
+        "RC-phoolandevi"
+      ],
+      [
+        "delhi",
+        "RC-bmwhitrun",
+        "RC-shraddha"
+      ],
+      [
+        "delhi",
+        "RC-bmwhitrun",
+        "RC-soumyavishwanathan"
+      ],
+      [
+        "delhi",
+        "RC-bmwhitrun",
+        "RC-tandoor"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "case_id": "RC-hathras",
+  "title": "2020 Hathras gang rape and murder",
+  "crime_type": "rape",
+  "source": "https://en.wikipedia.org/wiki/2020_Hathras_gang_rape_and_murder",
+  "narrative": "FIR — 2020 Hathras gang rape and murder, Hathras district, Uttar Pradesh. On 14 September 2020, a 19-year-old Dalit woman was assaulted and gang-raped in a field; she sustained severe injuries and named four upper-caste men, Sandeep, Ravi, Luv Kush and Ramu, as her attackers. She died of her injuries at a Delhi hospital on 29 September 2020. Her body was cremated by the police at night, drawing national outrage. On 2 March 2023, a special court convicted Sandeep under culpable homicide and the SC/ST Act while acquitting the other three accused.",
+  "gold": {
+    "persons": [
+      ["Sandeep Thakur", "convicted"],
+      ["Ravi", "accused"],
+      ["Luv Kush", "accused"],
+      ["Ramu", "accused"]
+    ],
+    "locations": ["Hathras, Uttar Pradesh"],
+    "weapons": [],
+    "crime_types": ["rape", "gang rape", "murder"],
+    "time_events": ["14 September 2020", "29 September 2020", "2023"]
+  }
+}
